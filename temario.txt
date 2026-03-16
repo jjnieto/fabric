@@ -1,0 +1,43 @@
+1	Módulo 1: Introducción a la Tecnología Blockchain de Hyperledger Fabric.
+• Introducción a Blockchain y casos de uso.
+• Hyperledger Project y su ecosistema.
+• Arquitectura de Hyperledger Fabric.
+• Componentes principales: Peers, Orderers, CAs, MSPs.
+• Criptografía: certificados, identidades y políticas.
+• Funcionamiento interno: transacciones, bloques, consenso y canales.
+• Herramientas básicas: Fabric Samples, Binaries, Test Network.
+
+2	Módulo 2: Desarrollo de proyectos con Hyperledger Fabric.
+• Creación de redes Blockchain desde cero.
+• Configuración de organizaciones, canales y nodos.
+• Gestión de certificados e identidades con Fabric CA.
+• Despliegue de Chaincodes (Smart Contracts).
+• Operaciones esenciales de administración.
+
+3	Módulo 3: Visión empresarial de proyectos con Hyperledger Fabric.
+• Casos de uso reales en empresas.
+• Identificación de oportunidades de negocio con Blockchain.
+• Modelos de gobernanza y toma de decisiones.
+• Marco legal y regulatorio.
+• Diseño de proyectos empresariales con Fabric.
+
+4	Módulo 4: Tokens y Smart Contracts con soluciones Blockchain.
+• Concepto de tokenización y activos digitales.
+• Diseño y desarrollo de Smart Contracts.
+• Gestión de activos y reglas de negocio.
+• Implementación de tokens en entornos empresariales.
+• Seguridad y buenas prácticas en Smart Contracts.
+
+5	Módulo 5: Identidad Digital en Alastria y otras soluciones Blockchain.
+• Ecosistema Alastria y su infraestructura.
+• Identidad digital descentralizada (DID).
+• Certificados verificables (VC).
+• Integración de identidad digital en soluciones empresariales.
+• Arquitecturas híbridas con múltiples redes Blockchain.
+
+6	Módulo 6: Diseño e implementación de proyectos con Hyperledger Fabric.
+• Diseño completo de un proyecto Blockchain.
+• Integración de módulos previos en una solución final.
+• Pruebas, validación y despliegue.
+• Documentación técnica y operativa.
+• Presentación final del proyecto.
