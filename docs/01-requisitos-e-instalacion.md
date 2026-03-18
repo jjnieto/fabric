@@ -11,37 +11,9 @@
 
 ---
 
-## 1. Instalar VS Code (solo Windows)
+## 1. Habilitar WSL2 e instalar Ubuntu (solo Windows)
 
-Descarga e instala Visual Studio Code desde [code.visualstudio.com](https://code.visualstudio.com/).
-
-VS Code se integra con WSL2 y permite editar archivos de Linux directamente desde Windows. La extensión **Remote - WSL** se instalará automáticamente al abrir VS Code desde la terminal de Ubuntu con `code .`.
-
-> **¿Por qué instalar VS Code antes que WSL2?** Al instalar Ubuntu, aparece una pantalla de
-> bienvenida con opciones de integración con VS Code y Docker. Si ya están instalados,
-> puedes habilitarlas directamente.
-
----
-
-## 2. Instalar Docker Desktop (solo Windows)
-
-Descarga e instala Docker Desktop desde [docker.com](https://www.docker.com/products/docker-desktop/). Selecciona la versión **Windows AMD64** (la opción correcta para procesadores Intel y AMD).
-
-Docker es **imprescindible**. Fabric ejecuta todos sus componentes (peers, orderers, CAs) como contenedores Docker.
-
-La integración con WSL2 se puede habilitar de dos formas:
-
-- **Desde Ubuntu:** Al instalar Ubuntu (paso 3.3), la pantalla de bienvenida ofrece habilitar la integración con Docker directamente.
-- **Desde Docker Desktop:** Settings → Resources → WSL Integration → Habilitar integración con tu distribución Ubuntu.
-
-> **Nota:** Esta integración hace que el comando `docker` esté disponible directamente
-> dentro de la terminal de Ubuntu/WSL2 sin necesidad de instalar Docker Engine en Linux.
-
----
-
-## 3. Habilitar WSL2 (solo Windows)
-
-### 3.1 Instalar WSL2
+### 1.1 Instalar WSL2
 
 Abrir PowerShell como administrador:
 
@@ -51,7 +23,15 @@ wsl --install
 
 Esto instala el subsistema WSL2 y habilita la virtualización. **Reinicia el equipo** cuando se te solicite.
 
-### 3.2 Verificar que WSL2 está listo
+> **Si `wsl --install` falla o no se reconoce el comando**, es posible que necesites habilitar
+> primero la característica de Windows manualmente. Ve a **Panel de control → Programas →
+> Activar o desactivar las características de Windows** y marca:
+> - **Subsistema de Windows para Linux**
+> - **Plataforma de máquina virtual**
+>
+> Reinicia el equipo y vuelve a ejecutar `wsl --install`.
+
+### 1.2 Verificar que WSL2 está listo
 
 Después de reiniciar, abre PowerShell como administrador y ejecuta:
 
@@ -67,7 +47,7 @@ wsl --install --no-distribution
 
 Reinicia de nuevo y vuelve a verificar con `wsl --status`.
 
-### 3.3 Instalar Ubuntu
+### 1.3 Instalar Ubuntu
 
 ```powershell
 wsl --install -d Ubuntu
@@ -77,7 +57,7 @@ wsl --install -d Ubuntu
 > En versiones recientes de Windows 11 solo instala el subsistema, por lo que es necesario
 > instalar la distribución de forma explícita.
 
-Se te pedirá crear un **usuario y contraseña** para Linux. Al finalizar, aparecerá una pantalla de bienvenida donde puedes habilitar las integraciones con VS Code y Docker Desktop.
+Se te pedirá crear un **usuario y contraseña** para Linux.
 
 Si ya tienes WSL1, asegúrate de usar la versión 2:
 
@@ -85,7 +65,7 @@ Si ya tienes WSL1, asegúrate de usar la versión 2:
 wsl --set-default-version 2
 ```
 
-### 3.4 Verificar la instalación
+### 1.4 Verificar la instalación
 
 ```powershell
 wsl --list --verbose
@@ -93,17 +73,72 @@ wsl --list --verbose
 
 Debes ver tu distribución con `VERSION 2`.
 
-### 3.5 Acceder a WSL
+---
 
-```powershell
-wsl
+## 2. Instalar VS Code (solo Windows)
+
+Descarga e instala Visual Studio Code desde [code.visualstudio.com](https://code.visualstudio.com/).
+
+### Verificar la integración con WSL
+
+Abre una terminal de Ubuntu (ejecuta `wsl` desde PowerShell) y ejecuta:
+
+```bash
+code .
 ```
 
-**A partir de aquí, todos los comandos se ejecutan dentro de la terminal de Linux (WSL2 o nativa).**
+VS Code se abrirá con la extensión **WSL** conectada. Verás abajo a la izquierda `WSL: Ubuntu`. Si la extensión no se instala automáticamente, búscala en el marketplace de extensiones de VS Code (Ctrl+Shift+X) como **WSL**.
+
+---
+
+## 3. Instalar Docker Desktop (solo Windows)
+
+Descarga e instala Docker Desktop desde [docker.com](https://www.docker.com/products/docker-desktop/). Selecciona la versión **Windows AMD64** (la opción correcta para procesadores Intel y AMD).
+
+Docker es **imprescindible**. Fabric ejecuta todos sus componentes (peers, orderers, CAs) como contenedores Docker.
+
+### 3.1 Integrar Docker Desktop con WSL2
+
+Para evitar errores de permisos entre Docker Desktop y WSL2, sigue estos pasos en orden:
+
+1. **Cierra la terminal de Ubuntu** si la tienes abierta.
+
+2. **Apaga WSL** desde PowerShell:
+
+   ```powershell
+   wsl --shutdown
+   ```
+
+3. **Abre Docker Desktop** y espera a que termine de arrancar.
+
+4. Habilita la integración con Ubuntu en Docker Desktop:
+
+   **Settings → Resources → WSL Integration → Activa el toggle de tu distribución Ubuntu → Apply & Restart**
+
+5. **Abre Ubuntu de nuevo** desde PowerShell:
+
+   ```powershell
+   wsl
+   ```
+
+### 3.2 Verificar Docker en Ubuntu
+
+Desde la terminal de Ubuntu:
+
+```bash
+docker --version
+docker compose version
+docker run hello-world
+```
+
+> **Nota:** Con Docker Desktop integrado en WSL2, no necesitas instalar Docker Engine
+> dentro de Linux. Docker Desktop proporciona el comando `docker` directamente.
 
 ---
 
 ## 4. Instalar prerequisitos del sistema
+
+**A partir de aquí, todos los comandos se ejecutan dentro de la terminal de Linux (WSL2 o nativa).**
 
 ### Ubuntu / Debian (o WSL2 con Ubuntu)
 
@@ -130,7 +165,7 @@ jq --version
 
 ## 5. Instalar Docker (macOS / Linux nativo)
 
-> **Usuarios de Windows con WSL2:** Si ya instalaste Docker Desktop en el paso 2 y habilitaste
+> **Usuarios de Windows con WSL2:** Si ya instalaste Docker Desktop en el paso 3 y habilitaste
 > la integración con WSL2, **salta este paso**. Docker ya está disponible en tu terminal de Ubuntu.
 
 ### Ubuntu / Debian (sin Docker Desktop)
@@ -342,9 +377,9 @@ $HOME/fabric/
 
 ## Checklist final
 
-- [ ] VS Code instalado (solo Windows)
-- [ ] Docker Desktop instalado con integración WSL2 (solo Windows)
 - [ ] WSL2 + Ubuntu funcionando (solo Windows)
+- [ ] VS Code con extensión WSL (solo Windows)
+- [ ] Docker Desktop instalado con integración WSL2 (solo Windows)
 - [ ] Git, curl, jq instalados
 - [ ] Docker funcionando (`docker run hello-world`)
 - [ ] Docker Compose disponible
