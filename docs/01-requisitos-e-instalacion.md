@@ -25,7 +25,7 @@ VS Code se integra con WSL2 y permite editar archivos de Linux directamente desd
 
 ## 2. Instalar Docker Desktop (solo Windows)
 
-Descarga e instala Docker Desktop desde [docker.com](https://www.docker.com/products/docker-desktop/).
+Descarga e instala Docker Desktop desde [docker.com](https://www.docker.com/products/docker-desktop/). Selecciona la versión **Windows AMD64** (la opción correcta para procesadores Intel y AMD).
 
 Docker es **imprescindible**. Fabric ejecuta todos sus componentes (peers, orderers, CAs) como contenedores Docker.
 
