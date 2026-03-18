@@ -459,7 +459,7 @@ graph TD
 
 ---
 
-## 6 generales con 2 traidores — Funciona (justo en el límite: 6 ≥ 3×2)
+## 6 generales con 2 traidores — NO funciona (6 < 3×2+1 = 7)
 
 ### Ronda 1 — Comandante traidor, T3 también traidor
 
@@ -588,7 +588,7 @@ graph TD
 
 **Resultado: T1, T2 y T5 deciden ATACAR, pero T4 decide RETIRARSE. El traidor T3 envió mensajes diferentes a cada leal, y logró que T4 viera una mayoría distinta. NO hay consenso total entre leales. FALLA.**
 
-> **Nota importante:** 6 generales con 2 traidores está justo en el límite teórico (6 = 3×2, pero la regla exige 3f+1 = **7**). Este caso demuestra que el "igual" no basta — hacen falta **estrictamente más** de 2/3 leales. Con 7 generales y 2 traidores (5 leales), sí funcionaría.
+> **Conclusión:** 6 generales con 2 traidores **no funciona**. La regla exige n ≥ 3f+1 = **7**, y 6 < 7. Este caso demuestra que no basta con tener "más o menos" 2/3 leales — hacen falta **estrictamente más** de 2/3. Con 7 generales y 2 traidores (5 leales), sí funcionaría.
 
 ---
 
