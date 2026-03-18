@@ -1,0 +1,7 @@
+node_modules/
+slides_content.txt
+extract_pptx.js
+package.json
+package-lock.json
+.claude/
+claude.txt
