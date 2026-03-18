@@ -246,171 +246,183 @@ La crisis no fue solo de hipotecas, fue de **confianza en el propio dinero banca
 
 ## Actividad de relleno (si sobra tiempo)
 
-### Simula tu propio banco (30-45 min)
+### El banco prudente y el banco temerario (30-40 min)
 
-Simulación guiada paso a paso del sistema bancario, la reserva fraccionaria y una crisis de liquidez.
+Simulación del sistema bancario con dos bancos que operan de forma muy diferente. Cuando llega la crisis, uno sobrevive y el otro no.
 
-**Preparación (5 min)**
+**Preparación (3 min)**
 
-| Rol | Quién | Material |
-|-----|-------|----------|
-| **Banco Central** | El profesor | Folios en blanco (para "imprimir" dinero) |
-| **Banco A** | 2 alumnos (un director y un cajero) | Hoja de balance en la pizarra o papel grande |
-| **Banco B** | 2 alumnos (un director y un cajero) | Hoja de balance en la pizarra o papel grande |
-| **Clientes** | El resto de la clase (10-15 personas) | Cada uno recibe un sobre con su nombre |
+| Rol | Quién |
+|-----|-------|
+| **Banco Central** | El profesor |
+| **Banco Prudente** | 1-2 alumnos voluntarios |
+| **Banco Temerario** | 1-2 alumnos voluntarios |
+| **Clientes** | El resto de la clase, repartidos entre ambos bancos |
 
-Preparar en la pizarra (o en dos cartulinas) la hoja de balance de cada banco:
+Dibujar en la pizarra dos balances lado a lado:
 
 ```
-BANCO A                          BANCO B
+BANCO PRUDENTE                   BANCO TEMERARIO
 ─────────────────────            ─────────────────────
+DEPÓSITOS:   ___€                DEPÓSITOS:   ___€
 RESERVAS:    ___€                RESERVAS:    ___€
 PRÉSTAMOS:   ___€                PRÉSTAMOS:   ___€
-DEPÓSITOS:   ___€                DEPÓSITOS:   ___€
 ```
 
----
-
-**FASE 1 — Los depósitos (5 min)**
-
-El profesor (Banco Central) reparte dinero a los clientes:
-
-> "Soy el Banco Central. Acabo de emitir dinero. Cada uno de vosotros recibe 100€."
-
-Dar a cada cliente un papelito que dice "100€".
-
-> "Ahora necesitáis guardar vuestro dinero. Los que estáis en la fila izquierda, id al Banco A. Los de la fila derecha, al Banco B."
-
-- Los clientes entregan sus 100€ al cajero del banco correspondiente.
-- El cajero anota en la hoja de balance: +100€ en RESERVAS y +100€ en DEPÓSITOS por cada cliente.
-- **Resultado esperado** (con ~6 clientes por banco):
-  - Banco A: Reservas 600€, Depósitos 600€
-  - Banco B: Reservas 600€, Depósitos 600€
+Dar a cada alumno-cliente un papelito que dice "100€".
 
 ---
 
-**FASE 2 — La reserva fraccionaria (5 min)**
+**FASE 1 — Los depósitos (3 min)**
 
-El profesor explica:
+El profesor:
 
-> "Vuestros bancos tienen licencia para operar con reserva fraccionaria del 10%. Eso significa que solo necesitáis mantener el 10% de los depósitos en reserva. El resto lo podéis prestar para ganar intereses."
+> "Soy el Banco Central. He emitido dinero y cada ciudadano tiene 100€. Necesitáis depositarlo en un banco. Elegid libremente a cuál vais."
 
-Instrucciones para los bancos:
-- Banco A: reserva 60€ (10%) y puede prestar hasta 540€
-- Banco B: reserva 60€ (10%) y puede prestar hasta 540€
-
----
-
-**FASE 3 — Los préstamos (5 min)**
-
-El profesor asigna préstamos concretos:
-
-> "Cliente 1 (del Banco A): pides un préstamo de 200€ para comprar un coche."
-
-- Banco A entrega 200€ al Cliente 1. Anota: +200€ en PRÉSTAMOS, -200€ en RESERVAS.
-
-> "Cliente 2 (del Banco A): pides un préstamo de 150€ para reformar tu casa."
-
-- Banco A entrega 150€. Anota: +150€ en PRÉSTAMOS, -150€ en RESERVAS.
-
-> "Cliente 7 (del Banco B): pides un préstamo de 300€ para montar un negocio."
-
-- Banco B entrega 300€. Anota: +300€ en PRÉSTAMOS, -300€ en RESERVAS.
-
-> "Cliente 8 (del Banco B): pides 100€ para un viaje."
-
-- Banco B entrega 100€. Anota: +100€ en PRÉSTAMOS, -100€ en RESERVAS.
-
-**Estado de los balances después de los préstamos:**
+Los clientes se reparten y depositan. Los bancos anotan. Supongamos que quedan ~6 clientes por banco:
 
 ```
-BANCO A                          BANCO B
+BANCO PRUDENTE                   BANCO TEMERARIO
 ─────────────────────            ─────────────────────
-RESERVAS:    250€                RESERVAS:    200€
-PRÉSTAMOS:   350€                PRÉSTAMOS:   400€
 DEPÓSITOS:   600€                DEPÓSITOS:   600€
+RESERVAS:    600€                RESERVAS:    600€
+PRÉSTAMOS:     0€                PRÉSTAMOS:     0€
 ```
 
-El profesor pregunta: *"¿Os dais cuenta de que los depósitos siguen siendo 600€ pero las reservas son mucho menores? ¿Qué pasa si todos los clientes vienen a retirar su dinero a la vez?"*
+> "Ambos bancos tienen licencia para operar con reserva fraccionaria al 10%. Solo necesitáis guardar el 10% de los depósitos. El resto lo podéis prestar para ganar intereses. Cuanto más prestéis, más ganáis."
 
 ---
 
-**FASE 4 — Los préstamos interbancarios (3 min)**
+**FASE 2 — Cada banco decide su estrategia (5 min)**
 
-> "El Banco A necesita más liquidez para conceder otro préstamo. Le pide prestados 100€ al Banco B."
+El profesor presenta a los dos bancos una lista de solicitudes de crédito. **Los bancos deciden cuáles aceptan.**
 
-- Banco B transfiere 100€ al Banco A. Ambos anotan la operación.
+| Solicitud | Importe | Perfil del solicitante |
+|-----------|---------|----------------------|
+| Familia García | 100€ | Matrimonio con empleo estable, quieren reformar la cocina |
+| Restaurante "El Buen Gusto" | 150€ | Negocio con 10 años de antigüedad, quiere ampliar terraza |
+| StartUp "CryptoMoon" | 200€ | Empresa de 3 meses, sin ingresos, promete un 500% de retorno |
+| Familia López | 100€ | Matrimonio con empleo estable, quieren comprar un coche |
+| Inmobiliaria "Pisos Fácil" | 250€ | Quiere comprar pisos para revender, lleva 1 año operando |
+| Juan, estudiante | 50€ | Sin ingresos, quiere irse de vacaciones |
+| Clínica dental | 100€ | Negocio consolidado, necesita nuevo equipo |
+| Constructora "Ladrillo de Oro" | 300€ | Quiere construir 50 pisos de lujo en una zona sin demanda |
+
+El profesor dice a cada banco por separado:
+
+> **Al Banco Prudente** (en voz baja): "Vuestro comité de riesgos es estricto. Solo aprobáis créditos a solicitantes con capacidad demostrada de pago. Elegid los que os parezcan seguros."
+
+> **Al Banco Temerario** (en voz baja): "Vuestro objetivo es maximizar beneficios este trimestre. El bonus del director depende del volumen de créditos concedidos. Cuanto más prestéis, más cobráis."
+
+Los bancos eligen y anotan en la pizarra. **Resultado esperado:**
 
 ```
-BANCO A                          BANCO B
+BANCO PRUDENTE                   BANCO TEMERARIO
 ─────────────────────            ─────────────────────
-RESERVAS:    350€                RESERVAS:    100€
-PRÉSTAMOS:   350€                PRÉSTAMOS:   400€
 DEPÓSITOS:   600€                DEPÓSITOS:   600€
-DEUDA CON B: 100€                B A DEBE:    100€
+RESERVAS:    250€                RESERVAS:     60€
+PRÉSTAMOS:   350€                PRÉSTAMOS:   540€
+  - Fam. García: 100€             - CryptoMoon: 200€
+  - Restaurante: 150€             - Pisos Fácil: 250€
+  - Fam. López: 100€              - Juan: 50€
+                                   - Ladrillo Oro: 300€
+                                   (↑ supera lo permitido,
+                                    pero "ya se arreglará")
 ```
 
----
-
-**FASE 5 — La crisis (10 min)**
-
-El profesor anuncia con tono dramático:
-
-> "ÚLTIMA HORA: Un periódico publica que el Banco B ha concedido préstamos de mala calidad. El Cliente 7, al que le prestaron 300€ para un negocio, ha quebrado y no va a devolver el dinero."
-
-Pausa. Dejar que los alumnos procesen.
-
-> "Clientes del Banco B: tenéis miedo de perder vuestro dinero. Hacéis cola para retirarlo. Cliente 9, ve al Banco B y retira tus 100€."
-
-- Banco B entrega 100€. Reservas bajan a 0€.
-
-> "Cliente 10, ve al Banco B y retira tus 100€."
-
-- **El Banco B no puede.** Solo tiene 0€ en reservas. El dinero está prestado.
-
-El cajero del Banco B debe decir: *"Lo siento, no tenemos fondos disponibles en este momento."*
-
-> "El rumor se extiende. Ahora los clientes del Banco A también tienen miedo, porque saben que el Banco A le prestó 100€ al Banco B. ¿Y si el Banco B no puede devolvérselos?"
-
-> "Cliente 3, ve al Banco A y retira tus 100€."
-
-- Banco A entrega 100€. Reservas bajan a 250€.
-
-> "Cliente 4, Cliente 5 y Cliente 6: id todos a la vez al Banco A."
-
-- Banco A necesita 300€ pero solo tiene 250€. **No puede pagar a todos.**
-
-**Los dos bancos están en crisis.**
+[NOTA PROFESOR: No hace falta que los números cuadren exactamente. Lo importante es el contraste: el prudente guarda reservas de sobra y presta a perfiles sólidos; el temerario presta casi todo, incluso a perfiles de alto riesgo. Si el Banco Temerario no es lo bastante agresivo, empújalos: "¿Seguro que no queréis aprobar alguno más? El bonus del director es muy jugoso…"]
 
 ---
 
-**FASE 6 — El rescate del Banco Central (5 min)**
+**FASE 3 — Los buenos tiempos (2 min)**
 
-El profesor (Banco Central) interviene:
+El profesor narra:
 
-> "Soy el Banco Central. Para evitar que el sistema colapse, voy a actuar como prestamista de última instancia."
+> "Pasan unos meses. La economía va bien. Los préstamos generan intereses. El Banco Temerario presume de beneficios récord en la prensa. El Banco Prudente gana menos, pero duerme tranquilo."
 
-El profesor coge folios en blanco, escribe "200€" en cada uno y los entrega a los bancos:
+> "El director del Banco Temerario se compra un Porsche. El del Banco Prudente se compra un Seat."
 
-> "Banco B, te presto 400€ de emergencia para que puedas devolver los depósitos. Banco A, te presto 200€."
-
-- Los bancos pueden ahora pagar a los clientes que esperaban.
-
-El profesor pregunta:
-
-> "¿De dónde ha salido ese dinero? Lo acabo de crear. Literalmente lo he escrito en un papel. ¿Qué consecuencias tiene eso?"
+(Risas. Es intencional.)
 
 ---
 
-**FASE 7 — Debate de cierre (5 min)**
+**FASE 4 — La crisis (10 min)**
 
-Preguntas para la clase:
-1. ¿Fue justo que los bancos prestaran el dinero de los depositantes?
-2. ¿Fue justo que el Banco Central "imprimiera" dinero para rescatar a los bancos?
-3. ¿Quién paga realmente ese rescate? (inflación → todos los ciudadanos)
-4. ¿Y si no hubiera un Banco Central? ¿Qué pasaría?
-5. ¿Entendéis ahora por qué alguien propuso un sistema donde no haga falta confiar en bancos?
+El profesor cambia de tono:
 
-> *"Esto es exactamente lo que pasó en 2008. Y exactamente por esto, tres meses después, Satoshi Nakamoto publicó el whitepaper de Bitcoin."*
+> "ÚLTIMA HORA: Llega una recesión económica."
 
-[NOTA PROFESOR: Los números están calibrados para que la crisis sea inevitable con 6 clientes por banco. Si tienes más o menos alumnos, ajusta las cantidades proporcionalmente manteniendo la reserva fraccionaria al 10%. Lo importante es que los bancos NO puedan devolver todos los depósitos cuando llega la crisis. Ten preparados los folios para el "rescate" — el gesto de escribir dinero en un papel en blanco y entregarlo es muy visual y genera reacciones.]
+Va leyendo los desenlaces uno a uno:
+
+> "**CryptoMoon** ha quebrado. Los 200€ que le prestó el Banco Temerario son irrecuperables."
+
+Banco Temerario tacha 200€ de sus préstamos. Eso es dinero perdido.
+
+> "**Pisos Fácil** no puede vender los pisos que compró. No puede devolver los 250€."
+
+Banco Temerario tacha otros 250€.
+
+> "**Ladrillo de Oro** ha parado la obra. Los 300€ están congelados. Puede que devuelvan algo… o puede que no."
+
+> "**Juan** no devuelve los 50€. Se fue de vacaciones y ahora está en paro."
+
+El profesor actualiza la pizarra:
+
+```
+BANCO PRUDENTE                   BANCO TEMERARIO
+─────────────────────            ─────────────────────
+DEPÓSITOS:   600€                DEPÓSITOS:   600€
+RESERVAS:    250€                RESERVAS:     60€
+PRÉSTAMOS:   350€ (sanos)        PRÉSTAMOS:   540€
+                                   - Perdidos: 500€
+                                   - Dudosos: 300€
+                                 AGUJERO:    ~500€
+```
+
+> "Mientras tanto, los clientes del Banco Prudente están tranquilos. Sus préstamos (familias con empleo, negocios consolidados) siguen pagando sin problemas."
+
+Ahora el profesor deja caer la bomba:
+
+> "Un periódico publica que el Banco Temerario tiene un agujero de 500€ y solo 60€ en caja. Los clientes del Banco Temerario, empezáis a poneros nerviosos. ¿Queréis retirar vuestro dinero?"
+
+Los clientes del Banco Temerario hacen cola. El primero retira 60€. **El segundo ya no puede.**
+
+> "El rumor se extiende. Algunos clientes del Banco Prudente también se asustan. ¿Y si les pasa lo mismo?"
+
+Uno o dos clientes del Banco Prudente piden retirar. **El Banco Prudente puede pagar sin problema** (tiene 250€ en reservas).
+
+> "¿Veis la diferencia?"
+
+---
+
+**FASE 5 — El Banco Central al rescate (5 min)**
+
+El profesor coge folios en blanco. Escribe "500€" en uno y lo entrega al Banco Temerario:
+
+> "Soy el Banco Central. No puedo dejar que el sistema colapse, porque si el Banco Temerario cae, sus clientes pierden todo y la desconfianza se contagia. Así que le presto 500€ de emergencia."
+
+El profesor escribe el dinero delante de todos — literalmente lo crea de la nada.
+
+> "Pregunta: ¿De dónde sale este dinero?"
+
+Dejar que contesten. Luego:
+
+> "Lo acabo de inventar. Es dinero nuevo que no existía. ¿Quién creéis que paga las consecuencias de que haya más dinero en circulación sin que haya más riqueza real?"
+
+(Respuesta: todos, vía inflación.)
+
+> "Y ahora la pregunta del millón: **¿Es justo rescatar al banco que se portó mal con el dinero de todos, mientras el banco que fue prudente no recibe nada?**"
+
+---
+
+**FASE 6 — Debate de cierre (5 min)**
+
+1. ¿Por qué el Banco Temerario prestó tanto? (Incentivos perversos: bonus por volumen)
+2. ¿Debería haber un regulador que limite cuánto puede prestar un banco? (Spoiler: lo hay, pero en 2008 falló)
+3. ¿Es justo el rescate? ¿Y si dejamos caer al banco? (Riesgo sistémico)
+4. Los clientes del Banco Temerario, ¿tenían manera de saber que su banco era imprudente? (Opacidad)
+5. ¿Y si existiera un sistema donde **no haga falta confiar** en que un banco sea prudente?
+
+> *"Esto es exactamente lo que pasó en 2008. Bancos prestando a lo loco, crisis, rescates con dinero público. Tres meses después del colapso, Satoshi Nakamoto publicó el whitepaper de Bitcoin."*
+
+[NOTA PROFESOR: La clave de esta versión es el contraste entre los dos bancos. No necesitas microgestionar cada préstamo — deja que los propios alumnos-banqueros decidan, pero empuja al Temerario a ser agresivo. Si el Temerario es demasiado prudente por su cuenta, recuérdale: "Tu bonus depende del volumen". La escena del Banco Central escribiendo dinero en un folio en blanco es el momento más impactante — hazlo teatral.]
