@@ -248,12 +248,169 @@ La crisis no fue solo de hipotecas, fue de **confianza en el propio dinero banca
 
 ### Simula tu propio banco (30-45 min)
 
-- Dividir la clase en 4-5 grupos. Cada grupo es un "banco".
-- Cada banco empieza con 1.000€ en reservas (fichas, papelitos o anotaciones).
-- Con reserva fraccionaria de 10:1, pueden prestar hasta 10.000€.
-- El profesor actúa como "la economía": pide préstamos a los bancos, los bancos se prestan entre sí.
-- A mitad de la actividad, el profesor anuncia: "Un rumor dice que el Banco X tiene problemas". Los clientes del Banco X intentan retirar su dinero.
-- Observar qué pasa: ¿puede el banco devolver todo? ¿Contagia a otros bancos?
-- Conclusión: vivir en primera persona por qué existe el riesgo de contrapartida y por qué nació Bitcoin.
+Simulación guiada paso a paso del sistema bancario, la reserva fraccionaria y una crisis de liquidez.
 
-[NOTA PROFESOR: Es una simulación simplificada de una corrida bancaria. No hace falta ser exacto con los números — lo importante es que los alumnos experimenten la tensión de no poder devolver los depósitos. Si algún banco "quiebra", mejor: genera debate.]
+**Preparación (5 min)**
+
+| Rol | Quién | Material |
+|-----|-------|----------|
+| **Banco Central** | El profesor | Folios en blanco (para "imprimir" dinero) |
+| **Banco A** | 2 alumnos (un director y un cajero) | Hoja de balance en la pizarra o papel grande |
+| **Banco B** | 2 alumnos (un director y un cajero) | Hoja de balance en la pizarra o papel grande |
+| **Clientes** | El resto de la clase (10-15 personas) | Cada uno recibe un sobre con su nombre |
+
+Preparar en la pizarra (o en dos cartulinas) la hoja de balance de cada banco:
+
+```
+BANCO A                          BANCO B
+─────────────────────            ─────────────────────
+RESERVAS:    ___€                RESERVAS:    ___€
+PRÉSTAMOS:   ___€                PRÉSTAMOS:   ___€
+DEPÓSITOS:   ___€                DEPÓSITOS:   ___€
+```
+
+---
+
+**FASE 1 — Los depósitos (5 min)**
+
+El profesor (Banco Central) reparte dinero a los clientes:
+
+> "Soy el Banco Central. Acabo de emitir dinero. Cada uno de vosotros recibe 100€."
+
+Dar a cada cliente un papelito que dice "100€".
+
+> "Ahora necesitáis guardar vuestro dinero. Los que estáis en la fila izquierda, id al Banco A. Los de la fila derecha, al Banco B."
+
+- Los clientes entregan sus 100€ al cajero del banco correspondiente.
+- El cajero anota en la hoja de balance: +100€ en RESERVAS y +100€ en DEPÓSITOS por cada cliente.
+- **Resultado esperado** (con ~6 clientes por banco):
+  - Banco A: Reservas 600€, Depósitos 600€
+  - Banco B: Reservas 600€, Depósitos 600€
+
+---
+
+**FASE 2 — La reserva fraccionaria (5 min)**
+
+El profesor explica:
+
+> "Vuestros bancos tienen licencia para operar con reserva fraccionaria del 10%. Eso significa que solo necesitáis mantener el 10% de los depósitos en reserva. El resto lo podéis prestar para ganar intereses."
+
+Instrucciones para los bancos:
+- Banco A: reserva 60€ (10%) y puede prestar hasta 540€
+- Banco B: reserva 60€ (10%) y puede prestar hasta 540€
+
+---
+
+**FASE 3 — Los préstamos (5 min)**
+
+El profesor asigna préstamos concretos:
+
+> "Cliente 1 (del Banco A): pides un préstamo de 200€ para comprar un coche."
+
+- Banco A entrega 200€ al Cliente 1. Anota: +200€ en PRÉSTAMOS, -200€ en RESERVAS.
+
+> "Cliente 2 (del Banco A): pides un préstamo de 150€ para reformar tu casa."
+
+- Banco A entrega 150€. Anota: +150€ en PRÉSTAMOS, -150€ en RESERVAS.
+
+> "Cliente 7 (del Banco B): pides un préstamo de 300€ para montar un negocio."
+
+- Banco B entrega 300€. Anota: +300€ en PRÉSTAMOS, -300€ en RESERVAS.
+
+> "Cliente 8 (del Banco B): pides 100€ para un viaje."
+
+- Banco B entrega 100€. Anota: +100€ en PRÉSTAMOS, -100€ en RESERVAS.
+
+**Estado de los balances después de los préstamos:**
+
+```
+BANCO A                          BANCO B
+─────────────────────            ─────────────────────
+RESERVAS:    250€                RESERVAS:    200€
+PRÉSTAMOS:   350€                PRÉSTAMOS:   400€
+DEPÓSITOS:   600€                DEPÓSITOS:   600€
+```
+
+El profesor pregunta: *"¿Os dais cuenta de que los depósitos siguen siendo 600€ pero las reservas son mucho menores? ¿Qué pasa si todos los clientes vienen a retirar su dinero a la vez?"*
+
+---
+
+**FASE 4 — Los préstamos interbancarios (3 min)**
+
+> "El Banco A necesita más liquidez para conceder otro préstamo. Le pide prestados 100€ al Banco B."
+
+- Banco B transfiere 100€ al Banco A. Ambos anotan la operación.
+
+```
+BANCO A                          BANCO B
+─────────────────────            ─────────────────────
+RESERVAS:    350€                RESERVAS:    100€
+PRÉSTAMOS:   350€                PRÉSTAMOS:   400€
+DEPÓSITOS:   600€                DEPÓSITOS:   600€
+DEUDA CON B: 100€                B A DEBE:    100€
+```
+
+---
+
+**FASE 5 — La crisis (10 min)**
+
+El profesor anuncia con tono dramático:
+
+> "ÚLTIMA HORA: Un periódico publica que el Banco B ha concedido préstamos de mala calidad. El Cliente 7, al que le prestaron 300€ para un negocio, ha quebrado y no va a devolver el dinero."
+
+Pausa. Dejar que los alumnos procesen.
+
+> "Clientes del Banco B: tenéis miedo de perder vuestro dinero. Hacéis cola para retirarlo. Cliente 9, ve al Banco B y retira tus 100€."
+
+- Banco B entrega 100€. Reservas bajan a 0€.
+
+> "Cliente 10, ve al Banco B y retira tus 100€."
+
+- **El Banco B no puede.** Solo tiene 0€ en reservas. El dinero está prestado.
+
+El cajero del Banco B debe decir: *"Lo siento, no tenemos fondos disponibles en este momento."*
+
+> "El rumor se extiende. Ahora los clientes del Banco A también tienen miedo, porque saben que el Banco A le prestó 100€ al Banco B. ¿Y si el Banco B no puede devolvérselos?"
+
+> "Cliente 3, ve al Banco A y retira tus 100€."
+
+- Banco A entrega 100€. Reservas bajan a 250€.
+
+> "Cliente 4, Cliente 5 y Cliente 6: id todos a la vez al Banco A."
+
+- Banco A necesita 300€ pero solo tiene 250€. **No puede pagar a todos.**
+
+**Los dos bancos están en crisis.**
+
+---
+
+**FASE 6 — El rescate del Banco Central (5 min)**
+
+El profesor (Banco Central) interviene:
+
+> "Soy el Banco Central. Para evitar que el sistema colapse, voy a actuar como prestamista de última instancia."
+
+El profesor coge folios en blanco, escribe "200€" en cada uno y los entrega a los bancos:
+
+> "Banco B, te presto 400€ de emergencia para que puedas devolver los depósitos. Banco A, te presto 200€."
+
+- Los bancos pueden ahora pagar a los clientes que esperaban.
+
+El profesor pregunta:
+
+> "¿De dónde ha salido ese dinero? Lo acabo de crear. Literalmente lo he escrito en un papel. ¿Qué consecuencias tiene eso?"
+
+---
+
+**FASE 7 — Debate de cierre (5 min)**
+
+Preguntas para la clase:
+1. ¿Fue justo que los bancos prestaran el dinero de los depositantes?
+2. ¿Fue justo que el Banco Central "imprimiera" dinero para rescatar a los bancos?
+3. ¿Quién paga realmente ese rescate? (inflación → todos los ciudadanos)
+4. ¿Y si no hubiera un Banco Central? ¿Qué pasaría?
+5. ¿Entendéis ahora por qué alguien propuso un sistema donde no haga falta confiar en bancos?
+
+> *"Esto es exactamente lo que pasó en 2008. Y exactamente por esto, tres meses después, Satoshi Nakamoto publicó el whitepaper de Bitcoin."*
+
+[NOTA PROFESOR: Los números están calibrados para que la crisis sea inevitable con 6 clientes por banco. Si tienes más o menos alumnos, ajusta las cantidades proporcionalmente manteniendo la reserva fraccionaria al 10%. Lo importante es que los bancos NO puedan devolver todos los depósitos cuando llega la crisis. Ten preparados los folios para el "rescate" — el gesto de escribir dinero en un papel en blanco y entregarlo es muy visual y genera reacciones.]
