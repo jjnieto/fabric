@@ -11,9 +11,36 @@
 
 ---
 
-## 1. Habilitar WSL2 (solo Windows)
+## 1. Instalar VS Code (solo Windows)
 
-### 1.1 Instalar WSL2
+Descarga e instala Visual Studio Code desde [code.visualstudio.com](https://code.visualstudio.com/).
+
+VS Code se integra con WSL2 y permite editar archivos de Linux directamente desde Windows. La extensión **Remote - WSL** se instalará automáticamente al abrir VS Code desde la terminal de Ubuntu con `code .`.
+
+> **¿Por qué instalar VS Code antes que WSL2?** Al instalar Ubuntu, aparece una pantalla de
+> bienvenida con opciones de integración con VS Code y Docker. Si ya están instalados,
+> puedes habilitarlas directamente.
+
+---
+
+## 2. Instalar Docker Desktop (solo Windows)
+
+Descarga e instala Docker Desktop desde [docker.com](https://www.docker.com/products/docker-desktop/).
+
+Docker es **imprescindible**. Fabric ejecuta todos sus componentes (peers, orderers, CAs) como contenedores Docker.
+
+En la configuración de Docker Desktop, habilita la integración con WSL2:
+
+**Settings → Resources → WSL Integration → Habilitar integración con tu distribución Ubuntu**
+
+> **Nota:** Esta integración hace que el comando `docker` esté disponible directamente
+> dentro de la terminal de Ubuntu/WSL2 sin necesidad de instalar Docker Engine en Linux.
+
+---
+
+## 3. Habilitar WSL2 (solo Windows)
+
+### 3.1 Instalar WSL2
 
 Abrir PowerShell como administrador:
 
@@ -21,15 +48,43 @@ Abrir PowerShell como administrador:
 wsl --install
 ```
 
-Esto instala WSL2 con Ubuntu por defecto. Si ya tienes WSL1, actualiza:
+Esto instala el subsistema WSL2 y habilita la virtualización. **Reinicia el equipo** cuando se te solicite.
+
+### 3.2 Verificar que WSL2 está listo
+
+Después de reiniciar, abre PowerShell como administrador y ejecuta:
+
+```powershell
+wsl --status
+```
+
+Debes ver `Versión predeterminada: 2`. Si aparece un error indicando que la **"Plataforma de máquina virtual"** no está habilitada, ejecuta:
+
+```powershell
+wsl --install --no-distribution
+```
+
+Reinicia de nuevo y vuelve a verificar con `wsl --status`.
+
+### 3.3 Instalar Ubuntu
+
+```powershell
+wsl --install -d Ubuntu
+```
+
+> **Nota:** En algunas versiones de Windows `wsl --install` instalaba Ubuntu automáticamente.
+> En versiones recientes de Windows 11 solo instala el subsistema, por lo que es necesario
+> instalar la distribución de forma explícita.
+
+Se te pedirá crear un **usuario y contraseña** para Linux. Al finalizar, aparecerá una pantalla de bienvenida donde puedes habilitar las integraciones con VS Code y Docker Desktop.
+
+Si ya tienes WSL1, asegúrate de usar la versión 2:
 
 ```powershell
 wsl --set-default-version 2
 ```
 
-Reinicia el equipo si se te solicita.
-
-### 1.2 Verificar la instalación
+### 3.4 Verificar la instalación
 
 ```powershell
 wsl --list --verbose
@@ -37,7 +92,7 @@ wsl --list --verbose
 
 Debes ver tu distribución con `VERSION 2`.
 
-### 1.3 Acceder a WSL
+### 3.5 Acceder a WSL
 
 ```powershell
 wsl
@@ -47,7 +102,7 @@ wsl
 
 ---
 
-## 2. Instalar prerequisitos del sistema
+## 4. Instalar prerequisitos del sistema
 
 ### Ubuntu / Debian (o WSL2 con Ubuntu)
 
@@ -72,11 +127,12 @@ jq --version
 
 ---
 
-## 3. Instalar Docker
+## 5. Instalar Docker (macOS / Linux nativo)
 
-Docker es **imprescindible**. Fabric ejecuta todos sus componentes (peers, orderers, CAs) como contenedores Docker.
+> **Usuarios de Windows con WSL2:** Si ya instalaste Docker Desktop en el paso 2 y habilitaste
+> la integración con WSL2, **salta este paso**. Docker ya está disponible en tu terminal de Ubuntu.
 
-### Ubuntu / WSL2
+### Ubuntu / Debian (sin Docker Desktop)
 
 ```bash
 # Eliminar versiones antiguas
@@ -108,7 +164,7 @@ Instalar Docker Desktop desde [docker.com](https://www.docker.com/products/docke
 brew install --cask docker
 ```
 
-### Configurar Docker sin sudo (Linux/WSL2)
+### Configurar Docker sin sudo (Linux nativo, sin Docker Desktop)
 
 ```bash
 sudo usermod -aG docker $USER
@@ -125,7 +181,7 @@ docker run hello-world
 
 ---
 
-## 4. Instalar Go (opcional pero recomendado)
+## 6. Instalar Go (opcional pero recomendado)
 
 Necesario si vas a desarrollar chaincodes en Go (el lenguaje más usado en Fabric).
 
@@ -151,7 +207,7 @@ go version
 
 ---
 
-## 5. Instalar Node.js (opcional)
+## 7. Instalar Node.js (opcional)
 
 Necesario si vas a desarrollar chaincodes en JavaScript/TypeScript o usar el SDK de Fabric para aplicaciones cliente.
 
@@ -174,29 +230,29 @@ npm --version
 
 ---
 
-## 6. Descargar Hyperledger Fabric
+## 8. Descargar Hyperledger Fabric
 
-### 6.1 Crear directorio de trabajo
+### 8.1 Crear directorio de trabajo
 
 ```bash
 mkdir -p $HOME/fabric
 cd $HOME/fabric
 ```
 
-### 6.2 Descargar el script de instalación
+### 8.2 Descargar el script de instalación
 
 ```bash
 curl -sSLO https://raw.githubusercontent.com/hyperledger/fabric/main/scripts/install-fabric.sh
 chmod +x install-fabric.sh
 ```
 
-### 6.3 Ver opciones disponibles
+### 8.3 Ver opciones disponibles
 
 ```bash
 ./install-fabric.sh -h
 ```
 
-### 6.4 Instalar todo: imágenes Docker + binarios + samples
+### 8.4 Instalar todo: imágenes Docker + binarios + samples
 
 ```bash
 ./install-fabric.sh docker samples binary
@@ -211,14 +267,14 @@ Esto descarga:
 | **config/** | Archivos de configuración base: `core.yaml`, `orderer.yaml`, `configtx.yaml` |
 | **Imágenes Docker** | `hyperledger/fabric-peer`, `fabric-orderer`, `fabric-ca`, `fabric-tools`, `fabric-ccenv`, `fabric-baseos` |
 
-### 6.5 Especificar versiones (opcional)
+### 8.5 Especificar versiones (opcional)
 
 ```bash
 # Versión específica de Fabric y CA
 ./install-fabric.sh -f 2.5.15 -c 1.5.17 docker samples binary
 ```
 
-### 6.6 Configurar PATH de los binarios
+### 8.6 Configurar PATH de los binarios
 
 ```bash
 # Añadir al final de ~/.bashrc o ~/.zshrc
@@ -227,7 +283,7 @@ echo 'export FABRIC_CFG_PATH=$HOME/fabric/fabric-samples/config' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-### 6.7 Verificar la instalación
+### 8.7 Verificar la instalación
 
 ```bash
 peer version
@@ -238,7 +294,7 @@ fabric-ca-client version
 
 ---
 
-## 7. Verificar imágenes Docker descargadas
+## 9. Verificar imágenes Docker descargadas
 
 ```bash
 docker images | grep hyperledger
@@ -257,7 +313,7 @@ hyperledger/fabric-ca          1.5
 
 ---
 
-## 8. Resumen de lo instalado
+## 10. Resumen de lo instalado
 
 ```
 $HOME/fabric/
@@ -285,9 +341,11 @@ $HOME/fabric/
 
 ## Checklist final
 
-- [ ] WSL2 funcionando (solo Windows)
+- [ ] VS Code instalado (solo Windows)
+- [ ] Docker Desktop instalado con integración WSL2 (solo Windows)
+- [ ] WSL2 + Ubuntu funcionando (solo Windows)
 - [ ] Git, curl, jq instalados
-- [ ] Docker funcionando sin sudo
+- [ ] Docker funcionando (`docker run hello-world`)
 - [ ] Docker Compose disponible
 - [ ] Go instalado (si vas a escribir chaincodes en Go)
 - [ ] Node.js instalado (si vas a usar SDK o chaincodes JS/TS)
