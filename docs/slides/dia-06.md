@@ -408,3 +408,27 @@ Preparar una breve presentación (2-3 minutos) con las conclusiones.
 *Presentar el próximo día al inicio de clase.*
 
 [NOTA PROFESOR: El objetivo es que los alumnos se familiaricen con la búsqueda de información actualizada sobre proyectos de CBDC. La legislación europea sobre el euro digital (propuesta de Reglamento) fue presentada por la Comisión Europea en junio de 2023 y sigue en trámite parlamentario.]
+
+---
+
+## Actividad de relleno (si sobra tiempo)
+
+### Diseña la CBDC de Dystopia (30-45 min)
+
+- Dystopia es un país ficticio con estas características:
+  - 50 millones de habitantes
+  - 30% no tiene cuenta bancaria
+  - Alto nivel de economía sumergida
+  - Frontera con 3 países que ya tienen CBDC
+  - Un gobierno que quiere "modernizarse" pero los ciudadanos desconfían
+- Por grupos de 4-5 personas, diseñar la CBDC de Dystopia:
+  1. ¿Modelo directo o intermediado? ¿Basado en cuentas o en tokens?
+  2. ¿Qué niveles de KYC ponéis? ¿Con qué límites?
+  3. ¿Permitís pagos offline? ¿Cómo?
+  4. ¿Qué grado de privacidad ofrecéis? (trazabilidad total, parcial, anónimo hasta X cantidad)
+  5. ¿Cómo gestionáis la interoperabilidad con los países vecinos?
+  6. ¿Ponéis límite de tenencia para evitar que la gente saque dinero de los bancos?
+  7. ¿Es programable? ¿Para qué lo usaríais? (ayudas sociales, impuestos automáticos…)
+- Cada grupo presenta en 5 minutos. El resto hace de "ciudadanos escépticos" y cuestiona las decisiones.
+
+[NOTA PROFESOR: Esta actividad obliga a pensar en los trade-offs reales que enfrentan los bancos centrales. No hay respuesta correcta — cada decisión tiene pros y contras. Los debates más interesantes suelen ser sobre privacidad vs control y sobre el riesgo de desintermediación bancaria.]

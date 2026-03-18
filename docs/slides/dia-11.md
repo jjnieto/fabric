@@ -895,3 +895,24 @@ En las próximas sesiones:
 [IMAGEN: Evolución visual de un usuario ejecutando comandos a un desarrollador escribiendo código de chaincode]
 
 [NOTA PROFESOR: Cerrar el módulo reconociendo el esfuerzo de los alumnos. Han pasado de no saber nada sobre blockchain a levantar una red Fabric, desplegar chaincodes y ejecutar transacciones. Es un logro significativo. El Módulo 2 será más exigente en programación.]
+
+---
+
+## Actividad de relleno (si sobra tiempo)
+
+### Fabric freestyle: modifica el chaincode (45-60 min)
+
+- Los alumnos ya tienen la test-network funcionando con asset-transfer-basic desplegado.
+- Reto: modificar el chaincode para añadir una funcionalidad nueva. Opciones a elegir:
+  1. **Añadir un campo "Timestamp"** a cada asset que se registre automáticamente con la hora de creación.
+  2. **Añadir una función "GetAssetHistory"** que devuelva el historial de cambios de un asset (usando la API de historial de Fabric: `GetHistoryForKey`).
+  3. **Añadir una función "TransferWithApproval"** donde la transferencia requiere que el receptor confirme la recepción (dos transacciones).
+  4. **Añadir validación de negocio:** un asset no puede tener un AppraisedValue negativo, y el Size debe estar entre 1 y 100.
+- Pasos:
+  1. Editar el código del chaincode (Go o JavaScript, según lo que desplegaron)
+  2. Empaquetar la nueva versión
+  3. Seguir el lifecycle completo: install → approve (ambas orgs) → commit
+  4. Probar la nueva funcionalidad con invoke/query
+- Si no da tiempo a completar el lifecycle, al menos que modifiquen el código y expliquen qué cambiarían.
+
+[NOTA PROFESOR: La opción 4 (validación de negocio) es la más sencilla. La opción 2 (historial) es la más interesante porque muestra una capacidad que Ethereum no tiene fácilmente. Tener preparados snippets de código para cada opción por si los alumnos se atascan. Esta actividad es el puente perfecto al módulo 2, donde crearán chaincodes desde cero.]

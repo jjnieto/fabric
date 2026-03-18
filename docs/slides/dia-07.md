@@ -716,3 +716,20 @@ Preparar una presentación breve (3-5 minutos) con las conclusiones.
 *Presentar el próximo día al inicio de clase.*
 
 [NOTA PROFESOR: Ejemplos que los alumnos podrían encontrar: Santander (bonos en Ethereum), BBVA (préstamos tokenizados), Iberdrola (certificados de energía renovable), Correos (sellos NFT), Telefónica (identidad digital), Repsol (trazabilidad), We.trade (financiación comercial europea, cerrada en 2022). Fomentar que busquen tanto éxitos como fracasos para tener una visión equilibrada.]
+
+---
+
+## Actividad de relleno (si sobra tiempo)
+
+### Hackathon relámpago: mejora tu Smart Contract (45-60 min)
+
+- Los grupos que crearon su Smart Contract en la práctica del día extienden su proyecto:
+- Retos opcionales (elegir al menos 2):
+  1. **Añadir un evento (event):** que el contrato emita un evento cada vez que se ejecute una acción importante. Verificar en Etherscan que el evento aparece en los logs.
+  2. **Añadir control de acceso:** que solo el creador del contrato pueda ejecutar ciertas funciones (modifier `onlyOwner`).
+  3. **Añadir una función de emergencia:** un "botón de pánico" que permita al owner pausar el contrato.
+  4. **Conectar dos contratos:** que tu contrato llame a una función del contrato de otro grupo (composabilidad real).
+  5. **Frontend básico:** usando Remix + MetaMask, crear una página HTML mínima que interactúe con el contrato (el profesor proporciona una plantilla con ethers.js).
+- Al final, cada grupo demo su mejora al resto.
+
+[NOTA PROFESOR: Tener preparadas plantillas de código para cada reto (modifier onlyOwner, patrón Pausable, plantilla HTML con ethers.js). Los alumnos que van más rápido pueden intentar varios retos. Los que van más lentos, con hacer uno ya es suficiente.]

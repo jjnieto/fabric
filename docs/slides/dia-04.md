@@ -257,3 +257,31 @@ Práctica de Smart Contracts
 *Presentar el lunes al inicio de clase.*
 
 [NOTA PROFESOR: ERC-3643 es un estándar de "permissioned tokens" para tokenizar RWA (Real World Assets) y valores regulados en EVM. Controla quién puede poseer y transferir. Usa identidades on-chain y claims verificables para KYC/AML. Es un puente perfecto hacia el tema de blockchain permissioned que se verá más adelante con Hyperledger Fabric.]
+
+---
+
+## Actividad de relleno (si sobra tiempo)
+
+### Hackea el contrato (30-45 min)
+
+- El profesor despliega un Smart Contract con un bug intencionado en Sepolia (o usa Remix en modo local).
+- El contrato es un "banco simple": permite depositar ETH y retirar.
+- Pero tiene una vulnerabilidad: no actualiza el saldo antes de enviar los fondos (reentrancy clásica, como The DAO).
+- Reto: los alumnos, en parejas, deben:
+  1. Leer el código del contrato en Remix
+  2. Identificar la vulnerabilidad
+  3. Explicar cómo la explotarían (no hace falta escribir el exploit, solo describirlo)
+  4. Proponer cómo arreglarla
+- Bonus para los más avanzados: escribir un contrato atacante que explote la vulnerabilidad en Remix (modo local).
+
+[NOTA PROFESOR: Preparar un contrato sencillo tipo:
+```solidity
+mapping(address => uint) public balances;
+function withdraw() public {
+    uint amount = balances[msg.sender];
+    (bool success, ) = msg.sender.call{value: amount}("");
+    require(success);
+    balances[msg.sender] = 0; // ← BUG: debería ir ANTES del call
+}
+```
+La vulnerabilidad es que el saldo se pone a 0 DESPUÉS de enviar los fondos. Un contrato atacante puede llamar withdraw() recursivamente desde su función receive(). Conectar con el caso The DAO del día 7.]

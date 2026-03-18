@@ -511,3 +511,22 @@ Aceptar respuestas bien argumentadas aunque difieran. Lo importante es el razona
 [IMAGEN: Mapa de ruta del curso mostrando los días 1-7 (blockchain público) completados y el día 8 como puente, con los días 9+ (Hyperledger Fabric en profundidad) por delante]
 
 [NOTA PROFESOR: Cerrar con entusiasmo: "Ya tenéis las bases de blockchain público. A partir de ahora, entramos en el mundo enterprise con Fabric. Todo lo que aprendisteis sobre hashes, criptografía, consenso y smart contracts sigue siendo válido — pero aplicado de forma diferente." Si hay tiempo, preguntar: ¿qué es lo que más os ha sorprendido de las diferencias entre público y permissioned?]
+
+---
+
+## Actividad de relleno (si sobra tiempo)
+
+### El juicio a Blockchain (30-45 min)
+
+- Simulación de un juicio donde Blockchain está siendo juzgada por "no cumplir sus promesas".
+- Roles:
+  - **Fiscal** (1 grupo): argumenta que blockchain ha fracasado. Puede usar: bajo rendimiento, hackeos, Terra/Luna, proyectos abandonados (TradeLens de Maersk), consumo energético, complejidad, falta de adopción real.
+  - **Defensa** (1 grupo): argumenta que blockchain está transformando industrias. Puede usar: tokenización de bonos, DeFi, identidad digital, CBDCs, transparencia, reducción de intermediarios.
+  - **Jurado** (resto de la clase): escucha ambos lados y vota culpable o inocente.
+  - **Juez** (profesor): modera y asegura que los argumentos son técnicamente correctos.
+- Preparación: 10 minutos para que fiscal y defensa armen sus argumentos.
+- Juicio: 5 minutos fiscal, 5 minutos defensa, 5 minutos de réplicas cruzadas.
+- Deliberación del jurado: 5 minutos.
+- Veredicto y debate abierto.
+
+[NOTA PROFESOR: Esta actividad funciona muy bien como cierre del bloque "blockchain genérico" antes de entrar en Fabric. Obliga a los alumnos a sintetizar todo lo aprendido en 7 días y defenderlo con argumentos. El fiscal tiene argumentos legítimos — es importante que los alumnos reconozcan las limitaciones reales. Lo ideal es que el veredicto sea "inocente con matices".]

@@ -303,3 +303,17 @@ geth --datadir ./mychaindata --networkid 15 --http --http.addr "localhost" --htt
 10. En una red que usa Proof of Authority, cualquiera puede conectarse y minar bloques. ¿Verdadero o falso? Razona la respuesta.
 
 [NOTA PROFESOR: Las preguntas 7-10 anticipan contenido del día 3 (consenso). Es intencional: sirven como gancho para el día siguiente. No esperar respuestas correctas, sino que empiecen a reflexionar.]
+
+---
+
+## Actividad de relleno (si sobra tiempo)
+
+### Mensajes secretos entre compañeros (30-45 min)
+
+- Por parejas, los alumnos se envían mensajes cifrados usando las herramientas vistas en clase.
+- Ronda 1 — Cifrado simétrico: acordar una clave secreta y usar https://aesencryption.net/ para cifrar y descifrar mensajes. El reto: enviar el mensaje cifrado por el chat de clase y que SOLO tu pareja lo pueda leer.
+- Ronda 2 — Cifrado asimétrico: usar la herramienta RSA vista en clase. Uno genera el par de claves, comparte la pública, y el otro cifra un mensaje que solo el dueño de la privada puede leer.
+- Ronda 3 — Firma digital: firmar un mensaje con tu clave privada y que tu compañero verifique que fuiste tú quien lo escribió.
+- Bonus: ¿Puedes interceptar el mensaje de otra pareja? (No deberías poder, pero intentarlo genera aprendizaje.)
+
+[NOTA PROFESOR: Esta actividad refuerza de forma práctica los tres pilares: confidencialidad (cifrado), autenticidad (firma) e integridad (verificación). Si hay alumnos avanzados, pueden intentar un man-in-the-middle attack en la ronda 2 para demostrar por qué se necesitan certificados (que verán en los días de Fabric).]

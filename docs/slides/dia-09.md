@@ -741,3 +741,28 @@ Buscar un caso de uso real de Hyperledger Fabric en producción (no un prototipo
 *Presentar ambas tareas al inicio de la próxima clase.*
 
 [NOTA PROFESOR: Ejemplos de casos reales en producción: Walmart (trazabilidad alimentaria con IBM Food Trust), Maersk (TradeLens, aunque cerró en 2022), Everledger (diamantes), We.trade (financiación comercial, cerró en 2022), GSMA (telecomunicaciones), Change Healthcare (sanidad en EEUU). Los casos de fracaso (TradeLens, We.trade) son igual de valiosos para aprender.]
+
+---
+
+## Actividad de relleno (si sobra tiempo)
+
+### Fabric en vivo: el juego de roles (30-45 min)
+
+- Simular una red Hyperledger Fabric en el aula. Cada alumno (o pareja) asume un rol:
+  - 2-3 alumnos son **peers de Org1** (llevan un cartel "Peer Org1")
+  - 2-3 alumnos son **peers de Org2** (llevan un cartel "Peer Org2")
+  - 1-2 alumnos son el **Ordering Service** (llevan un cartel "Orderer")
+  - 1 alumno es la **Fabric CA** (lleva un cartel "CA" y tiene post-its que representan certificados)
+  - 2-3 alumnos son **aplicaciones cliente** (llevan un cartel "App")
+- El profesor propone transacciones y los alumnos deben ejecutar el flujo completo:
+  1. La App escribe la transacción en un papel y la lleva a los peers para endorsement.
+  2. Los peers "ejecutan el chaincode" (leen una tabla en la pizarra con el world state) y firman si es válida.
+  3. La App lleva las respuestas endorsadas al Orderer.
+  4. El Orderer recoge varias transacciones, las ordena, las mete en un "bloque" (sobre de papel) y las distribuye a todos los peers.
+  5. Los peers validan y actualizan el world state en la pizarra.
+- Provocar situaciones:
+  - Una transacción sin suficiente endorsement (la política pide AND y solo firmó una org).
+  - Un conflicto MVCC (dos transacciones modifican la misma key; la segunda falla en validación).
+  - El orderer se "cae" (el alumno se sienta y no hace nada): ¿qué pasa con la red?
+
+[NOTA PROFESOR: Preparar carteles imprimibles, post-its de colores (amarillo = certificado válido, rojo = certificado revocado) y una pizarra con una tabla simple de world state (Key, Value, Version). Esta actividad es la que más consolida el flujo de transacciones. Los alumnos que asumen el rol de orderer suelen aburrirse un poco — rotarles si la actividad se alarga.]

@@ -428,3 +428,22 @@ Trabajar en grupo (3 grupos de 5 personas) durante 30 minutos y presentar las co
 *Presentar el lunes al inicio de clase.*
 
 [NOTA PROFESOR: BlackRock lanzó el BUIDL Fund (BlackRock USD Institutional Digital Liquidity Fund) en marzo de 2024 sobre Ethereum. Tokeniza participaciones en un fondo de mercado monetario respaldado por bonos del Tesoro de EE.UU. La inversión mínima es de 5 millones de dólares. Es un caso real y reciente de tokenización institucional que conecta directamente con los conceptos vistos en clase (bonos tokenizados, ERC-20, beneficios de tokenizar). También se ha expandido a otras cadenas como Polygon, Avalanche, Arbitrum y Optimism.]
+
+---
+
+## Actividad de relleno (si sobra tiempo)
+
+### Diseña tu negocio tokenizado (30-45 min)
+
+- Por grupos de 3-4 personas, inventar un negocio que use tokenización.
+- Cada grupo debe definir:
+  1. ¿Qué activo tokenizáis? (inmueble, obra de arte, cosecha, energía, tiempo de consultoría…)
+  2. ¿ERC-20, ERC-721 o ERC-1155? Justificar la elección.
+  3. ¿Quién puede comprar tokens? ¿Hay restricciones (KYC, acreditación)?
+  4. ¿Cómo funciona el mercado secundario?
+  5. ¿Qué pasa si el activo real se destruye o desaparece?
+  6. Dibujar un esquema simple del flujo: emisor → token → inversor → mercado secundario.
+- Cada grupo presenta su idea en 3 minutos al resto de la clase.
+- La clase vota el proyecto más viable y el más creativo.
+
+[NOTA PROFESOR: Lo importante no es la perfección técnica sino que piensen en los problemas reales de la tokenización: custodia del activo real, marco legal, liquidez, gobernanza. Las preguntas 5 (destrucción del activo) y 3 (restricciones) suelen generar debates muy buenos.]

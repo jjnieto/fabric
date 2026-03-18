@@ -542,3 +542,18 @@ Mañana será un día **100% práctico**:
 **Si tu entorno NO funciona, avisa al profesor AHORA. Mañana no habrá tiempo para solucionar problemas de instalación.**
 
 [IMAGEN: Pantalla de terminal con una red Fabric levantada, mostrando contenedores Docker corriendo]
+
+---
+
+## Actividad de relleno (si sobra tiempo)
+
+### Escape room criptográfico (30-45 min)
+
+- El profesor prepara 5 "pruebas" que los alumnos deben resolver en orden. Cada prueba resuelta da una pista para la siguiente.
+- **Prueba 1 — El certificado sospechoso:** Se da un certificado X.509 en formato PEM. Los alumnos deben usar `openssl x509 -in cert.pem -text -noout` para descubrir: ¿Quién lo emitió? ¿Para qué organización? ¿Está caducado? La respuesta (el CN del subject) es la pista para la prueba 2.
+- **Prueba 2 — El MSP incompleto:** Se da una estructura de directorios MSP con un fichero que falta. Los alumnos deben identificar qué fichero falta comparando con la estructura estándar (cacerts, signcerts, keystore, tlscacerts). El nombre del fichero que falta es la pista.
+- **Prueba 3 — El mensaje cifrado:** Se da un texto cifrado con AES-256 y una clave que es la combinación de las respuestas anteriores. Los alumnos descifran con: `openssl enc -aes-256-cbc -d -in mensaje.enc -out mensaje.txt -k [clave]`. El mensaje descifrado contiene una dirección (peer0.org1.example.com).
+- **Prueba 4 — El configtx.yaml roto:** Se da un configtx.yaml con 3 errores intencionales. Los alumnos deben encontrarlos (ej: MSP mal referenciado, política con sintaxis incorrecta, OrdererType inexistente).
+- **Prueba 5 — La frase final:** Combinando las respuestas de todas las pruebas, los alumnos forman una frase que es una cita famosa sobre la importancia de la identidad en sistemas distribuidos.
+
+[NOTA PROFESOR: Preparar los ficheros con antelación (cert.pem, estructura MSP en un zip, mensaje.enc, configtx.yaml roto). La actividad funciona mejor en grupos de 3. Tener preparadas las soluciones por si algún grupo se atasca. La frase final puede ser algo como "In God we trust, all others must bring certificates" — adaptada al contexto de Fabric.]

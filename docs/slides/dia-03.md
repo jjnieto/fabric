@@ -476,3 +476,20 @@ Considerar estos términos:
 15. MetaMask guarda la clave privada cifrada en el ordenador en el que está instalado; su uso está restringido a ese ordenador. ¿Cierto o falso?
 
 [NOTA PROFESOR: Varias de estas preguntas son "trampas" intencionadas para que los alumnos piensen críticamente. Por ejemplo: la pregunta 1 dice "privacidad" en lugar de "descentralización" (falso), la pregunta 12 inventa un significado para EVM (falso: es Ethereum Virtual Machine).]
+
+---
+
+## Actividad de relleno (si sobra tiempo)
+
+### Competición de minería en MetaMask (30-45 min)
+
+- Cada alumno tiene su wallet de MetaMask en Sepolia con algo de ETH de prueba.
+- El profesor propone una serie de retos con dificultad creciente:
+  1. Enviar exactamente 0.001 ETH al wallet del profesor. El primero que aparezca confirmado gana (carrera de fees).
+  2. Enviar una transacción con el gas más bajo posible que aún se confirme en menos de 5 minutos.
+  3. Enviar dos transacciones simultáneas con nonces consecutivos. Verificar que se confirman en orden.
+  4. Provocar intencionadamente una transacción atascada (gas ridículamente bajo) y luego desbloquearla usando replace-by-fee.
+  5. Bonus: Enviar una transacción a la dirección 0x0000...0000 (burn address). ¿Qué pasa?
+- Cada reto resuelto suma puntos. Al final, el alumno con más puntos gana un "premio simbólico" (ej: no hace la primera pregunta del repaso del día siguiente).
+
+[NOTA PROFESOR: Esta actividad consolida gas, nonce, fees y MetaMask de forma competitiva. Los errores son aprendizaje. Si alguien bloquea su wallet, es una oportunidad perfecta para practicar el desbloqueo. Tener preparados unos 0.5 ETH de Sepolia extra por si algún alumno se queda sin fondos.]

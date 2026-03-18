@@ -241,3 +241,19 @@ La crisis no fue solo de hipotecas, fue de **confianza en el propio dinero banca
 - ¿Por qué el settlement es complejo en las transacciones bancarias?
 - ¿Qué propone Blockchain para resolver estos problemas?
 - ¿Qué evento histórico motivó la creación de Bitcoin?
+
+---
+
+## Actividad de relleno (si sobra tiempo)
+
+### Simula tu propio banco (30-45 min)
+
+- Dividir la clase en 4-5 grupos. Cada grupo es un "banco".
+- Cada banco empieza con 1.000€ en reservas (fichas, papelitos o anotaciones).
+- Con reserva fraccionaria de 10:1, pueden prestar hasta 10.000€.
+- El profesor actúa como "la economía": pide préstamos a los bancos, los bancos se prestan entre sí.
+- A mitad de la actividad, el profesor anuncia: "Un rumor dice que el Banco X tiene problemas". Los clientes del Banco X intentan retirar su dinero.
+- Observar qué pasa: ¿puede el banco devolver todo? ¿Contagia a otros bancos?
+- Conclusión: vivir en primera persona por qué existe el riesgo de contrapartida y por qué nació Bitcoin.
+
+[NOTA PROFESOR: Es una simulación simplificada de una corrida bancaria. No hace falta ser exacto con los números — lo importante es que los alumnos experimenten la tensión de no poder devolver los depósitos. Si algún banco "quiebra", mejor: genera debate.]
