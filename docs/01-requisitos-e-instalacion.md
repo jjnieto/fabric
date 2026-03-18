@@ -29,9 +29,10 @@ Descarga e instala Docker Desktop desde [docker.com](https://www.docker.com/prod
 
 Docker es **imprescindible**. Fabric ejecuta todos sus componentes (peers, orderers, CAs) como contenedores Docker.
 
-En la configuración de Docker Desktop, habilita la integración con WSL2:
+La integración con WSL2 se puede habilitar de dos formas:
 
-**Settings → Resources → WSL Integration → Habilitar integración con tu distribución Ubuntu**
+- **Desde Ubuntu:** Al instalar Ubuntu (paso 3.3), la pantalla de bienvenida ofrece habilitar la integración con Docker directamente.
+- **Desde Docker Desktop:** Settings → Resources → WSL Integration → Habilitar integración con tu distribución Ubuntu.
 
 > **Nota:** Esta integración hace que el comando `docker` esté disponible directamente
 > dentro de la terminal de Ubuntu/WSL2 sin necesidad de instalar Docker Engine en Linux.
