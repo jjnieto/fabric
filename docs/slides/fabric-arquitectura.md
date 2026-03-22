@@ -1,6 +1,44 @@
 # Arquitectura de Hyperledger Fabric
 
-## Vista general de la red
+## Vista simplificada: los 4 actores principales
+
+```mermaid
+graph LR
+    APP["📱 Cliente<br/>(Aplicación)"]
+    E1["🟦 Endorsing Peer<br/>Org1"]
+    E2["🟩 Endorsing Peer<br/>Org2"]
+    ORD["🟧 Ordering<br/>Service"]
+    C1["🟦 Committing Peer<br/>Org1"]
+    C2["🟩 Committing Peer<br/>Org2"]
+
+    APP -->|"1. Propuesta<br/>de transacción"| E1
+    APP -->|"1. Propuesta<br/>de transacción"| E2
+    E1 -->|"2. Respuesta<br/>firmada"| APP
+    E2 -->|"2. Respuesta<br/>firmada"| APP
+    APP -->|"3. Envía tx<br/>endorsada"| ORD
+    ORD -->|"4. Distribuye<br/>bloque"| C1
+    ORD -->|"4. Distribuye<br/>bloque"| C2
+
+    style APP fill:#FFF9C4,stroke:#F9A825,color:#000
+    style E1 fill:#64B5F6,color:#000
+    style E2 fill:#81C784,color:#000
+    style ORD fill:#FFB74D,color:#000
+    style C1 fill:#64B5F6,color:#000
+    style C2 fill:#81C784,color:#000
+```
+
+| Paso | Quién | Qué hace |
+|------|-------|----------|
+| 1 | **Cliente** → Endorsing Peers | Envía la propuesta de transacción |
+| 2 | **Endorsing Peers** → Cliente | Simulan el chaincode y devuelven el resultado firmado |
+| 3 | **Cliente** → Ordering Service | Envía la transacción con las firmas de endorsement |
+| 4 | **Ordering Service** → Committing Peers | Ordena en bloque y lo distribuye. Los peers validan y escriben en el ledger |
+
+> **Nota:** En Fabric, un mismo peer puede ser endorser y committer a la vez. Se separan en el diagrama para que se entienda el flujo.
+
+---
+
+## Vista completa de la red (detalle)
 
 ```mermaid
 graph TB
