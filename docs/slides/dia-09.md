@@ -80,24 +80,34 @@ Componentes principales
 
 En Fabric, una red está formada por:
 
-```
-┌─────────────────────────────────────────────────┐
-│                  RED FABRIC                      │
-│                                                  │
-│   ┌──────────┐  ┌──────────┐  ┌──────────┐     │
-│   │  Org 1   │  │  Org 2   │  │  Org 3   │     │
-│   │ ┌──────┐ │  │ ┌──────┐ │  │ ┌──────┐ │     │
-│   │ │Peer 0│ │  │ │Peer 0│ │  │ │Peer 0│ │     │
-│   │ │Peer 1│ │  │ │Peer 0│ │  │ │Peer 1│ │     │
-│   │ │ CA   │ │  │ │ CA   │ │  │ │ CA   │ │     │
-│   │ └──────┘ │  │ └──────┘ │  │ └──────┘ │     │
-│   └──────────┘  └──────────┘  └──────────┘     │
-│                                                  │
-│        ┌─────────────────────────┐              │
-│        │   Ordering Service      │              │
-│        │  (Raft: 3 o 5 nodos)   │              │
-│        └─────────────────────────┘              │
-└─────────────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph RED["RED FABRIC"]
+        subgraph ORG1["Org 1"]
+            P1A["Peer 0"]
+            P1B["Peer 1"]
+            CA1["CA"]
+        end
+        subgraph ORG2["Org 2"]
+            P2A["Peer 0"]
+            CA2["CA"]
+        end
+        subgraph ORG3["Org 3"]
+            P3A["Peer 0"]
+            P3B["Peer 1"]
+            CA3["CA"]
+        end
+        subgraph OS["Ordering Service (Raft: 3 o 5 nodos)"]
+            O1["Orderer"]
+            O2["Orderer"]
+            O3["Orderer"]
+        end
+    end
+
+    style ORG1 fill:#E3F2FD,stroke:#1565C0
+    style ORG2 fill:#E8F5E9,stroke:#2E7D32
+    style ORG3 fill:#FFF3E0,stroke:#E65100
+    style OS fill:#FFE0B2,stroke:#F57C00
 ```
 
 Cada organización gestiona sus propios componentes. Nadie controla la red completa.
@@ -187,12 +197,18 @@ En Fabric, tu identidad es un **certificado X.509** emitido por una **Certificat
 
 **Flujo de identidad en Fabric:**
 
-```
-1. Admin registra al usuario en la CA (registration)
-2. El usuario solicita su certificado (enrollment)
-3. La CA emite un certificado X.509 firmado
-4. El usuario usa ese certificado para firmar transacciones
-5. Los peers verifican el certificado contra la CA de la organización
+```mermaid
+sequenceDiagram
+    participant Admin as 👤 Admin
+    participant CA as 🏛️ Fabric CA
+    participant User as 👤 Usuario
+    participant Peer as 🟦 Peer
+
+    Admin->>CA: 1. Register (crear identidad)
+    User->>CA: 2. Enroll (solicitar certificado)
+    CA-->>User: 3. Certificado X.509 firmado
+    User->>Peer: 4. Transacción firmada con el certificado
+    Peer->>Peer: 5. Verifica certificado contra la CA de la organización
 ```
 
 **¿Qué contiene el certificado?**
@@ -223,15 +239,21 @@ En Fabric, tu identidad es un **certificado X.509** emitido por una **Certificat
 
 El **MSP** define **quién pertenece a cada organización** y qué puede hacer.
 
-```
-Org1MSP/
-├── cacerts/          ← Certificado raíz de la CA de Org1
-├── tlscacerts/       ← Certificado TLS de la CA
-├── admincerts/       ← Certificados de los administradores
-├── config.yaml       ← Configuración de NodeOUs
-└── (en el peer)
-    ├── signcerts/    ← Certificado del peer
-    └── keystore/     ← Clave privada del peer
+```mermaid
+graph TD
+    subgraph MSP["Org1MSP/"]
+        CA["📁 cacerts/<br/>Certificado raíz de la CA"]
+        TLS["📁 tlscacerts/<br/>Certificado TLS de la CA"]
+        ADM["📁 admincerts/<br/>Certificados de los administradores"]
+        CFG["📄 config.yaml<br/>Configuración de NodeOUs"]
+        subgraph PEER_MSP["(en el peer)"]
+            SIG["📁 signcerts/<br/>Certificado del peer"]
+            KEY["🔑 keystore/<br/>Clave privada del peer"]
+        end
+    end
+
+    style MSP fill:#FFF3E0,stroke:#E65100
+    style PEER_MSP fill:#FFF9C4,stroke:#F9A825
 ```
 
 **Cada organización tiene su propio MSP.** Cuando un peer recibe una transacción firmada, verifica:
@@ -271,21 +293,25 @@ El Ledger
 
 El ledger de Fabric tiene **dos componentes**:
 
-```
-┌─────────────────────────────────────────────┐
-│                   LEDGER                     │
-│                                              │
-│  ┌───────────────────┐  ┌────────────────┐  │
-│  │    BLOCKCHAIN      │  │  WORLD STATE   │  │
-│  │  (inmutable)       │  │  (actual)      │  │
-│  │                    │  │                │  │
-│  │  Bloque 0 (génesis)│  │  clave → valor │  │
-│  │  Bloque 1          │  │  car1 → {blue} │  │
-│  │  Bloque 2          │  │  car2 → {red}  │  │
-│  │  Bloque 3          │  │  car3 → {white}│  │
-│  │  ...               │  │  ...           │  │
-│  └───────────────────┘  └────────────────┘  │
-└─────────────────────────────────────────────┘
+```mermaid
+graph LR
+    subgraph LEDGER["LEDGER"]
+        subgraph BC["📋 BLOCKCHAIN (inmutable)"]
+            B0["Bloque 0 (génesis)"]
+            B1["Bloque 1"]
+            B2["Bloque 2"]
+            B3["Bloque 3"]
+            B0 --> B1 --> B2 --> B3
+        end
+        subgraph WS["📦 WORLD STATE (actual)"]
+            K1["car1 → blue, Alice"]
+            K2["car2 → red, Bob"]
+            K3["car3 → white, Carlos"]
+        end
+    end
+
+    style BC fill:#E3F2FD,stroke:#1565C0
+    style WS fill:#FFF3E0,stroke:#E65100
 ```
 
 - **Blockchain:** registro inmutable y secuencial de todas las transacciones. No se puede modificar ni borrar
@@ -348,24 +374,31 @@ Canales y privacidad
 
 Un **canal** en Fabric es una sub-red privada con su propio ledger independiente.
 
-```
-Red Fabric
-├── Canal "comercio-exterior"
-│   ├── Org: BancoA
-│   ├── Org: BancoB
-│   └── Org: Aduana
-│   └── Ledger propio
-│
-├── Canal "seguros"
-│   ├── Org: BancoA
-│   ├── Org: Aseguradora1
-│   └── Org: Aseguradora2
-│   └── Ledger propio
-│
-└── Canal "interbancario"
-    ├── Org: BancoA
-    ├── Org: BancoB
-    └── Ledger propio
+```mermaid
+graph TD
+    subgraph RED["Red Fabric"]
+        subgraph CH1["Canal: comercio-exterior"]
+            CH1_A["BancoA"]
+            CH1_B["BancoB"]
+            CH1_C["Aduana"]
+            CH1_L[("Ledger propio")]
+        end
+        subgraph CH2["Canal: seguros"]
+            CH2_A["BancoA"]
+            CH2_D["Aseguradora1"]
+            CH2_E["Aseguradora2"]
+            CH2_L[("Ledger propio")]
+        end
+        subgraph CH3["Canal: interbancario"]
+            CH3_A["BancoA"]
+            CH3_B["BancoB"]
+            CH3_L[("Ledger propio")]
+        end
+    end
+
+    style CH1 fill:#E3F2FD,stroke:#1565C0
+    style CH2 fill:#E8F5E9,stroke:#2E7D32
+    style CH3 fill:#FFF3E0,stroke:#E65100
 ```
 
 - BancoA está en los tres canales: ve los datos de los tres
@@ -393,19 +426,35 @@ Incluso dentro de un canal, a veces no quieres compartir todo con todos los miem
 
 **Private Data Collections** permiten que un subconjunto de organizaciones del canal comparta datos privados:
 
-```
-Canal "suministro"
-├── Org: Fabricante
-├── Org: Distribuidor
-├── Org: Minorista
-│
-├── Collection "precio-fabricante-distribuidor"
-│   ├── Datos privados: solo Fabricante y Distribuidor
-│   └── En el ledger público: solo un hash de los datos
-│
-└── Collection "precio-distribuidor-minorista"
-    ├── Datos privados: solo Distribuidor y Minorista
-    └── En el ledger público: solo un hash de los datos
+```mermaid
+graph TD
+    subgraph CANAL["Canal: suministro"]
+        FAB["🏭 Fabricante"]
+        DIST["🚛 Distribuidor"]
+        MIN["🏪 Minorista"]
+        PUB[("Ledger público<br/>(todos ven)")]
+
+        subgraph COL1["Collection: precio-fabricante-distribuidor"]
+            PD1["Datos privados:<br/>precio de fábrica"]
+            H1["En el ledger público:<br/>solo un hash"]
+        end
+
+        subgraph COL2["Collection: precio-distribuidor-minorista"]
+            PD2["Datos privados:<br/>precio mayorista"]
+            H2["En el ledger público:<br/>solo un hash"]
+        end
+
+        FAB ---|"ve"| COL1
+        DIST ---|"ve"| COL1
+        DIST ---|"ve"| COL2
+        MIN ---|"ve"| COL2
+        FAB -.-x COL2
+        MIN -.-x COL1
+    end
+
+    style COL1 fill:#E3F2FD,stroke:#1565C0
+    style COL2 fill:#E8F5E9,stroke:#2E7D32
+    style CANAL fill:#FAFAFA,stroke:#424242
 ```
 
 - El Fabricante no ve el precio que el Distribuidor cobra al Minorista
@@ -431,9 +480,17 @@ En Ethereum, una transacción se ejecuta cuando se incluye en un bloque. Todos l
 
 En Fabric, el flujo es radicalmente diferente: **execute-order-validate**.
 
-```
-Ethereum:    Order → Execute (todos ejecutan lo mismo)
-Fabric:      Execute (simular) → Order → Validate
+```mermaid
+graph LR
+    subgraph ETH["Ethereum"]
+        E1["Order"] --> E2["Execute<br/>(todos ejecutan)"]
+    end
+    subgraph FAB["Fabric"]
+        F1["Execute<br/>(simular)"] --> F2["Order"] --> F3["Validate"]
+    end
+
+    style ETH fill:#E3F2FD,stroke:#1565C0
+    style FAB fill:#FFF3E0,stroke:#E65100
 ```
 
 **¿Por qué este cambio?**
@@ -446,17 +503,16 @@ Fabric:      Execute (simular) → Order → Validate
 
 ## Slide 26 — Fase 1: ENDORSE (Proponer y simular)
 
-```
-┌──────────┐         ┌────────────────────┐
-│  Cliente  │────────▶│  Endorsing Peer(s) │
-│  (SDK)   │  1.     │  (Org1, Org2...)   │
-│          │Propuesta│                    │
-│          │         │  2. Ejecuta el     │
-│          │◀────────│     chaincode      │
-│          │  3.     │  (SIMULACIÓN, no   │
-│          │Respuesta│   escribe nada)    │
-│          │endorsada│                    │
-└──────────┘         └────────────────────┘
+```mermaid
+sequenceDiagram
+    participant C as 📱 Cliente (SDK)
+    participant EP as 🟦🟩 Endorsing Peers<br/>(Org1, Org2...)
+
+    C->>EP: 1. Propuesta de transacción
+    activate EP
+    Note right of EP: 2. Ejecuta chaincode<br/>(SIMULACIÓN, no escribe)
+    EP-->>C: 3. Respuesta endorsada<br/>(Read/Write Set + firma)
+    deactivate EP
 ```
 
 1. El **cliente** (aplicación) envía una **propuesta de transacción** a los endorsing peers definidos en la política
@@ -470,18 +526,17 @@ Fabric:      Execute (simular) → Order → Validate
 
 ## Slide 27 — Fase 2: ORDER (Ordenar y empaquetar)
 
-```
-┌──────────┐         ┌──────────────────────┐
-│  Cliente  │────────▶│  Ordering Service    │
-│  (SDK)   │  4.     │  (Raft cluster)      │
-│          │Transac- │                      │
-│          │ción con │  5. Ordena las       │
-│          │endorse- │     transacciones    │
-│          │ments    │  6. Empaqueta en     │
-│          │         │     bloques          │
-└──────────┘         │  7. Distribuye a     │
-                     │     todos los peers  │
-                     └──────────────────────┘
+```mermaid
+sequenceDiagram
+    participant C as 📱 Cliente (SDK)
+    participant OS as 🟧 Ordering Service<br/>(Raft cluster)
+    participant P as 🟦🟩 Todos los Peers<br/>del canal
+
+    C->>OS: 4. Transacción con endorsements
+    activate OS
+    Note right of OS: 5. Ordena transacciones<br/>6. Empaqueta en bloque
+    OS->>P: 7. Distribuye bloque
+    deactivate OS
 ```
 
 4. El cliente verifica que tiene suficientes endorsements (según la política) y **envía la transacción al orderer**
@@ -495,19 +550,28 @@ Fabric:      Execute (simular) → Order → Validate
 
 ## Slide 28 — Fase 3: VALIDATE (Validar y actualizar)
 
-```
-┌────────────────────────────────────────┐
-│        Cada peer del canal             │
-│                                        │
-│  8. Recibe el bloque del orderer       │
-│  9. Para cada transacción:             │
-│     a) ¿Cumple la endorsement policy?  │
-│     b) ¿El read-set sigue siendo       │
-│        válido? (MVCC check)            │
-│  10. Marca tx como VALID o INVALID     │
-│  11. Añade el bloque al blockchain     │
-│  12. Actualiza world state (solo VALID)│
-└────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph PEER["Cada peer del canal"]
+        S8["8. Recibe bloque del orderer"]
+        S9["9. Para cada transacción:"]
+        S9A["a) ¿Cumple endorsement policy?"]
+        S9B["b) ¿Read-set sigue válido? (MVCC)"]
+        S10["10. Marca tx como VALID o INVALID"]
+        S11["11. Añade bloque al blockchain"]
+        S12["12. Actualiza world state (solo VALID)"]
+
+        S8 --> S9
+        S9 --> S9A
+        S9 --> S9B
+        S9A --> S10
+        S9B --> S10
+        S10 --> S11
+        S11 --> S12
+    end
+
+    style PEER fill:#E8F5E9,stroke:#2E7D32
+    style S10 fill:#FFF9C4,stroke:#F9A825
 ```
 
 8. Cada peer recibe el bloque del orderer
