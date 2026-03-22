@@ -133,7 +133,103 @@ graph TB
 
 ---
 
-## Flujo de una transacción (Endorse → Order → Validate)
+## Flujo de una transacción — Swimlane (vista simplificada)
+
+```mermaid
+block-beta
+    columns 6
+
+    %% Header
+    space:6
+
+    %% Lane labels
+    block:LBL1:1
+        L1["📱 CLIENTE"]
+    end
+    block:LBL2:2
+        L2["🟦🟩 ENDORSING PEERS"]
+    end
+    block:LBL3:1
+        L3["🟧 ORDERING SERVICE"]
+    end
+    block:LBL4:2
+        L4["🟦🟩 COMMITTING PEERS"]
+    end
+
+    style L1 fill:#FFF9C4,stroke:#F9A825,color:#000
+    style L2 fill:#E3F2FD,stroke:#1565C0,color:#000
+    style L3 fill:#FFE0B2,stroke:#F57C00,color:#000
+    style L4 fill:#E8F5E9,stroke:#2E7D32,color:#000
+```
+
+```mermaid
+sequenceDiagram
+    box rgb(255,249,196) Cliente
+        participant App as 📱 App Cliente
+    end
+    box rgb(227,242,253) Endorsing Peers
+        participant E1 as 🟦 Peer Org1
+        participant E2 as 🟩 Peer Org2
+    end
+    box rgb(255,224,178) Ordering Service
+        participant Ord as 🟧 Orderer
+    end
+    box rgb(232,245,233) Committing Peers
+        participant C1 as 🟦 Peer Org1
+        participant C2 as 🟩 Peer Org2
+    end
+
+    Note over App,C2: FASE 1 — ENDORSE
+
+    App->>E1: 1. Propuesta de transacción
+    App->>E2: 1. Propuesta de transacción
+
+    activate E1
+    Note right of E1: Ejecuta chaincode<br/>(simula, NO escribe)
+    E1-->>App: 2. Read/Write Set + firma Org1
+    deactivate E1
+
+    activate E2
+    Note right of E2: Ejecuta chaincode<br/>(simula, NO escribe)
+    E2-->>App: 2. Read/Write Set + firma Org2
+    deactivate E2
+
+    Note over App: Verifica que ambos<br/>resultados coinciden
+
+    Note over App,C2: FASE 2 — ORDER
+
+    App->>Ord: 3. Transacción endorsada (con ambas firmas)
+
+    activate Ord
+    Note right of Ord: Ordena por timestamp<br/>Agrupa en bloque
+    Ord->>C1: 4. Bloque
+    Ord->>C2: 4. Bloque
+    deactivate Ord
+
+    Note over App,C2: FASE 3 — VALIDATE & COMMIT
+
+    activate C1
+    C1->>C1: 5. Valida firmas
+    C1->>C1: 6. Verifica versiones (MVCC)
+    C1->>C1: 7. Escribe en World State
+    C1->>C1: 8. Añade bloque al ledger
+    deactivate C1
+
+    activate C2
+    C2->>C2: 5. Valida firmas
+    C2->>C2: 6. Verifica versiones (MVCC)
+    C2->>C2: 7. Escribe en World State
+    C2->>C2: 8. Añade bloque al ledger
+    deactivate C2
+
+    Note over App,C2: ✅ Transacción confirmada — Ledger consistente en ambas orgs
+```
+
+> **Nota:** Los endorsing peers y los committing peers son los mismos nodos físicos. Se separan en carriles distintos para que se vea claramente qué rol desempeñan en cada fase.
+
+---
+
+## Flujo de una transacción — Diagrama de secuencia (detalle)
 
 ```mermaid
 sequenceDiagram
