@@ -1,0 +1,1976 @@
+WEBVTT
+Kind: captions
+Language: es
+
+00:00:00.799 --> 00:00:02.909 align:start position:0%
+ 
+aquí<00:00:01.079><c> tenemos</c><00:00:01.560><c> las</c><00:00:01.800><c> especificaciones</c><00:00:02.639><c> de</c>
+
+00:00:02.909 --> 00:00:02.919 align:start position:0%
+aquí tenemos las especificaciones de
+ 
+
+00:00:02.919 --> 00:00:04.789 align:start position:0%
+aquí tenemos las especificaciones de
+nuestra<00:00:03.280><c> red</c><00:00:03.480><c> de</c><00:00:03.639><c> I</c><00:00:03.840><c> layer</c><00:00:04.160><c> Fabric</c><00:00:04.520><c> que</c><00:00:04.640><c> vamos</c>
+
+00:00:04.789 --> 00:00:04.799 align:start position:0%
+nuestra red de I layer Fabric que vamos
+ 
+
+00:00:04.799 --> 00:00:07.710 align:start position:0%
+nuestra red de I layer Fabric que vamos
+a<00:00:04.920><c> crear</c><00:00:05.400><c> de</c><00:00:05.600><c> manera</c><00:00:05.960><c> conceptual</c><00:00:06.919><c> vale</c><00:00:07.359><c> aquí</c>
+
+00:00:07.710 --> 00:00:07.720 align:start position:0%
+a crear de manera conceptual vale aquí
+ 
+
+00:00:07.720 --> 00:00:10.070 align:start position:0%
+a crear de manera conceptual vale aquí
+os<00:00:08.000><c> dejo</c><00:00:08.280><c> un</c><00:00:08.440><c> link</c><00:00:09.000><c> donde</c><00:00:09.280><c> bueno</c><00:00:09.559><c> podéis</c><00:00:09.840><c> más</c>
+
+00:00:10.070 --> 00:00:10.080 align:start position:0%
+os dejo un link donde bueno podéis más
+ 
+
+00:00:10.080 --> 00:00:13.629 align:start position:0%
+os dejo un link donde bueno podéis más
+encontrar<00:00:10.840><c> más</c><00:00:11.000><c> información</c><00:00:12.080><c> y</c><00:00:13.080><c> explicación</c>
+
+00:00:13.629 --> 00:00:13.639 align:start position:0%
+encontrar más información y explicación
+ 
+
+00:00:13.639 --> 00:00:17.109 align:start position:0%
+encontrar más información y explicación
+detallada<00:00:14.160><c> sobre</c><00:00:14.639><c> la</c><00:00:14.839><c> creación</c><00:00:15.160><c> o</c><00:00:16.119><c> simulación</c>
+
+00:00:17.109 --> 00:00:17.119 align:start position:0%
+detallada sobre la creación o simulación
+ 
+
+00:00:17.119 --> 00:00:19.590 align:start position:0%
+detallada sobre la creación o simulación
+conceptual<00:00:17.720><c> de</c><00:00:18.080><c> esta</c><00:00:18.359><c> red</c><00:00:18.560><c> de</c><00:00:18.680><c> Player</c><00:00:19.080><c> Fabric</c>
+
+00:00:19.590 --> 00:00:19.600 align:start position:0%
+conceptual de esta red de Player Fabric
+ 
+
+00:00:19.600 --> 00:00:22.189 align:start position:0%
+conceptual de esta red de Player Fabric
+y<00:00:20.519><c> Bueno</c><00:00:20.720><c> aquí</c><00:00:20.880><c> os</c><00:00:21.039><c> dejo</c>
+
+00:00:22.189 --> 00:00:22.199 align:start position:0%
+y Bueno aquí os dejo
+ 
+
+00:00:22.199 --> 00:00:24.589 align:start position:0%
+y Bueno aquí os dejo
+vale<00:00:23.199><c> las</c><00:00:23.400><c> condiciones</c><00:00:23.880><c> que</c><00:00:24.039><c> tiene</c><00:00:24.320><c> tener</c>
+
+00:00:24.589 --> 00:00:24.599 align:start position:0%
+vale las condiciones que tiene tener
+ 
+
+00:00:24.599 --> 00:00:27.390 align:start position:0%
+vale las condiciones que tiene tener
+nuestra<00:00:24.880><c> red</c><00:00:25.240><c> vale</c><00:00:25.720><c> nuestra</c><00:00:26.400><c> red</c><00:00:26.720><c> de</c><00:00:27.000><c> Player</c>
+
+00:00:27.390 --> 00:00:27.400 align:start position:0%
+nuestra red vale nuestra red de Player
+ 
+
+00:00:27.400 --> 00:00:28.870 align:start position:0%
+nuestra red vale nuestra red de Player
+fabri<00:00:27.760><c> va</c><00:00:27.840><c> a</c><00:00:27.920><c> estar</c><00:00:28.080><c> formada</c><00:00:28.439><c> por</c><00:00:28.560><c> cuatro</c>
+
+00:00:28.870 --> 00:00:28.880 align:start position:0%
+fabri va a estar formada por cuatro
+ 
+
+00:00:28.880 --> 00:00:32.869 align:start position:0%
+fabri va a estar formada por cuatro
+organizaciones<00:00:30.199><c> organización</c><00:00:30.679><c> ra</c><00:00:31.279><c> rb</c><00:00:31.800><c> rc</c><00:00:32.239><c> y</c>
+
+00:00:32.869 --> 00:00:32.879 align:start position:0%
+organizaciones organización ra rb rc y
+ 
+
+00:00:32.879 --> 00:00:36.229 align:start position:0%
+organizaciones organización ra rb rc y
+Rd<00:00:33.879><c> vale</c><00:00:34.440><c> Y</c><00:00:34.719><c> tiene</c><00:00:35.079><c> estas</c><00:00:35.320><c> características</c><00:00:36.000><c> la</c>
+
+00:00:36.229 --> 00:00:36.239 align:start position:0%
+Rd vale Y tiene estas características la
+ 
+
+00:00:36.239 --> 00:00:38.830 align:start position:0%
+Rd vale Y tiene estas características la
+ra<00:00:36.640><c> tendrá</c><00:00:37.000><c> un</c><00:00:37.120><c> pir</c><00:00:38.000><c> y</c><00:00:38.239><c> una</c><00:00:38.399><c> aplicación</c>
+
+00:00:38.830 --> 00:00:38.840 align:start position:0%
+ra tendrá un pir y una aplicación
+ 
+
+00:00:38.840 --> 00:00:41.470 align:start position:0%
+ra tendrá un pir y una aplicación
+cliente<00:00:39.160><c> la</c><00:00:39.600><c> rb</c><00:00:40.039><c> tendrá</c><00:00:40.360><c> un</c><00:00:40.559><c> pir</c><00:00:41.079><c> y</c><00:00:41.320><c> una</c>
+
+00:00:41.470 --> 00:00:41.480 align:start position:0%
+cliente la rb tendrá un pir y una
+ 
+
+00:00:41.480 --> 00:00:43.630 align:start position:0%
+cliente la rb tendrá un pir y una
+aplicación<00:00:41.920><c> cliente</c><00:00:42.200><c> la</c><00:00:42.520><c> rc</c><00:00:42.840><c> tendrá</c><00:00:43.120><c> otro</c><00:00:43.360><c> pil</c>
+
+00:00:43.630 --> 00:00:43.640 align:start position:0%
+aplicación cliente la rc tendrá otro pil
+ 
+
+00:00:43.640 --> 00:00:46.590 align:start position:0%
+aplicación cliente la rc tendrá otro pil
+una<00:00:43.800><c> aplicación</c><00:00:44.480><c> cliente</c><00:00:45.480><c> la</c>
+
+00:00:46.590 --> 00:00:46.600 align:start position:0%
+una aplicación cliente la
+ 
+
+00:00:46.600 --> 00:00:50.189 align:start position:0%
+una aplicación cliente la
+Rd<00:00:47.600><c> se</c><00:00:47.840><c> encargará</c><00:00:48.320><c> del</c><00:00:48.480><c> order</c><00:00:49.079><c> service</c><00:00:49.640><c> y</c>
+
+00:00:50.189 --> 00:00:50.199 align:start position:0%
+Rd se encargará del order service y
+ 
+
+00:00:50.199 --> 00:00:52.709 align:start position:0%
+Rd se encargará del order service y
+bueno<00:00:50.480><c> imaginaos</c><00:00:50.960><c> que</c><00:00:51.360><c> organización</c><00:00:51.879><c> a</c><00:00:52.160><c> y</c><00:00:52.280><c> b</c>
+
+00:00:52.709 --> 00:00:52.719 align:start position:0%
+bueno imaginaos que organización a y b
+ 
+
+00:00:52.719 --> 00:00:55.229 align:start position:0%
+bueno imaginaos que organización a y b
+deciden<00:00:53.320><c> formar</c><00:00:53.520><c> un</c><00:00:53.719><c> consorcio</c><00:00:54.280><c> y</c><00:00:54.760><c> utilizar</c>
+
+00:00:55.229 --> 00:00:55.239 align:start position:0%
+deciden formar un consorcio y utilizar
+ 
+
+00:00:55.239 --> 00:00:57.150 align:start position:0%
+deciden formar un consorcio y utilizar
+un<00:00:55.399><c> canal</c><00:00:55.719><c> separado</c><00:00:56.120><c> entre</c>
+
+00:00:57.150 --> 00:00:57.160 align:start position:0%
+un canal separado entre
+ 
+
+00:00:57.160 --> 00:01:02.069 align:start position:0%
+un canal separado entre
+ellos<00:00:58.160><c> y</c><00:00:58.760><c> organización</c><00:00:59.239><c> rb</c><00:01:00.280><c> rc</c><00:01:01.280><c> deciden</c><00:01:01.800><c> crear</c>
+
+00:01:02.069 --> 00:01:02.079 align:start position:0%
+ellos y organización rb rc deciden crear
+ 
+
+00:01:02.079 --> 00:01:04.750 align:start position:0%
+ellos y organización rb rc deciden crear
+otro<00:01:02.359><c> consorcio</c><00:01:02.920><c> y</c><00:01:03.480><c> usar</c><00:01:03.840><c> un</c><00:01:04.000><c> canal</c><00:01:04.280><c> separado</c>
+
+00:01:04.750 --> 00:01:04.760 align:start position:0%
+otro consorcio y usar un canal separado
+ 
+
+00:01:04.760 --> 00:01:08.070 align:start position:0%
+otro consorcio y usar un canal separado
+entre<00:01:05.080><c> ellos</c><00:01:05.960><c> y</c><00:01:06.360><c> cada</c><00:01:07.200><c> cada</c><00:01:07.400><c> canal</c><00:01:07.600><c> van</c><00:01:07.960><c> a</c>
+
+00:01:08.070 --> 00:01:08.080 align:start position:0%
+entre ellos y cada cada canal van a
+ 
+
+00:01:08.080 --> 00:01:10.149 align:start position:0%
+entre ellos y cada cada canal van a
+tener<00:01:08.280><c> sus</c><00:01:08.439><c> políticas</c><00:01:08.920><c> definidas</c><00:01:09.759><c> Vale</c>
+
+00:01:10.149 --> 00:01:10.159 align:start position:0%
+tener sus políticas definidas Vale
+ 
+
+00:01:10.159 --> 00:01:12.429 align:start position:0%
+tener sus políticas definidas Vale
+entonces<00:01:10.479><c> vamos</c><00:01:10.680><c> a</c>
+
+00:01:12.429 --> 00:01:12.439 align:start position:0%
+entonces vamos a
+ 
+
+00:01:12.439 --> 00:01:14.710 align:start position:0%
+entonces vamos a
+empezar<00:01:13.439><c> lo</c><00:01:13.640><c> primero</c><00:01:13.960><c> que</c><00:01:14.080><c> tenemos</c><00:01:14.439><c> que</c><00:01:14.520><c> hacer</c>
+
+00:01:14.710 --> 00:01:14.720 align:start position:0%
+empezar lo primero que tenemos que hacer
+ 
+
+00:01:14.720 --> 00:01:17.109 align:start position:0%
+empezar lo primero que tenemos que hacer
+es<00:01:14.880><c> crear</c><00:01:15.119><c> nuestro</c><00:01:15.439><c> entorno</c><00:01:15.720><c> de</c><00:01:15.960><c> la</c><00:01:16.119><c> red</c><00:01:16.920><c> de</c>
+
+00:01:17.109 --> 00:01:17.119 align:start position:0%
+es crear nuestro entorno de la red de
+ 
+
+00:01:17.119 --> 00:01:19.870 align:start position:0%
+es crear nuestro entorno de la red de
+acuerdo<00:01:18.080><c> aquí</c><00:01:18.759><c> nuestra</c><00:01:19.080><c> red</c>
+
+00:01:19.870 --> 00:01:19.880 align:start position:0%
+acuerdo aquí nuestra red
+ 
+
+00:01:19.880 --> 00:01:23.310 align:start position:0%
+acuerdo aquí nuestra red
+n<00:01:20.880><c> y</c><00:01:21.240><c> lo</c><00:01:21.400><c> primero</c><00:01:21.720><c> que</c><00:01:21.840><c> vamos</c><00:01:22.079><c> a</c><00:01:22.240><c> definir</c><00:01:22.960><c> vale</c>
+
+00:01:23.310 --> 00:01:23.320 align:start position:0%
+n y lo primero que vamos a definir vale
+ 
+
+00:01:23.320 --> 00:01:25.749 align:start position:0%
+n y lo primero que vamos a definir vale
+va<00:01:23.439><c> a</c><00:01:23.560><c> ser</c><00:01:23.640><c> ese</c><00:01:23.960><c> ordering</c><00:01:24.560><c> Services</c><00:01:25.439><c> el</c>
+
+00:01:25.749 --> 00:01:25.759 align:start position:0%
+va a ser ese ordering Services el
+ 
+
+00:01:25.759 --> 00:01:28.310 align:start position:0%
+va a ser ese ordering Services el
+ordering<00:01:26.320><c> service</c><00:01:26.920><c> que</c><00:01:27.119><c> ya</c><00:01:27.280><c> sabemos</c><00:01:27.759><c> que</c><00:01:28.000><c> va</c><00:01:28.159><c> a</c>
+
+00:01:28.310 --> 00:01:28.320 align:start position:0%
+ordering service que ya sabemos que va a
+ 
+
+00:01:28.320 --> 00:01:32.469 align:start position:0%
+ordering service que ya sabemos que va a
+colgar<00:01:29.040><c> de</c><00:01:29.320><c> la</c><00:01:30.360><c> Rd</c><00:01:31.360><c> y</c><00:01:31.640><c> aquí</c><00:01:31.799><c> es</c><00:01:31.920><c> lo</c><00:01:32.119><c> que</c><00:01:32.200><c> estamos</c>
+
+00:01:32.469 --> 00:01:32.479 align:start position:0%
+colgar de la Rd y aquí es lo que estamos
+ 
+
+00:01:32.479 --> 00:01:34.710 align:start position:0%
+colgar de la Rd y aquí es lo que estamos
+haciendo<00:01:33.000><c> vamos</c><00:01:33.240><c> a</c><00:01:33.360><c> tener</c><00:01:33.600><c> una</c><00:01:33.840><c> organización</c>
+
+00:01:34.710 --> 00:01:34.720 align:start position:0%
+haciendo vamos a tener una organización
+ 
+
+00:01:34.720 --> 00:01:38.590 align:start position:0%
+haciendo vamos a tener una organización
+Rd<00:01:35.720><c> vale</c><00:01:36.040><c> con</c><00:01:36.200><c> sus</c><00:01:36.720><c> certificad</c><00:01:37.479><c> de</c><00:01:37.880><c> autoridad</c>
+
+00:01:38.590 --> 00:01:38.600 align:start position:0%
+Rd vale con sus certificad de autoridad
+ 
+
+00:01:38.600 --> 00:01:42.310 align:start position:0%
+Rd vale con sus certificad de autoridad
+vale<00:01:38.920><c> de</c><00:01:39.079><c> la</c><00:01:39.159><c> organización</c><00:01:39.960><c> 4</c><00:01:40.960><c> y</c><00:01:41.880><c> con</c><00:01:42.159><c> el</c>
+
+00:01:42.310 --> 00:01:42.320 align:start position:0%
+vale de la organización 4 y con el
+ 
+
+00:01:42.320 --> 00:01:46.069 align:start position:0%
+vale de la organización 4 y con el
+servicio<00:01:42.840><c> orderer</c><00:01:43.840><c> de</c><00:01:44.000><c> acuerdo</c><00:01:44.840><c> y</c><00:01:45.240><c> Qué</c><00:01:45.439><c> es</c><00:01:45.960><c> la</c>
+
+00:01:46.069 --> 00:01:46.079 align:start position:0%
+servicio orderer de acuerdo y Qué es la
+ 
+
+00:01:46.079 --> 00:01:48.789 align:start position:0%
+servicio orderer de acuerdo y Qué es la
+parte<00:01:46.240><c> de</c><00:01:46.520><c> np</c><00:01:47.159><c> pues</c><00:01:47.439><c> hace</c><00:01:47.799><c> referencia</c><00:01:48.360><c> a</c><00:01:48.520><c> las</c>
+
+00:01:48.789 --> 00:01:48.799 align:start position:0%
+parte de np pues hace referencia a las
+ 
+
+00:01:48.799 --> 00:01:51.670 align:start position:0%
+parte de np pues hace referencia a las
+políticas<00:01:49.320><c> de</c><00:01:49.479><c> la</c><00:01:49.640><c> red</c><00:01:50.360><c> son</c><00:01:50.680><c> esas</c><00:01:51.000><c> políticas</c><00:01:51.399><c> a</c>
+
+00:01:51.670 --> 00:01:51.680 align:start position:0%
+políticas de la red son esas políticas a
+ 
+
+00:01:51.680 --> 00:01:53.429 align:start position:0%
+políticas de la red son esas políticas a
+las<00:01:51.799><c> que</c><00:01:52.040><c> las</c><00:01:52.240><c> diferentes</c><00:01:52.799><c> organizaciones</c>
+
+00:01:53.429 --> 00:01:53.439 align:start position:0%
+las que las diferentes organizaciones
+ 
+
+00:01:53.439 --> 00:01:55.550 align:start position:0%
+las que las diferentes organizaciones
+que<00:01:53.520><c> forman</c><00:01:54.000><c> nuestra</c><00:01:54.280><c> red</c><00:01:54.719><c> han</c><00:01:54.960><c> llegado</c><00:01:55.320><c> al</c>
+
+00:01:55.550 --> 00:01:55.560 align:start position:0%
+que forman nuestra red han llegado al
+ 
+
+00:01:55.560 --> 00:01:58.429 align:start position:0%
+que forman nuestra red han llegado al
+acuerdo<00:01:56.240><c> es</c><00:01:56.479><c> decir</c><00:01:56.880><c> cómo</c><00:01:57.439><c> vamos</c><00:01:57.680><c> a</c><00:01:57.920><c> operar</c><00:01:58.240><c> en</c>
+
+00:01:58.429 --> 00:01:58.439 align:start position:0%
+acuerdo es decir cómo vamos a operar en
+ 
+
+00:01:58.439 --> 00:02:03.749 align:start position:0%
+acuerdo es decir cómo vamos a operar en
+nuestra<00:01:58.759><c> red</c><00:01:59.479><c> y</c><00:01:59.880><c> y</c><00:02:00.039><c> están</c><00:02:00.240><c> definidas</c><00:02:00.920><c> en</c><00:02:01.240><c> el</c>
+
+00:02:03.749 --> 00:02:03.759 align:start position:0%
+ 
+ 
+
+00:02:03.759 --> 00:02:06.709 align:start position:0%
+ 
+np1<00:02:04.759><c> Entonces</c><00:02:05.360><c> seguidamente</c><00:02:06.280><c> vamos</c><00:02:06.560><c> a</c>
+
+00:02:06.709 --> 00:02:06.719 align:start position:0%
+np1 Entonces seguidamente vamos a
+ 
+
+00:02:06.719 --> 00:02:09.029 align:start position:0%
+np1 Entonces seguidamente vamos a
+definir<00:02:07.079><c> un</c><00:02:07.280><c> primer</c><00:02:07.560><c> consorcio</c><00:02:08.440><c> que</c><00:02:08.720><c> como</c><00:02:08.920><c> ya</c>
+
+00:02:09.029 --> 00:02:09.039 align:start position:0%
+definir un primer consorcio que como ya
+ 
+
+00:02:09.039 --> 00:02:11.110 align:start position:0%
+definir un primer consorcio que como ya
+sabemos<00:02:09.800><c> hemos</c><00:02:10.080><c> dicho</c><00:02:10.319><c> que</c><00:02:10.520><c> se</c><00:02:10.679><c> crea</c><00:02:11.039><c> un</c>
+
+00:02:11.110 --> 00:02:11.120 align:start position:0%
+sabemos hemos dicho que se crea un
+ 
+
+00:02:11.120 --> 00:02:14.390 align:start position:0%
+sabemos hemos dicho que se crea un
+consorcio<00:02:11.520><c> entre</c><00:02:11.760><c> ra</c><00:02:12.480><c> y</c><00:02:12.560><c> entre</c><00:02:13.080><c> rb</c><00:02:14.080><c> por</c><00:02:14.280><c> lo</c>
+
+00:02:14.390 --> 00:02:14.400 align:start position:0%
+consorcio entre ra y entre rb por lo
+ 
+
+00:02:14.400 --> 00:02:17.070 align:start position:0%
+consorcio entre ra y entre rb por lo
+tanto<00:02:14.920><c> la</c><00:02:15.440><c> organización</c><00:02:15.959><c> ra</c><00:02:16.519><c> tendrá</c><00:02:16.800><c> sus</c>
+
+00:02:17.070 --> 00:02:17.080 align:start position:0%
+tanto la organización ra tendrá sus
+ 
+
+00:02:17.080 --> 00:02:18.630 align:start position:0%
+tanto la organización ra tendrá sus
+certificados<00:02:17.640><c> de</c>
+
+00:02:18.630 --> 00:02:18.640 align:start position:0%
+certificados de
+ 
+
+00:02:18.640 --> 00:02:22.350 align:start position:0%
+certificados de
+autoridad<00:02:19.720><c> ca1</c><00:02:20.720><c> y</c><00:02:20.879><c> la</c><00:02:21.040><c> empresa</c><00:02:21.560><c> organización</c>
+
+00:02:22.350 --> 00:02:22.360 align:start position:0%
+autoridad ca1 y la empresa organización
+ 
+
+00:02:22.360 --> 00:02:25.229 align:start position:0%
+autoridad ca1 y la empresa organización
+rb<00:02:23.319><c> tendrá</c><00:02:23.720><c> sus</c><00:02:24.040><c> certificados</c><00:02:24.599><c> de</c><00:02:24.720><c> autoridad</c>
+
+00:02:25.229 --> 00:02:25.239 align:start position:0%
+rb tendrá sus certificados de autoridad
+ 
+
+00:02:25.239 --> 00:02:27.750 align:start position:0%
+rb tendrá sus certificados de autoridad
+ca2<00:02:26.160><c> de</c><00:02:26.319><c> acuerdo</c><00:02:26.760><c> Los</c><00:02:26.879><c> Tenemos</c><00:02:27.239><c> aquí</c><00:02:27.480><c> a</c><00:02:27.640><c> la</c>
+
+00:02:27.750 --> 00:02:27.760 align:start position:0%
+ca2 de acuerdo Los Tenemos aquí a la
+ 
+
+00:02:27.760 --> 00:02:30.430 align:start position:0%
+ca2 de acuerdo Los Tenemos aquí a la
+izquierda<00:02:28.560><c> Entonces</c><00:02:29.120><c> ya</c><00:02:29.239><c> tenemos</c><00:02:29.959><c> definido</c>
+
+00:02:30.430 --> 00:02:30.440 align:start position:0%
+izquierda Entonces ya tenemos definido
+ 
+
+00:02:30.440 --> 00:02:33.470 align:start position:0%
+izquierda Entonces ya tenemos definido
+Este<00:02:30.680><c> consorcio</c><00:02:31.200><c> Entonces</c><00:02:31.640><c> vamos</c><00:02:32.040><c> a</c><00:02:32.239><c> seguir</c>
+
+00:02:33.470 --> 00:02:33.480 align:start position:0%
+Este consorcio Entonces vamos a seguir
+ 
+
+00:02:33.480 --> 00:02:36.190 align:start position:0%
+Este consorcio Entonces vamos a seguir
+avanzando<00:02:34.480><c> Entonces</c><00:02:35.360><c> el</c><00:02:35.440><c> siguiente</c><00:02:35.800><c> paso</c><00:02:36.000><c> es</c>
+
+00:02:36.190 --> 00:02:36.200 align:start position:0%
+avanzando Entonces el siguiente paso es
+ 
+
+00:02:36.200 --> 00:02:39.470 align:start position:0%
+avanzando Entonces el siguiente paso es
+crear<00:02:36.519><c> un</c><00:02:36.720><c> canal</c><00:02:37.040><c> para</c><00:02:37.280><c> el</c><00:02:37.560><c> consorcio</c><00:02:38.560><c> vale</c><00:02:38.920><c> Yo</c>
+
+00:02:39.470 --> 00:02:39.480 align:start position:0%
+crear un canal para el consorcio vale Yo
+ 
+
+00:02:39.480 --> 00:02:40.630 align:start position:0%
+crear un canal para el consorcio vale Yo
+tengo<00:02:39.800><c> un</c>
+
+00:02:40.630 --> 00:02:40.640 align:start position:0%
+tengo un
+ 
+
+00:02:40.640 --> 00:02:42.630 align:start position:0%
+tengo un
+consorcio<00:02:41.640><c> que</c><00:02:41.920><c> está</c><00:02:42.120><c> formado</c><00:02:42.400><c> por</c>
+
+00:02:42.630 --> 00:02:42.640 align:start position:0%
+consorcio que está formado por
+ 
+
+00:02:42.640 --> 00:02:45.070 align:start position:0%
+consorcio que está formado por
+organización<00:02:43.159><c> ra</c><00:02:43.680><c> y</c><00:02:43.800><c> rb</c><00:02:44.200><c> de</c><00:02:44.480><c> manera</c><00:02:44.680><c> que</c><00:02:44.800><c> voy</c><00:02:44.959><c> a</c>
+
+00:02:45.070 --> 00:02:45.080 align:start position:0%
+organización ra y rb de manera que voy a
+ 
+
+00:02:45.080 --> 00:02:47.470 align:start position:0%
+organización ra y rb de manera que voy a
+necesitar<00:02:45.400><c> crear</c><00:02:45.760><c> un</c><00:02:46.040><c> canal</c><00:02:46.680><c> para</c><00:02:46.920><c> que</c><00:02:47.120><c> estas</c>
+
+00:02:47.470 --> 00:02:47.480 align:start position:0%
+necesitar crear un canal para que estas
+ 
+
+00:02:47.480 --> 00:02:50.149 align:start position:0%
+necesitar crear un canal para que estas
+eh<00:02:48.480><c> organizaciones</c><00:02:49.200><c> se</c><00:02:49.360><c> comuniquen</c><00:02:49.920><c> entre</c>
+
+00:02:50.149 --> 00:02:50.159 align:start position:0%
+eh organizaciones se comuniquen entre
+ 
+
+00:02:50.159 --> 00:02:54.030 align:start position:0%
+eh organizaciones se comuniquen entre
+ellas<00:02:50.959><c> por</c><00:02:51.200><c> lo</c><00:02:51.280><c> tanto</c><00:02:51.519><c> creo</c><00:02:51.920><c> el</c><00:02:52.000><c> canal</c><00:02:52.319><c> c1</c><00:02:53.319><c> y</c><00:02:53.920><c> el</c>
+
+00:02:54.030 --> 00:02:54.040 align:start position:0%
+ellas por lo tanto creo el canal c1 y el
+ 
+
+00:02:54.040 --> 00:02:57.750 align:start position:0%
+ellas por lo tanto creo el canal c1 y el
+c1<00:02:54.720><c> va</c><00:02:54.879><c> a</c><00:02:55.040><c> tener</c><00:02:55.360><c> unas</c><00:02:55.760><c> políticas</c><00:02:56.720><c> de</c><00:02:56.959><c> canal</c>
+
+00:02:57.750 --> 00:02:57.760 align:start position:0%
+c1 va a tener unas políticas de canal
+ 
+
+00:02:57.760 --> 00:02:59.949 align:start position:0%
+c1 va a tener unas políticas de canal
+vale<00:02:58.200><c> que</c><00:02:58.319><c> las</c><00:02:58.480><c> tendré</c><00:02:59.080><c> definidas</c><00:02:59.640><c> y</c><00:02:59.840><c> y</c>
+
+00:02:59.949 --> 00:02:59.959 align:start position:0%
+vale que las tendré definidas y y
+ 
+
+00:02:59.959 --> 00:03:01.869 align:start position:0%
+vale que las tendré definidas y y
+configuradas<00:03:00.440><c> en</c><00:03:00.920><c> lo</c><00:03:01.000><c> que</c><00:03:01.239><c> aquí</c><00:03:01.440><c> definimos</c>
+
+00:03:01.869 --> 00:03:01.879 align:start position:0%
+configuradas en lo que aquí definimos
+ 
+
+00:03:01.879 --> 00:03:05.670 align:start position:0%
+configuradas en lo que aquí definimos
+como<00:03:02.560><c> cp1</c><00:03:03.560><c> vale</c><00:03:03.840><c> que</c><00:03:04.040><c> son</c><00:03:04.200><c> las</c><00:03:04.440><c> políticas</c><00:03:05.440><c> que</c>
+
+00:03:05.670 --> 00:03:05.680 align:start position:0%
+como cp1 vale que son las políticas que
+ 
+
+00:03:05.680 --> 00:03:07.190 align:start position:0%
+como cp1 vale que son las políticas que
+tanto<00:03:05.959><c> la</c><00:03:06.120><c> organización</c><00:03:06.599><c> a</c><00:03:06.879><c> como</c><00:03:07.040><c> la</c>
+
+00:03:07.190 --> 00:03:07.200 align:start position:0%
+tanto la organización a como la
+ 
+
+00:03:07.200 --> 00:03:09.550 align:start position:0%
+tanto la organización a como la
+organización<00:03:07.799><c> B</c><00:03:08.000><c> han</c><00:03:08.280><c> definido</c><00:03:09.000><c> para</c><00:03:09.280><c> ese</c>
+
+00:03:09.550 --> 00:03:09.560 align:start position:0%
+organización B han definido para ese
+ 
+
+00:03:09.560 --> 00:03:12.030 align:start position:0%
+organización B han definido para ese
+canal<00:03:10.319><c> que</c><00:03:10.920><c> las</c><00:03:11.080><c> vamos</c><00:03:11.239><c> a</c><00:03:11.360><c> tener</c><00:03:11.599><c> aquí</c>
+
+00:03:12.030 --> 00:03:12.040 align:start position:0%
+canal que las vamos a tener aquí
+ 
+
+00:03:12.040 --> 00:03:14.869 align:start position:0%
+canal que las vamos a tener aquí
+definidas<00:03:13.040><c> Y</c><00:03:13.440><c> qué</c><00:03:13.640><c> hace</c><00:03:13.879><c> falta</c><00:03:14.080><c> en</c><00:03:14.360><c> ese</c><00:03:14.599><c> canal</c>
+
+00:03:14.869 --> 00:03:14.879 align:start position:0%
+definidas Y qué hace falta en ese canal
+ 
+
+00:03:14.879 --> 00:03:18.430 align:start position:0%
+definidas Y qué hace falta en ese canal
+pues<00:03:15.200><c> hace</c><00:03:15.440><c> falta</c><00:03:15.799><c> un</c><00:03:15.920><c> ordering</c><00:03:16.519><c> service</c><00:03:17.480><c> vale</c>
+
+00:03:18.430 --> 00:03:18.440 align:start position:0%
+pues hace falta un ordering service vale
+ 
+
+00:03:18.440 --> 00:03:19.949 align:start position:0%
+pues hace falta un ordering service vale
+ya<00:03:18.560><c> sabemos</c><00:03:18.879><c> las</c><00:03:19.040><c> funciones</c><00:03:19.440><c> que</c><00:03:19.599><c> realiza</c>
+
+00:03:19.949 --> 00:03:19.959 align:start position:0%
+ya sabemos las funciones que realiza
+ 
+
+00:03:19.959 --> 00:03:22.550 align:start position:0%
+ya sabemos las funciones que realiza
+esas<00:03:20.799><c> funciones</c><00:03:21.120><c> de</c><00:03:21.239><c> ordenar</c><00:03:21.599><c> las</c><00:03:22.239><c> las</c>
+
+00:03:22.550 --> 00:03:22.560 align:start position:0%
+esas funciones de ordenar las las
+ 
+
+00:03:22.560 --> 00:03:25.350 align:start position:0%
+esas funciones de ordenar las las
+transacciones<00:03:23.319><c> y</c><00:03:23.680><c> enviar</c><00:03:24.280><c> esos</c><00:03:24.599><c> bloques</c><00:03:25.200><c> a</c>
+
+00:03:25.350 --> 00:03:25.360 align:start position:0%
+transacciones y enviar esos bloques a
+ 
+
+00:03:25.360 --> 00:03:27.949 align:start position:0%
+transacciones y enviar esos bloques a
+los<00:03:25.519><c> diferentes</c><00:03:26.280><c> pirs</c><00:03:26.840><c> para</c><00:03:27.000><c> que</c><00:03:27.120><c> actualicen</c>
+
+00:03:27.949 --> 00:03:27.959 align:start position:0%
+los diferentes pirs para que actualicen
+ 
+
+00:03:27.959 --> 00:03:30.630 align:start position:0%
+los diferentes pirs para que actualicen
+validen<00:03:28.439><c> y</c><00:03:28.519><c> actualicen</c><00:03:29.000><c> su</c><00:03:29.319><c> su</c>
+
+00:03:30.630 --> 00:03:30.640 align:start position:0%
+validen y actualicen su su
+ 
+
+00:03:30.640 --> 00:03:33.070 align:start position:0%
+validen y actualicen su su
+por<00:03:30.840><c> lo</c><00:03:30.959><c> tanto</c><00:03:31.280><c> nuestro</c><00:03:31.560><c> orderer</c><00:03:32.519><c> va</c><00:03:32.720><c> a</c><00:03:32.840><c> tener</c>
+
+00:03:33.070 --> 00:03:33.080 align:start position:0%
+por lo tanto nuestro orderer va a tener
+ 
+
+00:03:33.080 --> 00:03:35.990 align:start position:0%
+por lo tanto nuestro orderer va a tener
+que<00:03:33.200><c> estar</c><00:03:33.840><c> supervisando</c><00:03:34.720><c> y</c><00:03:34.959><c> gobernando</c><00:03:35.680><c> este</c>
+
+00:03:35.990 --> 00:03:36.000 align:start position:0%
+que estar supervisando y gobernando este
+ 
+
+00:03:36.000 --> 00:03:38.789 align:start position:0%
+que estar supervisando y gobernando este
+canal<00:03:36.519><c> porque</c><00:03:36.799><c> ya</c><00:03:37.000><c> os</c><00:03:37.200><c> avanzo</c><00:03:37.560><c> ya</c><00:03:37.799><c> os</c><00:03:37.959><c> comento</c>
+
+00:03:38.789 --> 00:03:38.799 align:start position:0%
+canal porque ya os avanzo ya os comento
+ 
+
+00:03:38.799 --> 00:03:41.990 align:start position:0%
+canal porque ya os avanzo ya os comento
+que<00:03:39.400><c> un</c><00:03:39.640><c> ordener</c><00:03:40.640><c> puede</c><00:03:40.959><c> gobernar</c><00:03:41.519><c> varios</c>
+
+00:03:41.990 --> 00:03:42.000 align:start position:0%
+que un ordener puede gobernar varios
+ 
+
+00:03:42.000 --> 00:03:45.429 align:start position:0%
+que un ordener puede gobernar varios
+canales<00:03:43.000><c> vale</c><00:03:43.599><c> Sí</c><00:03:43.920><c> que</c><00:03:44.080><c> podríamos</c>
+
+00:03:45.429 --> 00:03:45.439 align:start position:0%
+canales vale Sí que podríamos
+ 
+
+00:03:45.439 --> 00:03:48.949 align:start position:0%
+canales vale Sí que podríamos
+hacer<00:03:46.680><c> que</c><00:03:47.680><c> crear</c><00:03:47.959><c> podríamos</c><00:03:48.439><c> crear</c><00:03:48.640><c> otro</c>
+
+00:03:48.949 --> 00:03:48.959 align:start position:0%
+hacer que crear podríamos crear otro
+ 
+
+00:03:48.959 --> 00:03:51.949 align:start position:0%
+hacer que crear podríamos crear otro
+ordener<00:03:49.959><c> para</c><00:03:50.200><c> gobernar</c><00:03:50.799><c> otro</c><00:03:51.120><c> canal</c><00:03:51.640><c> vale</c>
+
+00:03:51.949 --> 00:03:51.959 align:start position:0%
+ordener para gobernar otro canal vale
+ 
+
+00:03:51.959 --> 00:03:53.429 align:start position:0%
+ordener para gobernar otro canal vale
+pero<00:03:52.159><c> ya</c><00:03:52.319><c> os</c><00:03:52.439><c> digo</c><00:03:52.640><c> que</c><00:03:52.720><c> tenemos</c><00:03:52.959><c> esas</c><00:03:53.319><c> dos</c>
+
+00:03:53.429 --> 00:03:53.439 align:start position:0%
+pero ya os digo que tenemos esas dos
+ 
+
+00:03:53.439 --> 00:03:55.990 align:start position:0%
+pero ya os digo que tenemos esas dos
+variantes<00:03:54.000><c> que</c><00:03:54.159><c> un</c><00:03:54.319><c> solo</c><00:03:54.519><c> orderer</c><00:03:55.360><c> gobierne</c>
+
+00:03:55.990 --> 00:03:56.000 align:start position:0%
+variantes que un solo orderer gobierne
+ 
+
+00:03:56.000 --> 00:04:01.069 align:start position:0%
+variantes que un solo orderer gobierne
+varios<00:03:56.319><c> canales</c><00:03:56.959><c> o</c><00:03:57.280><c> que</c><00:03:58.159><c> o</c><00:03:58.840><c> crear</c><00:04:00.159><c> un</c><00:04:00.400><c> order</c>
+
+00:04:01.069 --> 00:04:01.079 align:start position:0%
+varios canales o que o crear un order
+ 
+
+00:04:01.079 --> 00:04:02.910 align:start position:0%
+varios canales o que o crear un order
+para<00:04:01.280><c> cada</c><00:04:01.519><c> canal</c><00:04:01.799><c> que</c>
+
+00:04:02.910 --> 00:04:02.920 align:start position:0%
+para cada canal que
+ 
+
+00:04:02.920 --> 00:04:06.470 align:start position:0%
+para cada canal que
+tengamos<00:04:03.920><c> entonces</c><00:04:04.599><c> siguiente</c><00:04:05.040><c> paso</c><00:04:06.000><c> es</c>
+
+00:04:06.470 --> 00:04:06.480 align:start position:0%
+tengamos entonces siguiente paso es
+ 
+
+00:04:06.480 --> 00:04:09.509 align:start position:0%
+tengamos entonces siguiente paso es
+crear<00:04:06.799><c> nuestros</c><00:04:07.280><c> pirs</c><00:04:07.959><c> vale</c><00:04:08.360><c> Y</c><00:04:08.680><c> añadirlos</c><00:04:09.319><c> al</c>
+
+00:04:09.509 --> 00:04:09.519 align:start position:0%
+crear nuestros pirs vale Y añadirlos al
+ 
+
+00:04:09.519 --> 00:04:11.550 align:start position:0%
+crear nuestros pirs vale Y añadirlos al
+canal<00:04:09.879><c> es</c><00:04:10.040><c> decir</c><00:04:10.519><c> para</c><00:04:10.799><c> la</c>
+
+00:04:11.550 --> 00:04:11.560 align:start position:0%
+canal es decir para la
+ 
+
+00:04:11.560 --> 00:04:15.030 align:start position:0%
+canal es decir para la
+organización<00:04:12.760><c> ra</c><00:04:13.760><c> vale</c><00:04:14.079><c> vamos</c><00:04:14.239><c> a</c><00:04:14.400><c> crear</c><00:04:14.599><c> este</c>
+
+00:04:15.030 --> 00:04:15.040 align:start position:0%
+organización ra vale vamos a crear este
+ 
+
+00:04:15.040 --> 00:04:17.189 align:start position:0%
+organización ra vale vamos a crear este
+pir<00:04:15.439><c> p1</c><00:04:15.959><c> que</c><00:04:16.079><c> va</c><00:04:16.239><c> a</c><00:04:16.320><c> tener</c><00:04:16.479><c> una</c><00:04:16.680><c> ledger</c>
+
+00:04:17.189 --> 00:04:17.199 align:start position:0%
+pir p1 que va a tener una ledger
+ 
+
+00:04:17.199 --> 00:04:20.030 align:start position:0%
+pir p1 que va a tener una ledger
+asociada<00:04:17.600><c> a</c><00:04:17.840><c> este</c><00:04:18.079><c> canal</c><00:04:18.880><c> y</c><00:04:19.280><c> bueno</c><00:04:19.560><c> como</c><00:04:19.799><c> ya</c>
+
+00:04:20.030 --> 00:04:20.040 align:start position:0%
+asociada a este canal y bueno como ya
+ 
+
+00:04:20.040 --> 00:04:22.150 align:start position:0%
+asociada a este canal y bueno como ya
+sabemos<00:04:20.440><c> unas</c><00:04:21.040><c> de</c><00:04:21.199><c> las</c><00:04:21.359><c> características</c><00:04:22.040><c> que</c>
+
+00:04:22.150 --> 00:04:22.160 align:start position:0%
+sabemos unas de las características que
+ 
+
+00:04:22.160 --> 00:04:24.510 align:start position:0%
+sabemos unas de las características que
+tiene<00:04:22.440><c> que</c><00:04:22.520><c> tener</c><00:04:22.720><c> este</c><00:04:23.040><c> pir</c><00:04:23.479><c> es</c><00:04:23.880><c> que</c><00:04:24.000><c> sea</c><00:04:24.320><c> un</c>
+
+00:04:24.510 --> 00:04:24.520 align:start position:0%
+tiene que tener este pir es que sea un
+ 
+
+00:04:24.520 --> 00:04:27.110 align:start position:0%
+tiene que tener este pir es que sea un
+pir<00:04:24.960><c> endorsing</c><00:04:25.880><c> un</c><00:04:26.000><c> endorsing</c><00:04:26.600><c> p</c><00:04:26.880><c> Por</c><00:04:27.000><c> qué</c>
+
+00:04:27.110 --> 00:04:27.120 align:start position:0%
+pir endorsing un endorsing p Por qué
+ 
+
+00:04:27.120 --> 00:04:28.749 align:start position:0%
+pir endorsing un endorsing p Por qué
+Porque<00:04:27.280><c> tiene</c><00:04:27.520><c> que</c><00:04:27.600><c> ser</c><00:04:28.000><c> el</c><00:04:28.199><c> encargado</c><00:04:28.639><c> de</c>
+
+00:04:28.749 --> 00:04:28.759 align:start position:0%
+Porque tiene que ser el encargado de
+ 
+
+00:04:28.759 --> 00:04:31.110 align:start position:0%
+Porque tiene que ser el encargado de
+recibir<00:04:29.080><c> las</c><00:04:29.240><c> transacciones</c><00:04:29.720><c> iones</c><00:04:30.080><c> de</c><00:04:30.919><c> de</c>
+
+00:04:31.110 --> 00:04:31.120 align:start position:0%
+recibir las transacciones iones de de
+ 
+
+00:04:31.120 --> 00:04:33.310 align:start position:0%
+recibir las transacciones iones de de
+los<00:04:31.320><c> clientes</c><00:04:31.639><c> o</c><00:04:31.840><c> aplicaciones</c><00:04:32.840><c> además</c>
+
+00:04:33.310 --> 00:04:33.320 align:start position:0%
+los clientes o aplicaciones además
+ 
+
+00:04:33.320 --> 00:04:36.110 align:start position:0%
+los clientes o aplicaciones además
+también<00:04:33.759><c> tiene</c><00:04:34.039><c> que</c><00:04:34.120><c> ser</c><00:04:34.680><c> un</c><00:04:35.120><c> líder</c><00:04:35.560><c> pir</c>
+
+00:04:36.110 --> 00:04:36.120 align:start position:0%
+también tiene que ser un líder pir
+ 
+
+00:04:36.120 --> 00:04:37.430 align:start position:0%
+también tiene que ser un líder pir
+porque<00:04:36.520><c> tiene</c><00:04:36.800><c> que</c><00:04:36.840><c> ser</c><00:04:37.000><c> encargado</c><00:04:37.360><c> de</c>
+
+00:04:37.430 --> 00:04:37.440 align:start position:0%
+porque tiene que ser encargado de
+ 
+
+00:04:37.440 --> 00:04:39.029 align:start position:0%
+porque tiene que ser encargado de
+recibir<00:04:37.759><c> los</c><00:04:37.880><c> bloques</c><00:04:38.160><c> del</c><00:04:38.320><c> orderer</c><00:04:38.840><c> ya</c><00:04:38.960><c> que</c>
+
+00:04:39.029 --> 00:04:39.039 align:start position:0%
+recibir los bloques del orderer ya que
+ 
+
+00:04:39.039 --> 00:04:40.590 align:start position:0%
+recibir los bloques del orderer ya que
+solo<00:04:39.280><c> vamos</c><00:04:39.440><c> a</c><00:04:39.520><c> tener</c><00:04:39.800><c> uno</c><00:04:40.080><c> de</c><00:04:40.520><c> la</c>
+
+00:04:40.590 --> 00:04:40.600 align:start position:0%
+solo vamos a tener uno de la
+ 
+
+00:04:40.600 --> 00:04:42.150 align:start position:0%
+solo vamos a tener uno de la
+organización
+
+00:04:42.150 --> 00:04:42.160 align:start position:0%
+organización
+ 
+
+00:04:42.160 --> 00:04:44.510 align:start position:0%
+organización
+ra<00:04:43.160><c> y</c><00:04:43.400><c> además</c><00:04:43.720><c> también</c><00:04:43.960><c> va</c><00:04:44.080><c> a</c><00:04:44.199><c> tener</c><00:04:44.360><c> que</c><00:04:44.400><c> ser</c>
+
+00:04:44.510 --> 00:04:44.520 align:start position:0%
+ra y además también va a tener que ser
+ 
+
+00:04:44.520 --> 00:04:46.430 align:start position:0%
+ra y además también va a tener que ser
+un<00:04:44.720><c> anchor</c><00:04:45.160><c> pir</c><00:04:45.680><c> es</c><00:04:45.800><c> decir</c><00:04:46.000><c> ha</c><00:04:46.160><c> de</c><00:04:46.280><c> ser</c>
+
+00:04:46.430 --> 00:04:46.440 align:start position:0%
+un anchor pir es decir ha de ser
+ 
+
+00:04:46.440 --> 00:04:48.550 align:start position:0%
+un anchor pir es decir ha de ser
+conocido<00:04:46.919><c> por</c><00:04:47.080><c> las</c><00:04:47.240><c> otras</c>
+
+00:04:48.550 --> 00:04:48.560 align:start position:0%
+conocido por las otras
+ 
+
+00:04:48.560 --> 00:04:51.430 align:start position:0%
+conocido por las otras
+organizaciones<00:04:49.560><c> entonces</c>
+
+00:04:51.430 --> 00:04:51.440 align:start position:0%
+organizaciones entonces
+ 
+
+00:04:51.440 --> 00:04:53.469 align:start position:0%
+organizaciones entonces
+seguimos<00:04:52.440><c> qué</c><00:04:52.680><c> más</c><00:04:52.840><c> vamos</c><00:04:53.000><c> a</c><00:04:53.160><c> hacer</c><00:04:53.320><c> pues</c>
+
+00:04:53.469 --> 00:04:53.479 align:start position:0%
+seguimos qué más vamos a hacer pues
+ 
+
+00:04:53.479 --> 00:04:55.790 align:start position:0%
+seguimos qué más vamos a hacer pues
+vamos<00:04:53.759><c> a</c><00:04:53.840><c> tener</c><00:04:54.080><c> que</c><00:04:54.199><c> crear</c><00:04:54.520><c> esa</c><00:04:54.880><c> aplicación</c>
+
+00:04:55.790 --> 00:04:55.800 align:start position:0%
+vamos a tener que crear esa aplicación
+ 
+
+00:04:55.800 --> 00:04:58.749 align:start position:0%
+vamos a tener que crear esa aplicación
+de<00:04:56.520><c> referente</c><00:04:57.039><c> a</c><00:04:57.199><c> la</c><00:04:57.479><c> empresa</c><00:04:57.800><c> ra</c><00:04:58.680><c> la</c>
+
+00:04:58.749 --> 00:04:58.759 align:start position:0%
+de referente a la empresa ra la
+ 
+
+00:04:58.759 --> 00:05:01.029 align:start position:0%
+de referente a la empresa ra la
+organización<00:04:59.199><c> ra</c><00:05:00.000><c> y</c><00:05:00.400><c> vamos</c><00:05:00.600><c> a</c><00:05:00.720><c> tener</c><00:05:00.960><c> que</c>
+
+00:05:01.029 --> 00:05:01.039 align:start position:0%
+organización ra y vamos a tener que
+ 
+
+00:05:01.039 --> 00:05:04.350 align:start position:0%
+organización ra y vamos a tener que
+crear<00:05:01.320><c> el</c><00:05:01.560><c> chaincoin</c><00:05:02.440><c> asociado</c><00:05:03.440><c> a</c><00:05:03.840><c> ese</c><00:05:04.120><c> canal</c>
+
+00:05:04.350 --> 00:05:04.360 align:start position:0%
+crear el chaincoin asociado a ese canal
+ 
+
+00:05:04.360 --> 00:05:06.909 align:start position:0%
+crear el chaincoin asociado a ese canal
+de<00:05:04.520><c> comunicación</c><00:05:05.440><c> vale</c><00:05:05.840><c> donde</c><00:05:06.080><c> van</c><00:05:06.280><c> a</c><00:05:06.360><c> estar</c>
+
+00:05:06.909 --> 00:05:06.919 align:start position:0%
+de comunicación vale donde van a estar
+ 
+
+00:05:06.919 --> 00:05:09.029 align:start position:0%
+de comunicación vale donde van a estar
+definidas<00:05:07.759><c> esas</c><00:05:08.160><c> líneas</c><00:05:08.479><c> de</c><00:05:08.600><c> código</c>
+
+00:05:09.029 --> 00:05:09.039 align:start position:0%
+definidas esas líneas de código
+ 
+
+00:05:09.039 --> 00:05:10.830 align:start position:0%
+definidas esas líneas de código
+referentes<00:05:09.520><c> al</c><00:05:09.720><c> modelo</c><00:05:10.039><c> de</c><00:05:10.240><c> negocio</c><00:05:10.560><c> que</c><00:05:10.639><c> se</c>
+
+00:05:10.830 --> 00:05:10.840 align:start position:0%
+referentes al modelo de negocio que se
+ 
+
+00:05:10.840 --> 00:05:13.550 align:start position:0%
+referentes al modelo de negocio que se
+ha<00:05:10.960><c> establecido</c><00:05:11.840><c> entre</c><00:05:12.160><c> la</c><00:05:12.320><c> organización</c><00:05:12.759><c> ra</c>
+
+00:05:13.550 --> 00:05:13.560 align:start position:0%
+ha establecido entre la organización ra
+ 
+
+00:05:13.560 --> 00:05:17.670 align:start position:0%
+ha establecido entre la organización ra
+y<00:05:13.759><c> la</c><00:05:13.840><c> organización</c>
+
+00:05:17.670 --> 00:05:17.680 align:start position:0%
+ 
+ 
+
+00:05:17.680 --> 00:05:21.390 align:start position:0%
+ 
+rb<00:05:18.680><c> por</c><00:05:18.919><c> lo</c><00:05:19.080><c> tanto</c><00:05:19.720><c> aquí</c><00:05:20.039><c> ya</c><00:05:20.199><c> tenemos</c><00:05:20.880><c> creado</c>
+
+00:05:21.390 --> 00:05:21.400 align:start position:0%
+rb por lo tanto aquí ya tenemos creado
+ 
+
+00:05:21.400 --> 00:05:23.870 align:start position:0%
+rb por lo tanto aquí ya tenemos creado
+nuestra<00:05:21.759><c> aplicación</c><00:05:22.720><c> vale</c>
+
+00:05:23.870 --> 00:05:23.880 align:start position:0%
+nuestra aplicación vale
+ 
+
+00:05:23.880 --> 00:05:27.909 align:start position:0%
+nuestra aplicación vale
+para<00:05:24.880><c> comunicarnos</c><00:05:25.520><c> con</c><00:05:25.680><c> nuestros</c><00:05:26.120><c> pirs</c><00:05:27.120><c> y</c>
+
+00:05:27.909 --> 00:05:27.919 align:start position:0%
+para comunicarnos con nuestros pirs y
+ 
+
+00:05:27.919 --> 00:05:29.830 align:start position:0%
+para comunicarnos con nuestros pirs y
+hemos<00:05:28.280><c> instanciado</c>
+
+00:05:29.830 --> 00:05:29.840 align:start position:0%
+hemos instanciado
+ 
+
+00:05:29.840 --> 00:05:34.070 align:start position:0%
+hemos instanciado
+y<00:05:30.240><c> creado</c><00:05:31.000><c> el</c><00:05:31.479><c> Chain</c><00:05:31.840><c> cod</c><00:05:32.120><c> en</c><00:05:32.240><c> el</c><00:05:32.360><c> pir</c>
+
+00:05:34.070 --> 00:05:34.080 align:start position:0%
+y creado el Chain cod en el pir
+ 
+
+00:05:34.080 --> 00:05:36.950 align:start position:0%
+y creado el Chain cod en el pir
+1<00:05:35.120><c> entes</c><00:05:36.120><c> seguidamente</c><00:05:36.520><c> lo</c><00:05:36.600><c> que</c><00:05:36.680><c> vamos</c><00:05:36.880><c> a</c>
+
+00:05:36.950 --> 00:05:36.960 align:start position:0%
+1 entes seguidamente lo que vamos a
+ 
+
+00:05:36.960 --> 00:05:39.350 align:start position:0%
+1 entes seguidamente lo que vamos a
+hacer<00:05:37.120><c> es</c><00:05:37.280><c> aumentar</c><00:05:37.680><c> la</c><00:05:37.800><c> red</c><00:05:38.639><c> hemos</c><00:05:38.960><c> visto</c><00:05:39.160><c> que</c>
+
+00:05:39.350 --> 00:05:39.360 align:start position:0%
+hacer es aumentar la red hemos visto que
+ 
+
+00:05:39.360 --> 00:05:43.309 align:start position:0%
+hacer es aumentar la red hemos visto que
+el<00:05:39.520><c> canal</c><00:05:39.720><c> 1</c><00:05:40.759><c> comunica</c><00:05:41.759><c> organización</c><00:05:42.759><c> ra</c><00:05:43.199><c> con</c>
+
+00:05:43.309 --> 00:05:43.319 align:start position:0%
+el canal 1 comunica organización ra con
+ 
+
+00:05:43.319 --> 00:05:45.510 align:start position:0%
+el canal 1 comunica organización ra con
+rb<00:05:43.759><c> pues</c><00:05:44.039><c> vamos</c><00:05:44.240><c> a</c><00:05:44.319><c> necesitar</c><00:05:44.680><c> un</c><00:05:45.080><c> pir</c><00:05:45.360><c> de</c>
+
+00:05:45.510 --> 00:05:45.520 align:start position:0%
+rb pues vamos a necesitar un pir de
+ 
+
+00:05:45.520 --> 00:05:47.469 align:start position:0%
+rb pues vamos a necesitar un pir de
+organización<00:05:46.039><c> rb</c><00:05:46.639><c> qué</c><00:05:47.000><c> es</c><00:05:47.080><c> lo</c><00:05:47.199><c> que</c><00:05:47.240><c> hemos</c>
+
+00:05:47.469 --> 00:05:47.479 align:start position:0%
+organización rb qué es lo que hemos
+ 
+
+00:05:47.479 --> 00:05:50.550 align:start position:0%
+organización rb qué es lo que hemos
+creado<00:05:47.800><c> aquí</c><00:05:48.319><c> igual</c><00:05:48.919><c> conectamos</c><00:05:49.360><c> ese</c>
+
+00:05:50.550 --> 00:05:50.560 align:start position:0%
+creado aquí igual conectamos ese
+ 
+
+00:05:50.560 --> 00:05:53.309 align:start position:0%
+creado aquí igual conectamos ese
+pir<00:05:51.560><c> vale</c><00:05:51.840><c> que</c><00:05:52.000><c> va</c><00:05:52.520><c> también</c><00:05:52.800><c> va</c><00:05:52.960><c> a</c><00:05:53.080><c> tener</c><00:05:53.280><c> que</c>
+
+00:05:53.309 --> 00:05:53.319 align:start position:0%
+pir vale que va también va a tener que
+ 
+
+00:05:53.319 --> 00:05:57.550 align:start position:0%
+pir vale que va también va a tener que
+ser<00:05:53.520><c> un</c><00:05:53.759><c> pir</c><00:05:54.720><c> de</c><00:05:55.720><c> tipo</c><00:05:56.080><c> endorsing</c><00:05:57.080><c> y</c><00:05:57.240><c> de</c><00:05:57.360><c> tipo</c>
+
+00:05:57.550 --> 00:05:57.560 align:start position:0%
+ser un pir de tipo endorsing y de tipo
+ 
+
+00:05:57.560 --> 00:06:00.390 align:start position:0%
+ser un pir de tipo endorsing y de tipo
+también<00:05:57.880><c> líder</c><00:05:58.400><c> para</c><00:05:58.520><c> que</c><00:05:58.600><c> pueda</c><00:05:59.000><c> recibir</c><00:05:59.639><c> e</c>
+
+00:06:00.390 --> 00:06:00.400 align:start position:0%
+también líder para que pueda recibir e
+ 
+
+00:06:00.400 --> 00:06:02.350 align:start position:0%
+también líder para que pueda recibir e
+los<00:06:00.560><c> bloques</c><00:06:00.840><c> del</c><00:06:01.039><c> orderer</c><00:06:01.759><c> de</c><00:06:01.960><c> acuerdo</c>
+
+00:06:02.350 --> 00:06:02.360 align:start position:0%
+los bloques del orderer de acuerdo
+ 
+
+00:06:02.360 --> 00:06:04.790 align:start position:0%
+los bloques del orderer de acuerdo
+distribuirlo<00:06:02.960><c> a</c><00:06:03.080><c> los</c><00:06:03.160><c> otros</c><00:06:03.440><c> pirs</c><00:06:04.199><c> y</c><00:06:04.479><c> también</c>
+
+00:06:04.790 --> 00:06:04.800 align:start position:0%
+distribuirlo a los otros pirs y también
+ 
+
+00:06:04.800 --> 00:06:08.270 align:start position:0%
+distribuirlo a los otros pirs y también
+ha<00:06:05.080><c> ser</c><00:06:05.360><c> de</c><00:06:05.479><c> tipo</c><00:06:06.080><c> anchor</c><00:06:07.080><c> y</c><00:06:07.759><c> lo</c><00:06:07.880><c> mismo</c>
+
+00:06:08.270 --> 00:06:08.280 align:start position:0%
+ha ser de tipo anchor y lo mismo
+ 
+
+00:06:08.280 --> 00:06:10.430 align:start position:0%
+ha ser de tipo anchor y lo mismo
+desplegamos<00:06:08.800><c> ese</c><00:06:09.160><c> chaincoin</c><00:06:09.599><c> con</c><00:06:09.919><c> ese</c><00:06:10.120><c> modelo</c>
+
+00:06:10.430 --> 00:06:10.440 align:start position:0%
+desplegamos ese chaincoin con ese modelo
+ 
+
+00:06:10.440 --> 00:06:13.150 align:start position:0%
+desplegamos ese chaincoin con ese modelo
+de<00:06:10.680><c> negocio</c>
+
+00:06:13.150 --> 00:06:13.160 align:start position:0%
+ 
+ 
+
+00:06:13.160 --> 00:06:15.710 align:start position:0%
+ 
+codificado<00:06:14.160><c> Entonces</c><00:06:14.639><c> vamos</c><00:06:14.840><c> a</c><00:06:15.039><c> crear</c><00:06:15.360><c> ahora</c>
+
+00:06:15.710 --> 00:06:15.720 align:start position:0%
+codificado Entonces vamos a crear ahora
+ 
+
+00:06:15.720 --> 00:06:18.510 align:start position:0%
+codificado Entonces vamos a crear ahora
+un<00:06:15.880><c> nuevo</c><00:06:16.160><c> consorcio</c><00:06:17.000><c> la</c><00:06:17.199><c> empresa</c><00:06:17.520><c> rb</c><00:06:18.240><c> y</c><00:06:18.400><c> la</c>
+
+00:06:18.510 --> 00:06:18.520 align:start position:0%
+un nuevo consorcio la empresa rb y la
+ 
+
+00:06:18.520 --> 00:06:21.469 align:start position:0%
+un nuevo consorcio la empresa rb y la
+empresa<00:06:18.759><c> rc</c><00:06:19.639><c> vale</c><00:06:20.000><c> estas</c><00:06:20.240><c> dos</c><00:06:20.479><c> organizaciones</c>
+
+00:06:21.469 --> 00:06:21.479 align:start position:0%
+empresa rc vale estas dos organizaciones
+ 
+
+00:06:21.479 --> 00:06:23.749 align:start position:0%
+empresa rc vale estas dos organizaciones
+establecen<00:06:22.360><c> un</c><00:06:22.599><c> consorcio</c><00:06:23.120><c> de</c><00:06:23.240><c> manera</c><00:06:23.599><c> que</c><00:06:23.680><c> se</c>
+
+00:06:23.749 --> 00:06:23.759 align:start position:0%
+establecen un consorcio de manera que se
+ 
+
+00:06:23.759 --> 00:06:25.909 align:start position:0%
+establecen un consorcio de manera que se
+van<00:06:23.960><c> a</c><00:06:24.039><c> tener</c><00:06:24.280><c> que</c><00:06:24.479><c> comunicar</c><00:06:24.919><c> entre</c><00:06:25.240><c> ellas</c>
+
+00:06:25.909 --> 00:06:25.919 align:start position:0%
+van a tener que comunicar entre ellas
+ 
+
+00:06:25.919 --> 00:06:30.029 align:start position:0%
+van a tener que comunicar entre ellas
+vale<00:06:26.280><c> como</c><00:06:26.479><c> vemos</c><00:06:26.759><c> ahora</c><00:06:27.199><c> al</c><00:06:28.560><c> añadir</c><00:06:29.639><c> este</c>
+
+00:06:30.029 --> 00:06:30.039 align:start position:0%
+vale como vemos ahora al añadir este
+ 
+
+00:06:30.039 --> 00:06:31.909 align:start position:0%
+vale como vemos ahora al añadir este
+nuevo<00:06:30.360><c> consorcio</c><00:06:30.840><c> estamos</c><00:06:31.080><c> añadiendo</c><00:06:31.479><c> esta</c>
+
+00:06:31.909 --> 00:06:31.919 align:start position:0%
+nuevo consorcio estamos añadiendo esta
+ 
+
+00:06:31.919 --> 00:06:34.909 align:start position:0%
+nuevo consorcio estamos añadiendo esta
+nueva<00:06:32.919><c> organización</c><00:06:33.440><c> que</c><00:06:33.560><c> es</c><00:06:33.680><c> la</c><00:06:33.880><c> rc</c><00:06:34.599><c> pues</c>
+
+00:06:34.909 --> 00:06:34.919 align:start position:0%
+nueva organización que es la rc pues
+ 
+
+00:06:34.919 --> 00:06:36.749 align:start position:0%
+nueva organización que es la rc pues
+tenemos<00:06:35.240><c> los</c><00:06:35.440><c> certificados</c><00:06:36.080><c> de</c><00:06:36.240><c> autoridad</c>
+
+00:06:36.749 --> 00:06:36.759 align:start position:0%
+tenemos los certificados de autoridad
+ 
+
+00:06:36.759 --> 00:06:38.550 align:start position:0%
+tenemos los certificados de autoridad
+referentes<00:06:37.199><c> a</c><00:06:37.360><c> esta</c>
+
+00:06:38.550 --> 00:06:38.560 align:start position:0%
+referentes a esta
+ 
+
+00:06:38.560 --> 00:06:41.070 align:start position:0%
+referentes a esta
+organización<00:06:39.560><c> y</c><00:06:40.039><c> vamos</c><00:06:40.240><c> a</c><00:06:40.360><c> Añadir</c><00:06:40.720><c> un</c><00:06:40.840><c> nuevo</c>
+
+00:06:41.070 --> 00:06:41.080 align:start position:0%
+organización y vamos a Añadir un nuevo
+ 
+
+00:06:41.080 --> 00:06:43.950 align:start position:0%
+organización y vamos a Añadir un nuevo
+canal<00:06:41.479><c> un</c><00:06:41.840><c> nuevo</c><00:06:42.120><c> canal</c><00:06:42.800><c> para</c><00:06:43.000><c> que</c><00:06:43.680><c> la</c>
+
+00:06:43.950 --> 00:06:43.960 align:start position:0%
+canal un nuevo canal para que la
+ 
+
+00:06:43.960 --> 00:06:47.469 align:start position:0%
+canal un nuevo canal para que la
+organización<00:06:44.639><c> rb</c><00:06:45.639><c> y</c><00:06:45.919><c> rc</c><00:06:46.440><c> se</c><00:06:46.599><c> puedan</c><00:06:47.000><c> comunicar</c>
+
+00:06:47.469 --> 00:06:47.479 align:start position:0%
+organización rb y rc se puedan comunicar
+ 
+
+00:06:47.479 --> 00:06:48.790 align:start position:0%
+organización rb y rc se puedan comunicar
+entre
+
+00:06:48.790 --> 00:06:48.800 align:start position:0%
+entre
+ 
+
+00:06:48.800 --> 00:06:51.550 align:start position:0%
+entre
+ellas<00:06:49.800><c> y</c><00:06:50.080><c> para</c><00:06:50.280><c> ello</c><00:06:50.720><c> hemos</c><00:06:51.000><c> creado</c><00:06:51.319><c> también</c>
+
+00:06:51.550 --> 00:06:51.560 align:start position:0%
+ellas y para ello hemos creado también
+ 
+
+00:06:51.560 --> 00:06:53.749 align:start position:0%
+ellas y para ello hemos creado también
+unas<00:06:51.919><c> políticas</c><00:06:52.440><c> de</c><00:06:52.639><c> canal</c><00:06:52.919><c> definidas</c><00:06:53.639><c> aquí</c>
+
+00:06:53.749 --> 00:06:53.759 align:start position:0%
+unas políticas de canal definidas aquí
+ 
+
+00:06:53.759 --> 00:06:56.510 align:start position:0%
+unas políticas de canal definidas aquí
+en<00:06:53.880><c> el</c><00:06:54.000><c> cp2</c><00:06:55.000><c> Y</c><00:06:55.199><c> además</c><00:06:55.599><c> le</c><00:06:55.840><c> indicamos</c><00:06:56.160><c> que</c><00:06:56.360><c> el</c>
+
+00:06:56.510 --> 00:06:56.520 align:start position:0%
+en el cp2 Y además le indicamos que el
+ 
+
+00:06:56.520 --> 00:06:59.230 align:start position:0%
+en el cp2 Y además le indicamos que el
+ordering<00:06:57.199><c> service</c><00:06:57.680><c> va</c><00:06:57.840><c> a</c><00:06:57.919><c> ser</c><00:06:58.080><c> el</c><00:06:58.240><c> mismo</c><00:06:59.000><c> el</c>
+
+00:06:59.230 --> 00:06:59.240 align:start position:0%
+ordering service va a ser el mismo el
+ 
+
+00:06:59.240 --> 00:07:00.909 align:start position:0%
+ordering service va a ser el mismo el
+que<00:06:59.599><c> tenemos</c><00:06:59.879><c> creado</c><00:07:00.160><c> aquí</c><00:07:00.400><c> porque</c><00:07:00.720><c> como</c>
+
+00:07:00.909 --> 00:07:00.919 align:start position:0%
+que tenemos creado aquí porque como
+ 
+
+00:07:00.919 --> 00:07:04.390 align:start position:0%
+que tenemos creado aquí porque como
+hemos<00:07:01.199><c> dicho</c><00:07:01.720><c> un</c><00:07:02.120><c> order</c><00:07:02.919><c> service</c><00:07:03.280><c> un</c><00:07:03.520><c> orderer</c>
+
+00:07:04.390 --> 00:07:04.400 align:start position:0%
+hemos dicho un order service un orderer
+ 
+
+00:07:04.400 --> 00:07:06.710 align:start position:0%
+hemos dicho un order service un orderer
+puede<00:07:04.800><c> gobernar</c><00:07:05.319><c> varios</c><00:07:05.680><c> canales</c><00:07:06.280><c> vale</c><00:07:06.560><c> Y</c>
+
+00:07:06.710 --> 00:07:06.720 align:start position:0%
+puede gobernar varios canales vale Y
+ 
+
+00:07:06.720 --> 00:07:08.390 align:start position:0%
+puede gobernar varios canales vale Y
+tenemos<00:07:07.000><c> definidas</c><00:07:07.560><c> también</c><00:07:07.840><c> las</c><00:07:07.960><c> políticas</c>
+
+00:07:08.390 --> 00:07:08.400 align:start position:0%
+tenemos definidas también las políticas
+ 
+
+00:07:08.400 --> 00:07:09.270 align:start position:0%
+tenemos definidas también las políticas
+de<00:07:08.520><c> la</c>
+
+00:07:09.270 --> 00:07:09.280 align:start position:0%
+de la
+ 
+
+00:07:09.280 --> 00:07:11.830 align:start position:0%
+de la
+red<00:07:10.280><c> Entonces</c><00:07:10.879><c> el</c><00:07:11.000><c> siguiente</c><00:07:11.319><c> paso</c><00:07:11.520><c> que</c><00:07:11.639><c> vamos</c>
+
+00:07:11.830 --> 00:07:11.840 align:start position:0%
+red Entonces el siguiente paso que vamos
+ 
+
+00:07:11.840 --> 00:07:15.589 align:start position:0%
+red Entonces el siguiente paso que vamos
+a<00:07:11.919><c> tener</c><00:07:12.160><c> que</c><00:07:12.240><c> hacer</c><00:07:12.440><c> es</c><00:07:12.680><c> Añadir</c><00:07:13.080><c> un</c><00:07:13.319><c> pir</c><00:07:14.599><c> Vale</c>
+
+00:07:15.589 --> 00:07:15.599 align:start position:0%
+a tener que hacer es Añadir un pir Vale
+ 
+
+00:07:15.599 --> 00:07:17.390 align:start position:0%
+a tener que hacer es Añadir un pir Vale
+entonces<00:07:16.000><c> aquí</c><00:07:16.160><c> lo</c><00:07:16.240><c> que</c><00:07:16.360><c> estamos</c><00:07:16.639><c> haciendo</c><00:07:16.960><c> si</c>
+
+00:07:17.390 --> 00:07:17.400 align:start position:0%
+entonces aquí lo que estamos haciendo si
+ 
+
+00:07:17.400 --> 00:07:19.790 align:start position:0%
+entonces aquí lo que estamos haciendo si
+podemos<00:07:17.639><c> ver</c><00:07:17.840><c> a</c><00:07:18.039><c> este</c><00:07:18.240><c> canal</c><00:07:18.919><c> C2</c><00:07:19.479><c> que</c><00:07:19.560><c> hemos</c>
+
+00:07:19.790 --> 00:07:19.800 align:start position:0%
+podemos ver a este canal C2 que hemos
+ 
+
+00:07:19.800 --> 00:07:22.189 align:start position:0%
+podemos ver a este canal C2 que hemos
+creado<00:07:20.599><c> de</c><00:07:20.759><c> acuerdo</c><00:07:21.080><c> lo</c><00:07:21.400><c> teníamos</c><00:07:21.919><c> creado</c>
+
+00:07:22.189 --> 00:07:22.199 align:start position:0%
+creado de acuerdo lo teníamos creado
+ 
+
+00:07:22.199 --> 00:07:25.189 align:start position:0%
+creado de acuerdo lo teníamos creado
+aquí<00:07:23.000><c> añadimos</c><00:07:23.599><c> un</c><00:07:24.039><c> pir</c><00:07:24.400><c> de</c><00:07:24.520><c> la</c><00:07:24.639><c> organización</c>
+
+00:07:25.189 --> 00:07:25.199 align:start position:0%
+aquí añadimos un pir de la organización
+ 
+
+00:07:25.199 --> 00:07:27.790 align:start position:0%
+aquí añadimos un pir de la organización
+r3<00:07:26.199><c> que</c><00:07:26.360><c> también</c><00:07:26.720><c> va</c><00:07:26.879><c> a</c><00:07:27.000><c> tener</c><00:07:27.240><c> que</c><00:07:27.360><c> tener</c><00:07:27.639><c> las</c>
+
+00:07:27.790 --> 00:07:27.800 align:start position:0%
+r3 que también va a tener que tener las
+ 
+
+00:07:27.800 --> 00:07:30.430 align:start position:0%
+r3 que también va a tener que tener las
+características<00:07:28.400><c> de</c><00:07:28.599><c> ancor</c><00:07:29.280><c> p</c><00:07:29.680><c> lader</c><00:07:30.039><c> p</c><00:07:30.360><c> lo</c>
+
+00:07:30.430 --> 00:07:30.440 align:start position:0%
+características de ancor p lader p lo
+ 
+
+00:07:30.440 --> 00:07:32.710 align:start position:0%
+características de ancor p lader p lo
+que<00:07:30.479><c> hemos</c><00:07:30.680><c> hablado</c><00:07:30.960><c> hasta</c><00:07:31.160><c> ahora</c><00:07:31.879><c> entonces</c>
+
+00:07:32.710 --> 00:07:32.720 align:start position:0%
+que hemos hablado hasta ahora entonces
+ 
+
+00:07:32.720 --> 00:07:36.150 align:start position:0%
+que hemos hablado hasta ahora entonces
+al<00:07:33.360><c> pertenecer</c><00:07:34.360><c> a</c><00:07:34.720><c> este</c><00:07:34.919><c> canal</c><00:07:35.160><c> dos</c><00:07:35.720><c> va</c><00:07:36.039><c> a</c>
+
+00:07:36.150 --> 00:07:36.160 align:start position:0%
+al pertenecer a este canal dos va a
+ 
+
+00:07:36.160 --> 00:07:38.629 align:start position:0%
+al pertenecer a este canal dos va a
+tener<00:07:36.360><c> una</c><00:07:36.639><c> ledger</c><00:07:37.080><c> asociada</c><00:07:37.759><c> este</c><00:07:37.919><c> canal</c><00:07:38.160><c> 2</c><00:07:38.400><c> y</c>
+
+00:07:38.629 --> 00:07:38.639 align:start position:0%
+tener una ledger asociada este canal 2 y
+ 
+
+00:07:38.639 --> 00:07:41.629 align:start position:0%
+tener una ledger asociada este canal 2 y
+va<00:07:38.800><c> a</c><00:07:38.879><c> tener</c><00:07:39.360><c> un</c><00:07:39.759><c> Chain</c><00:07:40.199><c> cont</c><00:07:40.560><c> un</c><00:07:40.680><c> modelo</c><00:07:41.000><c> de</c>
+
+00:07:41.629 --> 00:07:41.639 align:start position:0%
+va a tener un Chain cont un modelo de
+ 
+
+00:07:41.639 --> 00:07:43.469 align:start position:0%
+va a tener un Chain cont un modelo de
+negocio<00:07:42.639><c> vale</c>
+
+00:07:43.469 --> 00:07:43.479 align:start position:0%
+negocio vale
+ 
+
+00:07:43.479 --> 00:07:46.309 align:start position:0%
+negocio vale
+S5<00:07:44.479><c> vale</c><00:07:44.840><c> asociado</c><00:07:45.280><c> a</c><00:07:45.400><c> la</c><00:07:45.560><c> relación</c><00:07:46.000><c> entre</c><00:07:46.199><c> la</c>
+
+00:07:46.309 --> 00:07:46.319 align:start position:0%
+S5 vale asociado a la relación entre la
+ 
+
+00:07:46.319 --> 00:07:48.510 align:start position:0%
+S5 vale asociado a la relación entre la
+organización<00:07:46.759><c> b</c><00:07:47.039><c> y</c><00:07:47.120><c> la</c><00:07:47.240><c> organización</c><00:07:47.720><c> c</c><00:07:48.240><c> y</c>
+
+00:07:48.510 --> 00:07:48.520 align:start position:0%
+organización b y la organización c y
+ 
+
+00:07:48.520 --> 00:07:50.390 align:start position:0%
+organización b y la organización c y
+además<00:07:48.879><c> también</c><00:07:49.120><c> hemos</c><00:07:49.319><c> creado</c><00:07:49.639><c> aquí</c><00:07:50.080><c> una</c>
+
+00:07:50.390 --> 00:07:50.400 align:start position:0%
+además también hemos creado aquí una
+ 
+
+00:07:50.400 --> 00:07:52.430 align:start position:0%
+además también hemos creado aquí una
+aplicación<00:07:51.240><c> de</c><00:07:51.759><c> referente</c><00:07:52.280><c> a</c><00:07:52.360><c> la</c>
+
+00:07:52.430 --> 00:07:52.440 align:start position:0%
+aplicación de referente a la
+ 
+
+00:07:52.440 --> 00:07:54.270 align:start position:0%
+aplicación de referente a la
+organización<00:07:52.960><c> c</c><00:07:53.520><c> vale</c><00:07:53.759><c> para</c><00:07:53.879><c> que</c><00:07:53.960><c> pueda</c>
+
+00:07:54.270 --> 00:07:54.280 align:start position:0%
+organización c vale para que pueda
+ 
+
+00:07:54.280 --> 00:07:56.909 align:start position:0%
+organización c vale para que pueda
+interactuar<00:07:55.280><c> con</c><00:07:55.560><c> nuestra</c><00:07:56.280><c> con</c><00:07:56.440><c> nuestra</c><00:07:56.759><c> red</c>
+
+00:07:56.909 --> 00:07:56.919 align:start position:0%
+interactuar con nuestra con nuestra red
+ 
+
+00:07:56.919 --> 00:07:59.149 align:start position:0%
+interactuar con nuestra con nuestra red
+de<00:07:57.120><c> Player</c><00:07:57.919><c> vale</c><00:07:58.240><c> especialmente</c><00:07:58.720><c> en</c><00:07:58.840><c> el</c><00:07:58.919><c> Canal</c>
+
+00:07:59.149 --> 00:07:59.159 align:start position:0%
+de Player vale especialmente en el Canal
+ 
+
+00:07:59.159 --> 00:08:00.110 align:start position:0%
+de Player vale especialmente en el Canal
+2
+
+00:08:00.110 --> 00:08:00.120 align:start position:0%
+2
+ 
+
+00:08:00.120 --> 00:08:02.909 align:start position:0%
+2
+que<00:08:00.360><c> es</c><00:08:00.440><c> donde</c><00:08:00.680><c> ahora</c><00:08:00.960><c> mismo</c><00:08:01.400><c> nos</c><00:08:01.639><c> interesa</c><00:08:02.400><c> En</c>
+
+00:08:02.909 --> 00:08:02.919 align:start position:0%
+que es donde ahora mismo nos interesa En
+ 
+
+00:08:02.919 --> 00:08:05.270 align:start position:0%
+que es donde ahora mismo nos interesa En
+otras<00:08:03.199><c> palabras</c><00:08:03.680><c> la</c><00:08:03.919><c> aplicación</c><00:08:04.319><c> 3</c>
+
+00:08:05.270 --> 00:08:05.280 align:start position:0%
+otras palabras la aplicación 3
+ 
+
+00:08:05.280 --> 00:08:09.110 align:start position:0%
+otras palabras la aplicación 3
+interactuará<00:08:06.280><c> con</c><00:08:06.479><c> el</c><00:08:06.720><c> Canal</c><00:08:06.960><c> 2</c><00:08:07.479><c> de</c><00:08:07.599><c> nuestra</c>
+
+00:08:09.110 --> 00:08:09.120 align:start position:0%
+interactuará con el Canal 2 de nuestra
+ 
+
+00:08:09.120 --> 00:08:11.790 align:start position:0%
+interactuará con el Canal 2 de nuestra
+red<00:08:10.120><c> Y</c><00:08:10.479><c> por</c><00:08:10.639><c> último</c><00:08:11.039><c> lo</c><00:08:11.120><c> que</c><00:08:11.240><c> vamos</c><00:08:11.440><c> a</c><00:08:11.560><c> tener</c>
+
+00:08:11.790 --> 00:08:11.800 align:start position:0%
+red Y por último lo que vamos a tener
+ 
+
+00:08:11.800 --> 00:08:14.110 align:start position:0%
+red Y por último lo que vamos a tener
+que<00:08:11.879><c> hacer</c><00:08:12.080><c> es</c><00:08:12.400><c> Añadir</c><00:08:12.840><c> un</c><00:08:13.080><c> pir</c><00:08:13.360><c> a</c><00:08:13.520><c> múltiples</c>
+
+00:08:14.110 --> 00:08:14.120 align:start position:0%
+que hacer es Añadir un pir a múltiples
+ 
+
+00:08:14.120 --> 00:08:16.749 align:start position:0%
+que hacer es Añadir un pir a múltiples
+canales<00:08:14.680><c> Qué</c><00:08:15.000><c> quiere</c><00:08:15.240><c> decir</c><00:08:15.520><c> con</c><00:08:15.680><c> esto</c><00:08:16.319><c> como</c>
+
+00:08:16.749 --> 00:08:16.759 align:start position:0%
+canales Qué quiere decir con esto como
+ 
+
+00:08:16.759 --> 00:08:18.710 align:start position:0%
+canales Qué quiere decir con esto como
+hemos<00:08:17.000><c> visto</c><00:08:17.199><c> que</c><00:08:17.319><c> en</c><00:08:17.440><c> el</c><00:08:17.560><c> Canal</c><00:08:17.840><c> 2</c><00:08:18.240><c> también</c>
+
+00:08:18.710 --> 00:08:18.720 align:start position:0%
+hemos visto que en el Canal 2 también
+ 
+
+00:08:18.720 --> 00:08:22.869 align:start position:0%
+hemos visto que en el Canal 2 también
+participa<00:08:19.879><c> la</c><00:08:20.879><c> organización</c><00:08:21.639><c> rb</c><00:08:22.400><c> que</c><00:08:22.599><c> es</c><00:08:22.759><c> la</c>
+
+00:08:22.869 --> 00:08:22.879 align:start position:0%
+participa la organización rb que es la
+ 
+
+00:08:22.879 --> 00:08:27.230 align:start position:0%
+participa la organización rb que es la
+misma<00:08:23.080><c> que</c><00:08:23.280><c> participa</c><00:08:24.280><c> en</c><00:08:24.720><c> la</c><00:08:25.720><c> en</c><00:08:26.039><c> el</c><00:08:26.199><c> canal</c>
+
+00:08:27.230 --> 00:08:27.240 align:start position:0%
+misma que participa en la en el canal
+ 
+
+00:08:27.240 --> 00:08:30.230 align:start position:0%
+misma que participa en la en el canal
+1<00:08:28.240><c> entonces</c><00:08:28.759><c> lo</c><00:08:28.840><c> que</c><00:08:28.919><c> hemos</c><00:08:29.120><c> hecho</c><00:08:29.560><c> sk</c><00:08:29.919><c> es</c><00:08:30.120><c> en</c>
+
+00:08:30.230 --> 00:08:30.240 align:start position:0%
+1 entonces lo que hemos hecho sk es en
+ 
+
+00:08:30.240 --> 00:08:32.829 align:start position:0%
+1 entonces lo que hemos hecho sk es en
+el<00:08:30.400><c> pir</c><00:08:30.800><c> 2</c><00:08:31.000><c> de</c><00:08:31.120><c> la</c><00:08:31.240><c> organización</c><00:08:31.680><c> rb</c><00:08:32.320><c> le</c><00:08:32.640><c> hemos</c>
+
+00:08:32.829 --> 00:08:32.839 align:start position:0%
+el pir 2 de la organización rb le hemos
+ 
+
+00:08:32.839 --> 00:08:35.350 align:start position:0%
+el pir 2 de la organización rb le hemos
+dicho<00:08:33.080><c> que</c><00:08:33.240><c> también</c><00:08:33.560><c> forme</c><00:08:34.120><c> parte</c><00:08:34.599><c> del</c><00:08:34.880><c> Canal</c>
+
+00:08:35.350 --> 00:08:35.360 align:start position:0%
+dicho que también forme parte del Canal
+ 
+
+00:08:35.360 --> 00:08:38.550 align:start position:0%
+dicho que también forme parte del Canal
+2<00:08:36.360><c> por</c><00:08:36.560><c> lo</c><00:08:36.680><c> tanto</c><00:08:36.880><c> también</c><00:08:37.279><c> va</c><00:08:37.519><c> a</c><00:08:37.640><c> formar</c><00:08:37.959><c> parte</c>
+
+00:08:38.550 --> 00:08:38.560 align:start position:0%
+2 por lo tanto también va a formar parte
+ 
+
+00:08:38.560 --> 00:08:41.110 align:start position:0%
+2 por lo tanto también va a formar parte
+de<00:08:38.880><c> la</c><00:08:39.200><c> ledger</c><00:08:39.640><c> del</c><00:08:39.880><c> Canal</c><00:08:40.120><c> 2</c><00:08:40.440><c> y</c><00:08:40.560><c> se</c><00:08:40.719><c> le</c><00:08:40.880><c> va</c><00:08:41.000><c> a</c>
+
+00:08:41.110 --> 00:08:41.120 align:start position:0%
+de la ledger del Canal 2 y se le va a
+ 
+
+00:08:41.120 --> 00:08:43.590 align:start position:0%
+de la ledger del Canal 2 y se le va a
+desplegar<00:08:41.479><c> el</c><00:08:41.800><c> Chain</c><00:08:42.159><c> co</c><00:08:42.519><c> asociado</c><00:08:43.080><c> a</c><00:08:43.320><c> esa</c>
+
+00:08:43.590 --> 00:08:43.600 align:start position:0%
+desplegar el Chain co asociado a esa
+ 
+
+00:08:43.600 --> 00:08:45.790 align:start position:0%
+desplegar el Chain co asociado a esa
+comunicación<00:08:44.600><c> vale</c><00:08:44.880><c> aquí</c><00:08:45.600><c> es</c><00:08:45.680><c> lo</c><00:08:45.760><c> que</c>
+
+00:08:45.790 --> 00:08:45.800 align:start position:0%
+comunicación vale aquí es lo que
+ 
+
+00:08:45.800 --> 00:08:48.310 align:start position:0%
+comunicación vale aquí es lo que
+hablábamos<00:08:46.120><c> de</c><00:08:46.519><c> multier</c><00:08:47.519><c> vale</c><00:08:47.920><c> vemos</c><00:08:48.200><c> el</c>
+
+00:08:48.310 --> 00:08:48.320 align:start position:0%
+hablábamos de multier vale vemos el
+ 
+
+00:08:48.320 --> 00:08:50.470 align:start position:0%
+hablábamos de multier vale vemos el
+concepto<00:08:48.640><c> aquí</c><00:08:48.880><c> aplicado</c><00:08:49.360><c> que</c><00:08:49.600><c> un</c><00:08:49.839><c> canal</c>
+
+00:08:50.470 --> 00:08:50.480 align:start position:0%
+concepto aquí aplicado que un canal
+ 
+
+00:08:50.480 --> 00:08:53.509 align:start position:0%
+concepto aquí aplicado que un canal
+perdonar<00:08:51.399><c> un</c><00:08:52.000><c> pir</c><00:08:52.480><c> que</c><00:08:52.600><c> pertenece</c><00:08:53.000><c> a</c><00:08:53.399><c> la</c>
+
+00:08:53.509 --> 00:08:53.519 align:start position:0%
+perdonar un pir que pertenece a la
+ 
+
+00:08:53.519 --> 00:08:56.389 align:start position:0%
+perdonar un pir que pertenece a la
+organización<00:08:54.040><c> en</c><00:08:54.160><c> este</c><00:08:54.279><c> caso</c><00:08:54.800><c> rb</c><00:08:55.800><c> participa</c>
+
+00:08:56.389 --> 00:08:56.399 align:start position:0%
+organización en este caso rb participa
+ 
+
+00:08:56.399 --> 00:08:59.710 align:start position:0%
+organización en este caso rb participa
+tanto<00:08:57.160><c> en</c><00:08:57.440><c> el</c><00:08:57.600><c> canal</c><00:08:57.839><c> do</c><00:08:58.200><c> como</c><00:08:58.399><c> en</c><00:08:58.560><c> el</c><00:08:58.640><c> canal</c><00:08:58.839><c> un</c>
+
+00:08:59.710 --> 00:08:59.720 align:start position:0%
+tanto en el canal do como en el canal un
+ 
+
+00:08:59.720 --> 00:09:02.509 align:start position:0%
+tanto en el canal do como en el canal un
+vale<00:09:00.160><c> en</c><00:09:00.480><c> relaciones</c><00:09:01.000><c> completamente</c>
+
+00:09:02.509 --> 00:09:02.519 align:start position:0%
+vale en relaciones completamente
+ 
+
+00:09:02.519 --> 00:09:05.389 align:start position:0%
+vale en relaciones completamente
+diferentes<00:09:03.519><c> y</c><00:09:03.880><c> aquí</c><00:09:04.120><c> Lo</c><00:09:04.279><c> tendríamos</c><00:09:04.880><c> la</c><00:09:05.160><c> red</c>
+
+00:09:05.389 --> 00:09:05.399 align:start position:0%
+diferentes y aquí Lo tendríamos la red
+ 
+
+00:09:05.399 --> 00:09:09.150 align:start position:0%
+diferentes y aquí Lo tendríamos la red
+formada<00:09:05.880><c> completamente</c><00:09:06.839><c> donde</c><00:09:07.160><c> ya</c><00:09:07.440><c> vemos</c><00:09:08.160><c> que</c>
+
+00:09:09.150 --> 00:09:09.160 align:start position:0%
+formada completamente donde ya vemos que
+ 
+
+00:09:09.160 --> 00:09:11.710 align:start position:0%
+formada completamente donde ya vemos que
+tenemos<00:09:09.760><c> esta</c><00:09:10.120><c> primer</c><00:09:10.839><c> Este</c><00:09:11.200><c> primer</c><00:09:11.440><c> canal</c>
+
+00:09:11.710 --> 00:09:11.720 align:start position:0%
+tenemos esta primer Este primer canal
+ 
+
+00:09:11.720 --> 00:09:13.630 align:start position:0%
+tenemos esta primer Este primer canal
+uno<00:09:12.160><c> que</c><00:09:12.399><c> establece</c><00:09:12.880><c> una</c><00:09:13.079><c> relación</c><00:09:13.480><c> de</c>
+
+00:09:13.630 --> 00:09:13.640 align:start position:0%
+uno que establece una relación de
+ 
+
+00:09:13.640 --> 00:09:17.150 align:start position:0%
+uno que establece una relación de
+comunicación<00:09:14.640><c> entre</c><00:09:15.399><c> en</c><00:09:16.000><c> organización</c><00:09:16.560><c> ra</c><00:09:17.040><c> y</c>
+
+00:09:17.150 --> 00:09:17.160 align:start position:0%
+comunicación entre en organización ra y
+ 
+
+00:09:17.160 --> 00:09:19.310 align:start position:0%
+comunicación entre en organización ra y
+organización<00:09:17.640><c> rb</c><00:09:18.120><c> con</c><00:09:18.279><c> unas</c><00:09:18.600><c> políticas</c><00:09:19.040><c> de</c>
+
+00:09:19.310 --> 00:09:19.320 align:start position:0%
+organización rb con unas políticas de
+ 
+
+00:09:19.320 --> 00:09:20.790 align:start position:0%
+organización rb con unas políticas de
+canal<00:09:19.640><c> definidas</c><00:09:20.000><c> en</c>
+
+00:09:20.790 --> 00:09:20.800 align:start position:0%
+canal definidas en
+ 
+
+00:09:20.800 --> 00:09:24.310 align:start position:0%
+canal definidas en
+cp1<00:09:21.800><c> con</c><00:09:22.120><c> sus</c><00:09:22.440><c> leder</c><00:09:22.880><c> asociad</c><00:09:23.480><c> y</c><00:09:23.560><c> su</c><00:09:23.800><c> Chain</c>
+
+00:09:24.310 --> 00:09:24.320 align:start position:0%
+cp1 con sus leder asociad y su Chain
+ 
+
+00:09:24.320 --> 00:09:26.550 align:start position:0%
+cp1 con sus leder asociad y su Chain
+asociado<00:09:24.880><c> y</c><00:09:25.000><c> con</c><00:09:25.120><c> dos</c><00:09:25.399><c> aplicaciones</c><00:09:26.000><c> de</c><00:09:26.360><c> para</c>
+
+00:09:26.550 --> 00:09:26.560 align:start position:0%
+asociado y con dos aplicaciones de para
+ 
+
+00:09:26.560 --> 00:09:29.670 align:start position:0%
+asociado y con dos aplicaciones de para
+interactuar<00:09:27.160><c> con</c><00:09:27.640><c> con</c><00:09:27.880><c> esa</c><00:09:28.720><c> esa</c><00:09:29.079><c> red</c><00:09:29.360><c> de</c><00:09:29.519><c> ese</c>
+
+00:09:29.670 --> 00:09:29.680 align:start position:0%
+interactuar con con esa esa red de ese
+ 
+
+00:09:29.680 --> 00:09:32.190 align:start position:0%
+interactuar con con esa esa red de ese
+canal<00:09:30.600><c> y</c><00:09:30.920><c> por</c><00:09:31.160><c> otro</c><00:09:31.399><c> lado</c><00:09:31.560><c> tendríamos</c><00:09:32.079><c> el</c>
+
+00:09:32.190 --> 00:09:32.200 align:start position:0%
+canal y por otro lado tendríamos el
+ 
+
+00:09:32.200 --> 00:09:33.910 align:start position:0%
+canal y por otro lado tendríamos el
+canal<00:09:32.399><c> do</c><00:09:32.760><c> que</c><00:09:32.880><c> establece</c>
+
+00:09:33.910 --> 00:09:33.920 align:start position:0%
+canal do que establece
+ 
+
+00:09:33.920 --> 00:09:37.389 align:start position:0%
+canal do que establece
+ese<00:09:34.920><c> ese</c><00:09:35.279><c> mecanismo</c><00:09:35.839><c> de</c><00:09:36.000><c> comunicación</c><00:09:36.800><c> entre</c>
+
+00:09:37.389 --> 00:09:37.399 align:start position:0%
+ese ese mecanismo de comunicación entre
+ 
+
+00:09:37.399 --> 00:09:40.470 align:start position:0%
+ese ese mecanismo de comunicación entre
+las<00:09:37.720><c> organización</c><00:09:38.279><c> rb</c><00:09:38.839><c> y</c><00:09:39.040><c> la</c><00:09:39.200><c> organización</c><00:09:39.640><c> rc</c>
+
+00:09:40.470 --> 00:09:40.480 align:start position:0%
+las organización rb y la organización rc
+ 
+
+00:09:40.480 --> 00:09:42.910 align:start position:0%
+las organización rb y la organización rc
+con<00:09:40.720><c> sus</c><00:09:41.240><c> políticas</c><00:09:41.760><c> de</c><00:09:41.920><c> canal</c><00:09:42.279><c> definidas</c>
+
+00:09:42.910 --> 00:09:42.920 align:start position:0%
+con sus políticas de canal definidas
+ 
+
+00:09:42.920 --> 00:09:45.350 align:start position:0%
+con sus políticas de canal definidas
+etcétera<00:09:43.920><c> y</c><00:09:44.200><c> recordamos</c><00:09:44.600><c> que</c><00:09:44.680><c> tenemos</c><00:09:44.959><c> el</c>
+
+00:09:45.350 --> 00:09:45.360 align:start position:0%
+etcétera y recordamos que tenemos el
+ 
+
+00:09:45.360 --> 00:09:48.069 align:start position:0%
+etcétera y recordamos que tenemos el
+ordering<00:09:45.920><c> Services</c><00:09:46.720><c> service</c><00:09:47.440><c> que</c><00:09:47.720><c> va</c><00:09:47.839><c> a</c><00:09:47.959><c> ser</c>
+
+00:09:48.069 --> 00:09:48.079 align:start position:0%
+ordering Services service que va a ser
+ 
+
+00:09:48.079 --> 00:09:51.269 align:start position:0%
+ordering Services service que va a ser
+el<00:09:48.200><c> encargado</c><00:09:49.079><c> de</c><00:09:49.600><c> gobernar</c><00:09:50.600><c> de</c><00:09:50.880><c> acuerdo</c>
+
+00:09:51.269 --> 00:09:51.279 align:start position:0%
+el encargado de gobernar de acuerdo
+ 
+
+00:09:51.279 --> 00:09:53.150 align:start position:0%
+el encargado de gobernar de acuerdo
+tanto<00:09:51.519><c> el</c><00:09:51.640><c> canal</c><00:09:51.839><c> un</c><00:09:52.120><c> como</c><00:09:52.240><c> el</c><00:09:52.360><c> canal</c><00:09:52.680><c> dos</c><00:09:52.920><c> que</c>
+
+00:09:53.150 --> 00:09:53.160 align:start position:0%
+tanto el canal un como el canal dos que
+ 
+
+00:09:53.160 --> 00:09:57.030 align:start position:0%
+tanto el canal un como el canal dos que
+va<00:09:53.720><c> este</c><00:09:54.000><c> ordering</c><00:09:55.000><c> service</c><00:09:55.800><c> forma</c><00:09:56.160><c> parte</c><00:09:56.680><c> y</c>
+
+00:09:57.030 --> 00:09:57.040 align:start position:0%
+va este ordering service forma parte y
+ 
+
+00:09:57.040 --> 00:09:59.829 align:start position:0%
+va este ordering service forma parte y
+es<00:09:57.200><c> gestionado</c><00:09:57.880><c> por</c><00:09:58.000><c> la</c>
+
+00:09:59.829 --> 00:09:59.839 align:start position:0%
+es gestionado por la
+ 
+
+00:09:59.839 --> 00:10:03.110 align:start position:0%
+es gestionado por la
+Rd<00:10:00.839><c> que</c><00:10:01.160><c> va</c><00:10:01.320><c> a</c><00:10:01.440><c> contener</c><00:10:02.200><c> las</c><00:10:02.399><c> configuraciones</c>
+
+00:10:03.110 --> 00:10:03.120 align:start position:0%
+Rd que va a contener las configuraciones
+ 
+
+00:10:03.120 --> 00:10:05.350 align:start position:0%
+Rd que va a contener las configuraciones
+de<00:10:03.519><c> de</c><00:10:03.680><c> los</c><00:10:03.880><c> canales</c><00:10:04.480><c> de</c><00:10:04.640><c> las</c><00:10:04.800><c> políticas</c><00:10:05.240><c> de</c>
+
+00:10:05.350 --> 00:10:05.360 align:start position:0%
+de de los canales de las políticas de
+ 
+
+00:10:05.360 --> 00:10:09.630 align:start position:0%
+de de los canales de las políticas de
+red<00:10:05.880><c> y</c><00:10:06.000><c> del</c><00:10:06.279><c> msp</c><00:10:07.000><c> vale</c><00:10:07.920><c> Y</c><00:10:08.880><c> bueno</c><00:10:09.200><c> aquí</c><00:10:09.360><c> podemos</c>
+
+00:10:09.630 --> 00:10:09.640 align:start position:0%
+red y del msp vale Y bueno aquí podemos
+ 
+
+00:10:09.640 --> 00:10:11.550 align:start position:0%
+red y del msp vale Y bueno aquí podemos
+ver<00:10:09.959><c> la</c><00:10:10.040><c> parte</c><00:10:10.360><c> de</c><00:10:10.640><c> abajo</c><00:10:10.920><c> a</c><00:10:11.040><c> la</c><00:10:11.120><c> izquierda</c>
+
+00:10:11.550 --> 00:10:11.560 align:start position:0%
+ver la parte de abajo a la izquierda
+ 
+
+00:10:11.560 --> 00:10:13.590 align:start position:0%
+ver la parte de abajo a la izquierda
+Pues<00:10:11.720><c> los</c><00:10:11.920><c> certificados</c><00:10:12.480><c> de</c><00:10:12.600><c> autoridad</c><00:10:13.360><c> para</c>
+
+00:10:13.590 --> 00:10:13.600 align:start position:0%
+Pues los certificados de autoridad para
+ 
+
+00:10:13.600 --> 00:10:15.829 align:start position:0%
+Pues los certificados de autoridad para
+cada<00:10:13.880><c> una</c><00:10:14.120><c> de</c><00:10:14.240><c> estas</c>
+
+00:10:15.829 --> 00:10:15.839 align:start position:0%
+cada una de estas
+ 
+
+00:10:15.839 --> 00:10:19.470 align:start position:0%
+cada una de estas
+organizaciones<00:10:16.839><c> y</c><00:10:17.200><c> con</c><00:10:17.399><c> esto</c><00:10:18.000><c> ya</c><00:10:18.240><c> hemos</c><00:10:18.560><c> hecho</c>
+
+00:10:19.470 --> 00:10:19.480 align:start position:0%
+organizaciones y con esto ya hemos hecho
+ 
+
+00:10:19.480 --> 00:10:22.550 align:start position:0%
+organizaciones y con esto ya hemos hecho
+un<00:10:20.000><c> ejercicio</c><00:10:20.560><c> muy</c><00:10:20.720><c> interesante</c><00:10:21.279><c> que</c><00:10:21.440><c> es</c>
+
+00:10:22.550 --> 00:10:22.560 align:start position:0%
+un ejercicio muy interesante que es
+ 
+
+00:10:22.560 --> 00:10:26.990 align:start position:0%
+un ejercicio muy interesante que es
+crear<00:10:23.560><c> un</c><00:10:24.200><c> concepto</c><00:10:25.200><c> sin</c><00:10:25.519><c> programar</c><00:10:26.040><c> nada</c><00:10:26.760><c> de</c>
+
+00:10:26.990 --> 00:10:27.000 align:start position:0%
+crear un concepto sin programar nada de
+ 
+
+00:10:27.000 --> 00:10:29.310 align:start position:0%
+crear un concepto sin programar nada de
+cómo<00:10:27.279><c> sería</c><00:10:27.640><c> por</c><00:10:27.760><c> ejemplo</c><00:10:28.120><c> nuestra</c><00:10:28.480><c> red</c><00:10:28.640><c> de</c>
+
+00:10:29.310 --> 00:10:29.320 align:start position:0%
+cómo sería por ejemplo nuestra red de
+ 
+
+00:10:29.320 --> 00:10:32.150 align:start position:0%
+cómo sería por ejemplo nuestra red de
+leder<00:10:29.600><c> Fabric</c><00:10:30.600><c> de</c><00:10:30.800><c> acuerdo</c><00:10:31.560><c> Este</c><00:10:31.920><c> es</c><00:10:32.040><c> el</c>
+
+00:10:32.150 --> 00:10:32.160 align:start position:0%
+leder Fabric de acuerdo Este es el
+ 
+
+00:10:32.160 --> 00:10:34.110 align:start position:0%
+leder Fabric de acuerdo Este es el
+primer<00:10:32.440><c> paso</c><00:10:32.680><c> que</c><00:10:32.839><c> yo</c><00:10:33.079><c> recomiendo</c><00:10:33.640><c> hacer</c>
+
+00:10:34.110 --> 00:10:34.120 align:start position:0%
+primer paso que yo recomiendo hacer
+ 
+
+00:10:34.120 --> 00:10:36.870 align:start position:0%
+primer paso que yo recomiendo hacer
+cuando<00:10:34.399><c> vayamos</c><00:10:35.040><c> a</c><00:10:35.160><c> crear</c><00:10:35.399><c> una</c><00:10:35.600><c> red</c><00:10:35.880><c> real</c><00:10:36.079><c> de</c>
+
+00:10:36.870 --> 00:10:36.880 align:start position:0%
+cuando vayamos a crear una red real de
+ 
+
+00:10:36.880 --> 00:10:39.230 align:start position:0%
+cuando vayamos a crear una red real de
+ledger<00:10:37.160><c> Fabric</c><00:10:37.800><c> vale</c><00:10:38.120><c> o</c><00:10:38.240><c> de</c><00:10:38.399><c> pruebas</c><00:10:38.959><c> es</c>
+
+00:10:39.230 --> 00:10:39.240 align:start position:0%
+ledger Fabric vale o de pruebas es
+ 
+
+00:10:39.240 --> 00:10:41.629 align:start position:0%
+ledger Fabric vale o de pruebas es
+primero<00:10:39.639><c> diseñar</c><00:10:40.399><c> esta</c>
+
+00:10:41.629 --> 00:10:41.639 align:start position:0%
+primero diseñar esta
+ 
+
+00:10:41.639 --> 00:10:43.590 align:start position:0%
+primero diseñar esta
+conceptualización<00:10:42.639><c> vale</c><00:10:43.000><c> porque</c><00:10:43.320><c> de</c><00:10:43.440><c> esta</c>
+
+00:10:43.590 --> 00:10:43.600 align:start position:0%
+conceptualización vale porque de esta
+ 
+
+00:10:43.600 --> 00:10:45.829 align:start position:0%
+conceptualización vale porque de esta
+manera<00:10:43.920><c> nos</c><00:10:44.040><c> va</c><00:10:44.160><c> a</c><00:10:44.279><c> ser</c><00:10:44.519><c> mucho</c><00:10:44.720><c> más</c><00:10:44.920><c> fácil</c>
+
+00:10:45.829 --> 00:10:45.839 align:start position:0%
+manera nos va a ser mucho más fácil
+ 
+
+00:10:45.839 --> 00:10:48.870 align:start position:0%
+manera nos va a ser mucho más fácil
+luego<00:10:47.160><c> el</c><00:10:47.320><c> código</c><00:10:47.800><c> los</c><00:10:47.959><c> módulos</c><00:10:48.360><c> de</c>
+
+00:10:48.870 --> 00:10:48.880 align:start position:0%
+luego el código los módulos de
+ 
+
+00:10:48.880 --> 00:10:50.949 align:start position:0%
+luego el código los módulos de
+docker<00:10:49.240><c> de</c><00:10:49.440><c> Player</c><00:10:49.760><c> Fabric</c><00:10:50.160><c> y</c><00:10:50.279><c> configurarlos</c>
+
+00:10:50.949 --> 00:10:50.959 align:start position:0%
+docker de Player Fabric y configurarlos
+ 
+
+00:10:50.959 --> 00:10:53.350 align:start position:0%
+docker de Player Fabric y configurarlos
+acorde<00:10:51.320><c> a</c><00:10:51.399><c> Esto</c><00:10:51.519><c> vale</c><00:10:52.200><c> o</c><00:10:52.279><c> sea</c><00:10:52.600><c> que</c><00:10:52.720><c> es</c><00:10:52.839><c> un</c>
+
+00:10:53.350 --> 00:10:53.360 align:start position:0%
+acorde a Esto vale o sea que es un
+ 
+
+00:10:53.360 --> 00:10:55.590 align:start position:0%
+acorde a Esto vale o sea que es un
+ejercicio<00:10:53.920><c> muy</c><00:10:54.279><c> muy</c><00:10:54.519><c> recomendado</c><00:10:55.120><c> hacer</c>
+
+00:10:55.590 --> 00:10:55.600 align:start position:0%
+ejercicio muy muy recomendado hacer
+ 
+
+00:10:55.600 --> 00:10:58.590 align:start position:0%
+ejercicio muy muy recomendado hacer
+antes<00:10:55.959><c> de</c><00:10:56.240><c> ponerse</c><00:10:56.680><c> manos</c><00:10:56.920><c> a</c><00:10:57.079><c> la</c><00:10:57.200><c> obra</c><00:10:58.000><c> a</c><00:10:58.279><c> crear</c>
+
+00:10:58.590 --> 00:10:58.600 align:start position:0%
+antes de ponerse manos a la obra a crear
+ 
+
+00:10:58.600 --> 00:11:03.040 align:start position:0%
+antes de ponerse manos a la obra a crear
+una<00:10:58.920><c> red</c><00:10:59.360><c> real</c><00:10:59.600><c> o</c><00:10:59.880><c> de</c><00:11:00.040><c> pruebas</c>
+
