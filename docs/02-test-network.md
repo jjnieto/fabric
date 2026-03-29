@@ -14,6 +14,99 @@ La **test-network** es una red pre-configurada incluida en `fabric-samples` que 
 | **Fabric CA** | Opcional, 1 CA por organización |
 | **Canal** | `mychannel` (por defecto) |
 
+### Diagrama de la test-network
+
+```mermaid
+graph TB
+    subgraph RED["Test Network"]
+
+        subgraph ORG1["Org1"]
+            P1["peer0.org1.example.com<br/>:7051<br/>📋 Ledger + Chaincode"]
+            CA1["ca_org1<br/>(solo con -ca)"]
+        end
+
+        subgraph ORG2["Org2"]
+            P2["peer0.org2.example.com<br/>:9051<br/>📋 Ledger + Chaincode"]
+            CA2["ca_org2<br/>(solo con -ca)"]
+        end
+
+        subgraph ORD["Ordering Service"]
+            O1["orderer.example.com<br/>:7050<br/>(Raft, 1 nodo)"]
+        end
+
+        subgraph CANAL["Canal: mychannel"]
+            CH["Configuración del canal<br/>+ Políticas de endorsement"]
+        end
+
+        P1 <-->|"Gossip<br/>inter-org"| P2
+        O1 -->|"Distribuye<br/>bloques"| P1
+        O1 -->|"Distribuye<br/>bloques"| P2
+        CH -.-|"Miembro"| P1
+        CH -.-|"Miembro"| P2
+    end
+
+    APP["📱 Aplicación cliente<br/>(CLI o SDK)"]
+    APP -->|"Propuesta"| P1
+    APP -->|"Propuesta"| P2
+    APP -->|"Tx endorsada"| O1
+
+    style ORG1 fill:#E3F2FD,stroke:#1565C0
+    style ORG2 fill:#E8F5E9,stroke:#2E7D32
+    style ORD fill:#FFE0B2,stroke:#F57C00
+    style CANAL fill:#F3E5F5,stroke:#7B1FA2
+    style APP fill:#FFF9C4,stroke:#F9A825,color:#000
+    style CA1 fill:#90CAF9,stroke:#1565C0
+    style CA2 fill:#A5D6A7,stroke:#2E7D32
+```
+
+### Diagrama con la opción `-ca` (Fabric CA habilitada)
+
+Cuando se levanta con `./network.sh up createChannel -ca`, se añaden 3 contenedores CA adicionales:
+
+```mermaid
+graph TB
+    subgraph RED["Test Network con Fabric CA"]
+
+        subgraph ORG1["Org1"]
+            CA1["ca_org1<br/>:7054"]
+            P1["peer0.org1.example.com<br/>:7051"]
+            CA1 -->|"Emite certificados<br/>X.509"| P1
+        end
+
+        subgraph ORG2["Org2"]
+            CA2["ca_org2<br/>:8054"]
+            P2["peer0.org2.example.com<br/>:9051"]
+            CA2 -->|"Emite certificados<br/>X.509"| P2
+        end
+
+        subgraph ORD["Ordering Service"]
+            CA_ORD["ca_orderer<br/>:9054"]
+            O1["orderer.example.com<br/>:7050"]
+            CA_ORD -->|"Emite certificados<br/>X.509"| O1
+        end
+
+        P1 <-->|"Gossip"| P2
+        O1 -->|"Bloques"| P1
+        O1 -->|"Bloques"| P2
+    end
+
+    style ORG1 fill:#E3F2FD,stroke:#1565C0
+    style ORG2 fill:#E8F5E9,stroke:#2E7D32
+    style ORD fill:#FFE0B2,stroke:#F57C00
+    style CA1 fill:#42A5F5,color:#fff
+    style CA2 fill:#66BB6A,color:#fff
+    style CA_ORD fill:#FFB74D,color:#000
+```
+
+| Contenedor | Puerto | Función |
+|---|---|---|
+| `peer0.org1.example.com` | 7051 | Peer de Org1 (endorser + committer) |
+| `peer0.org2.example.com` | 9051 | Peer de Org2 (endorser + committer) |
+| `orderer.example.com` | 7050 | Ordering service (Raft) |
+| `ca_org1` | 7054 | Fabric CA de Org1 (solo con `-ca`) |
+| `ca_org2` | 8054 | Fabric CA de Org2 (solo con `-ca`) |
+| `ca_orderer` | 9054 | Fabric CA del Orderer (solo con `-ca`) |
+
 ---
 
 ## 1. Navegar al directorio
