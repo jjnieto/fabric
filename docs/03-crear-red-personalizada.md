@@ -119,18 +119,42 @@ Cada archivo de configuración genera un artefacto distinto:
 
 ## 1. Crear la estructura de directorios
 
+Lo primero es preparar el espacio de trabajo. En un proyecto Fabric real, cada archivo de configuración tiene un propósito claro y se organiza en carpetas separadas. Esta separación no es obligatoria, pero facilita mucho entender qué hace cada cosa y mantener el proyecto limpio.
+
 ```bash
 mkdir -p $HOME/mi-red/{configtx,crypto-config,channel-artifacts,docker,scripts}
 cd $HOME/mi-red
 ```
 
+| Directorio | Contenido |
+|---|---|
+| `crypto-config/` | Certificados y claves de todas las organizaciones |
+| `channel-artifacts/` | Bloque génesis y artefactos del canal |
+| `docker/` | Archivo Docker Compose para levantar los nodos |
+| `scripts/` | Scripts auxiliares para administrar la red |
+
 ---
 
 ## 2. Generar material criptográfico
 
+En Fabric, **la identidad lo es todo**. A diferencia de Ethereum, donde cualquiera puede crear una wallet anónima, en Fabric cada participante necesita un certificado X.509 emitido por una autoridad certificadora (CA) reconocida. Sin certificado, no existes en la red.
+
+Estos certificados se usan para:
+- **Autenticar** quién eres (peer, admin, usuario, orderer)
+- **Firmar** las transacciones y los endorsements
+- **Cifrar** las comunicaciones con TLS mutuo entre componentes
+- **Autorizar** operaciones según las políticas del canal
+
+Hay dos formas de generar este material criptográfico:
+
+- **cryptogen** — Herramienta de desarrollo que genera todo de golpe a partir de un YAML. Rápida y sencilla, pero no apta para producción porque no permite renovar certificados ni revocar identidades.
+- **Fabric CA** — Autoridad certificadora real que emite certificados bajo demanda. Es lo que se usa en producción (se cubre en el documento 04).
+
 ### Opción A: Usando cryptogen (desarrollo)
 
 #### 2.1 Crear `crypto-config.yaml`
+
+Este archivo le dice a `cryptogen` cuántas organizaciones queremos, cuántos peers por org, cuántos usuarios y qué dominios usar. Es como un "plano" de las identidades de nuestra red.
 
 Crea el archivo `crypto-config.yaml` en el directorio `$HOME/mi-red` con el siguiente contenido:
 
@@ -175,15 +199,20 @@ PeerOrgs:
 > para abrirlo directamente en VS Code.
 
 **Campos clave:**
-- `EnableNodeOUs: true` — Habilita clasificación de identidades por tipo (admin, peer, client, orderer)
-- `Template.Count` — Número de peers por organización
-- `Users.Count` — Número de usuarios (además del Admin que se crea siempre)
+- `EnableNodeOUs: true` — Habilita la clasificación de identidades por tipo (admin, peer, client, orderer). Sin esto, Fabric no distinguiría un admin de un usuario normal dentro de la misma organización.
+- `SANS: [localhost, 127.0.0.1]` — Añade estos nombres alternativos al certificado TLS. Es necesario porque vamos a conectarnos a los nodos desde fuera de Docker usando `localhost`. Sin SANS, el TLS rechazaría la conexión porque el certificado solo sería válido para `orderer.example.com` o `peer0.org1.example.com`.
+- `Template.Count` — Número de peers por organización (1 en nuestro caso, pero en producción suele haber 2+ para alta disponibilidad).
+- `Users.Count` — Número de usuarios adicionales (además del Admin que se crea siempre automáticamente).
 
 #### 2.2 Generar los certificados
+
+Este comando lee `crypto-config.yaml` y genera toda la infraestructura de clave pública (PKI) de nuestra red: una CA por organización, certificados para cada peer, admin y usuario, y los certificados TLS para cifrar las comunicaciones.
 
 ```bash
 cryptogen generate --config=crypto-config.yaml --output=crypto-config
 ```
+
+> **Analogía para entender:** Es como si el registro civil de cada organización emitiera de golpe todos los DNIs de sus ciudadanos. En producción (con Fabric CA) se haría uno a uno, bajo demanda.
 
 #### 2.3 Verificar la estructura generada
 
@@ -230,7 +259,16 @@ Ver [04 - Fabric CA en detalle](04-fabric-ca.md) para el flujo completo con CAs.
 
 ## 3. Configurar la topología de la red (configtx.yaml)
 
-Este es el archivo más importante. Define organizaciones, políticas, orderer y perfiles de canales.
+Si `crypto-config.yaml` define *quiénes* participan en la red, `configtx.yaml` define *cómo* participan: qué organizaciones hay, qué reglas las gobiernan, cómo se ordena el consenso y qué canales existen.
+
+Este es el archivo más importante de toda la red. Es el equivalente a los "estatutos" de un consorcio: establece las reglas del juego antes de que nadie empiece a jugar.
+
+Aspectos clave que define:
+- **Organizaciones:** quién participa y dónde están sus certificados (MSP)
+- **Políticas:** quién puede leer, escribir, administrar y endorsar en cada nivel
+- **Orderer:** qué tipo de consenso usamos (Raft), cuántos nodos tiene, cada cuánto se crean bloques
+- **Canales:** qué combinación de organizaciones comparten un ledger
+- **Anchor peers:** qué peer de cada org es el "embajador" para el descubrimiento inter-org (gossip)
 
 Crea el archivo `configtx.yaml` en el directorio `$HOME/mi-red` con el siguiente contenido:
 
@@ -407,6 +445,12 @@ Profiles:
 
 ## 4. Generar el bloque génesis del canal
 
+El **bloque génesis** es el primer bloque del canal. No contiene transacciones de negocio: contiene la *constitución* del canal — las organizaciones miembro, sus políticas, la configuración del orderer y los anchor peers.
+
+Es el bloque más importante porque define el estado inicial de la red. Todos los peers y orderers que se unan al canal recibirán este bloque primero. Sin él, el canal no existe.
+
+> **Analogía:** El bloque génesis es como la escritura de constitución de una empresa. Define quiénes son los socios, qué puede hacer cada uno y cómo se toman las decisiones. Todo lo que pase después en la empresa (transacciones) se rige por lo que dice esta escritura.
+
 ```bash
 export FABRIC_CFG_PATH=$PWD
 
@@ -414,6 +458,8 @@ configtxgen -profile CanalNegocio \
   -outputBlock channel-artifacts/canal-negocio.block \
   -channelID canal-negocio
 ```
+
+El flag `-profile CanalNegocio` le dice a `configtxgen` que use el perfil que definimos al final de `configtx.yaml`, que combina el orderer con Org1 y Org2.
 
 Verificar que se generó:
 
@@ -424,6 +470,16 @@ ls -la channel-artifacts/
 ---
 
 ## 5. Configurar Docker Compose
+
+Hasta ahora hemos generado certificados y el bloque génesis, pero la red aún no está "viva". Necesitamos levantar los procesos reales: el orderer, los peers y un contenedor CLI para administrar.
+
+En Fabric, cada componente corre como un **contenedor Docker** independiente. Esto facilita el despliegue, el aislamiento y la portabilidad. Docker Compose nos permite definir todos los contenedores en un solo archivo y levantarlos con un comando.
+
+Cada contenedor recibe:
+- Su **imagen Docker** oficial de Hyperledger (`fabric-orderer`, `fabric-peer`, `fabric-tools`)
+- Sus **certificados y claves** montados como volúmenes (los que generamos en el paso 2)
+- Sus **variables de entorno** que configuran su identidad, puertos, TLS y comportamiento
+- Su **red Docker** compartida (`fabric-net`) para que puedan comunicarse entre sí
 
 ### 5.1 Crear el archivo `docker/docker-compose.yaml`
 
@@ -591,6 +647,10 @@ services:
 
 ## 6. Levantar la red
 
+Este es el momento en el que la red cobra vida. Docker Compose levanta los 4 contenedores (orderer, peer0.org1, peer0.org2, cli) y los conecta a la red `fabric-net`. Los nodos arrancan, cargan sus certificados, activan TLS y quedan escuchando en sus puertos.
+
+En este punto los nodos están corriendo, pero **aún no hay canal**. Es como tener los servidores encendidos pero sin base de datos creada. Los peers y el orderer no tienen nada que hacer todavía.
+
 ```bash
 cd $HOME/mi-red
 docker compose -f docker/docker-compose.yaml up -d
@@ -623,6 +683,15 @@ docker logs peer0.org1.example.com --tail 50
 
 ## 7. Crear el canal
 
+Ahora viene el paso clave: crear el canal y hacer que los nodos se unan a él. En Fabric v2.x esto se hace en dos fases:
+
+1. **Primero el orderer:** Se le entrega el bloque génesis usando `osnadmin`. El orderer crea el canal y empieza a servir bloques para él.
+2. **Después los peers:** Cada peer se une al canal con `peer channel join`. A partir de ese momento, el peer mantiene una copia del ledger de ese canal.
+
+> **¿Por qué primero el orderer?** Porque el orderer es quien gestiona los canales. Sin orderer activo en el canal, no hay quien distribuya bloques y los peers no tendrían de dónde obtener el ledger.
+
+`osnadmin` es la herramienta de administración del ordering service. Se conecta por un puerto separado (7053) con TLS mutuo — necesita tanto el certificado de la CA del orderer como el certificado de cliente para autenticarse.
+
 ### 7.1 Unir el orderer al canal con osnadmin
 
 ```bash
@@ -652,6 +721,12 @@ osnadmin channel list \
 ---
 
 ## 8. Unir los peers al canal
+
+Con el orderer ya sirviendo el canal, ahora toca unir los peers. Cada peer necesita "presentar sus credenciales" para unirse: su MSPID (a qué organización pertenece), su certificado TLS (para la comunicación segura) y el certificado de Admin de su organización (para demostrar que tiene permiso de administrador para operar ese peer).
+
+Fíjate en que ejecutamos los comandos `peer` desde **fuera** de Docker (desde nuestra terminal WSL), apuntando a `localhost`. Esto es posible porque los puertos de los peers están mapeados al host. Las variables de entorno le dicen al binario `peer` "quién soy" y "a qué peer me conecto".
+
+> **Concepto importante:** Cambiar las variables de entorno `CORE_PEER_*` es equivalente a "cambiar de sombrero". Cuando exportas las variables de Org1, actúas como admin de Org1. Cuando las cambias a Org2, actúas como admin de Org2. Es la forma en que Fabric separa identidades sin necesitar diferentes terminales.
 
 ### 8.1 Unir peer0.org1
 
@@ -724,13 +799,19 @@ Al crear el canal con `configtxgen`, estos anchor peers quedaron incluidos en el
 
 ## 10. Apagar y limpiar
 
+Hay dos formas de parar la red, dependiendo de si quieres conservar el estado o empezar de cero.
+
 ### Apagar la red (conservando datos)
+
+Esto para los contenedores pero **mantiene los volúmenes Docker** donde los peers almacenan el ledger. Al volver a levantar con `docker compose up -d`, la red arranca con el mismo estado que tenía.
 
 ```bash
 docker compose -f docker/docker-compose.yaml down
 ```
 
 ### Apagar y eliminar todo (volúmenes incluidos)
+
+Esto borra todo: contenedores, volúmenes (ledger), certificados y artefactos del canal. Es un "reset total" — como si la red nunca hubiera existido. Útil cuando quieres empezar de cero después de un error de configuración.
 
 ```bash
 docker compose -f docker/docker-compose.yaml down -v
@@ -741,14 +822,31 @@ rm -rf crypto-config channel-artifacts/*.block channel-artifacts/*.pb channel-ar
 
 ## Resumen del flujo completo
 
+```mermaid
+graph LR
+    A["1. cryptogen<br/>Certificados"] --> B["2. configtxgen<br/>Bloque génesis"]
+    B --> C["3. docker compose<br/>Levantar nodos"]
+    C --> D["4. osnadmin<br/>Orderer al canal"]
+    D --> E["5. peer channel join<br/>Peers al canal"]
+    E --> F["Red lista"]
+
+    style A fill:#7C3AED,color:#fff
+    style B fill:#22627E,color:#fff
+    style C fill:#0D9448,color:#fff
+    style D fill:#B45D09,color:#fff
+    style E fill:#B45D09,color:#fff
+    style F fill:#EC0000,color:#fff
 ```
-1. crypto-config.yaml          → cryptogen generate     → Certificados
-2. configtx.yaml               → configtxgen            → Bloque génesis del canal
-3. docker-compose.yaml         → docker compose up      → Nodos corriendo
-4. osnadmin channel join       →                        → Orderer en el canal
-5. peer channel join           →                        → Peers en el canal
-6. Configurar anchor peers     →                        → Gossip inter-org
-```
+
+| Paso | Herramienta | Entrada | Salida |
+|------|------------|---------|--------|
+| 1 | `cryptogen generate` | `crypto-config.yaml` | Certificados y claves (PKI) |
+| 2 | `configtxgen` | `configtx.yaml` | Bloque génesis del canal |
+| 3 | `docker compose up` | `docker-compose.yaml` | Nodos corriendo (orderer, peers, CLI) |
+| 4 | `osnadmin channel join` | Bloque génesis | Orderer sirviendo el canal |
+| 5 | `peer channel join` | Bloque génesis | Peers con copia del ledger |
+
+> **Siguiente paso natural:** Con la red en marcha y el canal creado, el siguiente paso es desplegar un chaincode (smart contract) en el canal. Eso se cubre en [04 - Chaincode Lifecycle](04-chaincode-lifecycle.md).
 
 ---
 
