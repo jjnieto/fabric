@@ -217,14 +217,14 @@ async function main() {
         try {
             switch (option.trim()) {
                 case '1': {
-                    const id = await ask('ID del cliente: ');
+                    const id = await ask('DNI del cliente: ');
                     const name = await ask('Nombre: ');
                     await contract.submitTransaction('RegisterClient', id.trim(), name.trim());
                     console.log(`\nCliente ${id.trim()} registrado.\n`);
                     break;
                 }
                 case '2': {
-                    const id = await ask('ID del cliente: ');
+                    const id = await ask('DNI del cliente: ');
                     const amount = await ask('Puntos a emitir: ');
                     const desc = await ask('Motivo: ');
                     await contract.submitTransaction('Mint', id.trim(), amount.trim(), desc.trim());
@@ -232,13 +232,13 @@ async function main() {
                     break;
                 }
                 case '3': {
-                    const id = await ask('ID del cliente: ');
+                    const id = await ask('DNI del cliente: ');
                     const result = await contract.evaluateTransaction('BalanceOf', id.trim());
                     console.log(`\nSaldo: ${result.toString()} puntos\n`);
                     break;
                 }
                 case '4': {
-                    const id = await ask('ID del cliente: ');
+                    const id = await ask('DNI del cliente: ');
                     const result = await contract.evaluateTransaction('ClientHistory', id.trim());
                     const history = JSON.parse(result.toString());
                     console.log('\nHistorial:');
@@ -338,7 +338,7 @@ async function main() {
         try {
             switch (option.trim()) {
                 case '1': {
-                    const clientId = await ask('ID del cliente: ');
+                    const clientId = await ask('DNI del cliente: ');
 
                     // Mostrar saldo actual
                     const balance = await contract.evaluateTransaction('BalanceOf', clientId.trim());
@@ -371,13 +371,13 @@ async function main() {
                     break;
                 }
                 case '2': {
-                    const id = await ask('ID del cliente: ');
+                    const id = await ask('DNI del cliente: ');
                     const result = await contract.evaluateTransaction('BalanceOf', id.trim());
                     console.log(`\nSaldo: ${result.toString()} puntos\n`);
                     break;
                 }
                 case '3': {
-                    const id = await ask('ID del cliente: ');
+                    const id = await ask('DNI del cliente: ');
                     const result = await contract.evaluateTransaction('ClientHistory', id.trim());
                     const history = JSON.parse(result.toString());
                     console.log('\nHistorial:');
@@ -479,23 +479,23 @@ sequenceDiagram
     participant C as cafeteria-app.js
 
     Note over H: 1. Registrar cliente
-    H->>F: RegisterClient("cliente-001", "Javier")
+    H->>F: RegisterClient("12345678A", "Javier")
     F-->>H: OK
 
     Note over H: 2. Emitir puntos
-    H->>F: Mint("cliente-001", 100, "Estancia 2 noches")
+    H->>F: Mint("12345678A", 100, "Estancia 2 noches")
     F-->>H: OK — saldo: 100 pts
 
     Note over C: 3. Cliente va a la cafeteria
-    C->>F: BalanceOf("cliente-001")
+    C->>F: BalanceOf("12345678A")
     F-->>C: 100 pts
 
     Note over C: 4. Canjear desayuno
-    C->>F: Redeem("cliente-001", 30, "Desayuno completo")
+    C->>F: Redeem("12345678A", 30, "Desayuno completo")
     F-->>C: OK — saldo: 70 pts
 
     Note over H: 5. Hotel consulta movimientos
-    H->>F: ClientHistory("cliente-001")
+    H->>F: ClientHistory("12345678A")
     F-->>H: [mint +100, redeem -30]
 ```
 

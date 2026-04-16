@@ -16,22 +16,22 @@ Este es el flujo completo para demostrar el sistema FidelityChain. Puedes usarlo
 **Terminal 1 (Hotel):**
 ```
 Opcion: 1
-ID del cliente: cliente-001
+DNI del cliente: 12345678A
 Nombre: Javier Garcia
-→ Cliente cliente-001 registrado.
+→ Cliente 12345678A registrado.
 ```
 
-> **Explicar:** El hotel acaba de crear un registro en el World State de Fabric. La cafeteria puede verlo inmediatamente porque comparten el mismo canal y ledger.
+> **Explicar:** El huesped presenta su DNI en recepcion. El hotel registra su numero (12345678A) como identificador en el sistema. A partir de ahora, el cliente se identifica con su DNI en cualquier punto del consorcio. La cafeteria puede verlo inmediatamente porque comparten el mismo canal y ledger.
 
 ### Acto 2: Emision de puntos
 
 **Terminal 1 (Hotel):**
 ```
 Opcion: 2
-ID del cliente: cliente-001
+DNI del cliente: 12345678A
 Puntos a emitir: 100
 Motivo: Estancia 2 noches suite premium
-→ 100 puntos emitidos a cliente-001.
+→ 100 puntos emitidos a 12345678A.
 ```
 
 > **Explicar:** La transaccion ha sido endorsada por ambos peers (Hotel y Cafeteria), ordenada por el orderer y escrita en el ledger. La cafeteria ya ve los 100 puntos.
@@ -41,7 +41,7 @@ Motivo: Estancia 2 noches suite premium
 **Terminal 2 (Cafeteria):**
 ```
 Opcion: 2
-ID del cliente: cliente-001
+DNI del cliente: 12345678A
 → Saldo: 100 puntos
 ```
 
@@ -52,7 +52,7 @@ ID del cliente: cliente-001
 **Terminal 2 (Cafeteria):**
 ```
 Opcion: 1
-ID del cliente: cliente-001
+DNI del cliente: 12345678A
 Saldo actual: 100 puntos
 
 Catalogo:
@@ -74,7 +74,7 @@ Selecciona producto (1-5): 4
 **Terminal 1 (Hotel):**
 ```
 Opcion: 4
-ID del cliente: cliente-001
+DNI del cliente: 12345678A
 
 Historial:
   1. [mint] 100 pts — Estancia 2 noches suite premium (2026-04-16T10:30:00Z)
@@ -88,7 +88,7 @@ Historial:
 **Terminal 2 (Cafeteria):**
 ```
 Opcion: 1
-ID del cliente: cliente-001
+DNI del cliente: 12345678A
 Selecciona producto: 5 (Menu almuerzo — 50 pts)
 → Error: saldo insuficiente: tiene 70 puntos, necesita 50
 ```
@@ -123,7 +123,7 @@ En circulacion: 70 pts
 
 ```mermaid
 graph TB
-    R["1. Hotel registra<br/>cliente-001"] --> M["2. Hotel emite<br/>100 puntos"]
+    R["1. Hotel registra<br/>DNI 12345678A"] --> M["2. Hotel emite<br/>100 puntos"]
     M --> V["3. Cafeteria verifica<br/>saldo: 100 pts"]
     V --> C["4. Cafeteria canjea<br/>desayuno: -30 pts"]
     C --> H["5. Hotel ve historial<br/>mint +100, redeem -30"]
@@ -170,7 +170,7 @@ func TestMint_SoloHotelPuedeEmitir(t *testing.T) {
     mockIdentity.On("GetMSPID").Return("CafeteriaMSP", nil)
 
     contract := SmartContract{}
-    err := contract.Mint(mockCtx, "cliente-001", 100, "test")
+    err := contract.Mint(mockCtx, "12345678A", 100, "test")
 
     assert.Error(t, err)
     assert.Contains(t, err.Error(), "solo el hotel puede emitir")
@@ -187,12 +187,12 @@ func TestRedeem_SaldoInsuficiente(t *testing.T) {
 
     // Cliente con 20 puntos
     clientJSON, _ := json.Marshal(Client{
-        ClientID: "cliente-001", Balance: 20,
+        ClientID: "12345678A", Balance: 20,
     })
-    mockStub.On("GetState", "client~cliente-001").Return(clientJSON, nil)
+    mockStub.On("GetState", "client~12345678A").Return(clientJSON, nil)
 
     contract := SmartContract{}
-    err := contract.Redeem(mockCtx, "cliente-001", 50, "Menu almuerzo")
+    err := contract.Redeem(mockCtx, "12345678A", 50, "Menu almuerzo")
 
     assert.Error(t, err)
     assert.Contains(t, err.Error(), "saldo insuficiente")

@@ -83,11 +83,11 @@ type TokenInfo struct {
 ```mermaid
 graph LR
     subgraph "World State (key → value)"
-        K1["client~cliente-001"] --> V1["JSON Client"]
-        K2["client~cliente-002"] --> V2["JSON Client"]
-        K3["tx~cliente-001~txid1"] --> V3["JSON Transaction"]
-        K4["tx~cliente-001~txid2"] --> V4["JSON Transaction"]
-        K5["tx~cliente-002~txid3"] --> V5["JSON Transaction"]
+        K1["client~12345678A"] --> V1["JSON Client"]
+        K2["client~87654321B"] --> V2["JSON Client"]
+        K3["tx~12345678A~txid1"] --> V3["JSON Transaction"]
+        K4["tx~12345678A~txid2"] --> V4["JSON Transaction"]
+        K5["tx~87654321B~txid3"] --> V5["JSON Transaction"]
         K6["tokenInfo"] --> V6["JSON TokenInfo"]
     end
 

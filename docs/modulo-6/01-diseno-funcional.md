@@ -36,8 +36,8 @@ graph TB
         C1["Cliente<br/>Recibe y gasta puntos"]
     end
 
-    HA -- "Emite 100 puntos" --> C1
-    C1 -- "Canjea 30 puntos<br/>por desayuno" --> CA
+    HA -- "Emite 100 puntos<br/>al DNI 12345678A" --> C1
+    C1 -- "Muestra DNI, canjea<br/>30 puntos por desayuno" --> CA
 
     style HA fill:#22627E,color:#fff
     style CA fill:#0D9448,color:#fff
@@ -48,9 +48,9 @@ graph TB
 |-------|-------------|-----|-----------------|
 | **Admin Hotel** | Org1 (Hotel) | Emisor | Emitir puntos a clientes, consultar saldos |
 | **Admin Cafeteria** | Org2 (Cafeteria) | Canjeador | Canjear puntos de clientes por productos, consultar saldos |
-| **Cliente** | Identificado por nombre | Beneficiario | Consultar su saldo e historial |
+| **Cliente** | Identificado por DNI | Beneficiario | Consultar su saldo e historial |
 
-> **Nota sobre los clientes:** Los clientes no tienen certificado X.509 propio en la red Fabric. Son registros en el World State gestionados por los admins. Cuando un cliente canjea puntos en la cafeteria, es el admin de la cafeteria quien ejecuta la transaccion en su nombre.
+> **Identificacion de clientes:** Los clientes se identifican por su **numero de DNI/pasaporte** (por ejemplo `12345678A`). No tienen certificado X.509 propio en la red Fabric — son registros en el World State gestionados por los admins. Cuando un cliente quiere canjear puntos en la cafeteria, muestra su DNI y el admin de la cafeteria ejecuta la transaccion en su nombre.
 
 ---
 
@@ -64,16 +64,16 @@ sequenceDiagram
     participant CC as Chaincode
     participant WS as World State
 
-    H->>CC: Mint("cliente-001", 100)
+    H->>CC: Mint("12345678A", 100)
     CC->>CC: Verifica: caller es Org1 (hotel)?
     CC->>CC: Verifica: amount > 0?
-    CC->>WS: balance["cliente-001"] += 100
+    CC->>WS: balance["12345678A"] += 100
     CC->>WS: totalSupply += 100
     CC->>H: OK + evento PointsMinted
 ```
 
 1. Un huesped hace check-out en el hotel
-2. El admin del hotel ejecuta `Mint("cliente-001", 100)` para emitirle 100 puntos
+2. El admin del hotel ejecuta `Mint("12345678A", 100)` para emitirle 100 puntos
 3. El chaincode verifica que quien llama es Org1 (solo el hotel puede emitir)
 4. Se actualiza el saldo del cliente y el supply total
 5. Se emite un evento `PointsMinted` que la cafeteria puede escuchar
@@ -87,18 +87,18 @@ sequenceDiagram
     participant CC as Chaincode
     participant WS as World State
 
-    C->>CA: "Quiero un desayuno (30 puntos)"
-    CA->>CC: Redeem("cliente-001", 30, "desayuno")
+    C->>CA: Muestra DNI: "Quiero un desayuno (30 puntos)"
+    CA->>CC: Redeem("12345678A", 30, "desayuno")
     CC->>CC: Verifica: caller es Org2 (cafeteria)?
     CC->>CC: Verifica: saldo >= 30?
-    CC->>WS: balance["cliente-001"] -= 30
+    CC->>WS: balance["12345678A"] -= 30
     CC->>WS: totalRedeemed += 30
     CC->>CA: OK + evento PointsRedeemed
     CA->>C: "Aqui tiene su desayuno"
 ```
 
 1. El cliente llega a la cafeteria y dice que quiere pagar con puntos
-2. El admin de la cafeteria ejecuta `Redeem("cliente-001", 30, "desayuno")`
+2. El admin de la cafeteria ejecuta `Redeem("12345678A", 30, "desayuno")`
 3. El chaincode verifica que quien llama es Org2 (solo la cafeteria canjea)
 4. Se verifica que el cliente tiene saldo suficiente
 5. Se descuenta del saldo y se registra el canje
@@ -112,11 +112,11 @@ sequenceDiagram
     participant CC as Chaincode
     participant WS as World State
 
-    U->>CC: BalanceOf("cliente-001")
-    CC->>WS: Lee balance["cliente-001"]
+    U->>CC: BalanceOf("12345678A")
+    CC->>WS: Lee balance["12345678A"]
     CC-->>U: 70 puntos
 
-    U->>CC: TransactionHistory("cliente-001")
+    U->>CC: TransactionHistory("12345678A")
     CC->>WS: Lee historial
     CC-->>U: [{type:"mint", amount:100}, {type:"redeem", amount:30, product:"desayuno"}]
 ```
@@ -155,7 +155,7 @@ sequenceDiagram
 ```mermaid
 erDiagram
     CLIENT {
-        string clientID PK "Identificador del cliente"
+        string clientID PK "DNI o pasaporte del cliente"
         string name "Nombre del cliente"
         int balance "Saldo actual de puntos"
         string registeredBy "Org que registro al cliente"
@@ -187,8 +187,8 @@ erDiagram
 
 | Key | Valor | Proposito |
 |-----|-------|-----------|
-| `client~cliente-001` | JSON del cliente (name, balance...) | Datos del cliente |
-| `tx~cliente-001~00001` | JSON de la transaccion | Historial (composite key) |
+| `client~12345678A` | JSON del cliente (name, balance...) | Datos del cliente |
+| `tx~12345678A~00001` | JSON de la transaccion | Historial (composite key) |
 | `tokenInfo` | JSON con totales | Metadata del token |
 
 ---

@@ -326,7 +326,8 @@ peer chaincode invoke \
   -C fidelity-channel -n fidelitypoints \
   --peerAddresses localhost:7051 --tlsRootCertFiles $PEER_HOTEL_TLS \
   --peerAddresses localhost:9051 --tlsRootCertFiles $PEER_CAFE_TLS \
-  -c '{"function":"RegisterClient","Args":["cliente-001","Javier Garcia"]}'
+  -c '{"function":"RegisterClient","Args":["12345678A","Javier Garcia"]}'
+# El clientID es el DNI del cliente
 ```
 
 ### 7.3 Emitir 100 puntos (como Hotel)
@@ -338,14 +339,14 @@ peer chaincode invoke \
   -C fidelity-channel -n fidelitypoints \
   --peerAddresses localhost:7051 --tlsRootCertFiles $PEER_HOTEL_TLS \
   --peerAddresses localhost:9051 --tlsRootCertFiles $PEER_CAFE_TLS \
-  -c '{"function":"Mint","Args":["cliente-001","100","Estancia 2 noches"]}'
+  -c '{"function":"Mint","Args":["12345678A","100","Estancia 2 noches"]}'
 ```
 
 ### 7.4 Consultar saldo
 
 ```bash
 peer chaincode query -C fidelity-channel -n fidelitypoints \
-  -c '{"Args":["BalanceOf","cliente-001"]}'
+  -c '{"Args":["BalanceOf","12345678A"]}'
 ```
 
 Resultado esperado: `100`
@@ -365,18 +366,18 @@ peer chaincode invoke \
   -C fidelity-channel -n fidelitypoints \
   --peerAddresses localhost:7051 --tlsRootCertFiles $PEER_HOTEL_TLS \
   --peerAddresses localhost:9051 --tlsRootCertFiles $PEER_CAFE_TLS \
-  -c '{"function":"Redeem","Args":["cliente-001","30","Desayuno completo"]}'
+  -c '{"function":"Redeem","Args":["12345678A","30","Desayuno completo"]}'
 ```
 
 ### 7.6 Verificar saldo y historial
 
 ```bash
 peer chaincode query -C fidelity-channel -n fidelitypoints \
-  -c '{"Args":["BalanceOf","cliente-001"]}'
+  -c '{"Args":["BalanceOf","12345678A"]}'
 # Resultado: 70
 
 peer chaincode query -C fidelity-channel -n fidelitypoints \
-  -c '{"Args":["ClientHistory","cliente-001"]}'
+  -c '{"Args":["ClientHistory","12345678A"]}'
 # Resultado: array con 2 transacciones (mint + redeem)
 
 peer chaincode query -C fidelity-channel -n fidelitypoints \
