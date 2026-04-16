@@ -85,18 +85,31 @@ Historial:
 
 ### Acto 6: Intento de fraude
 
+Primero, canjeamos otro producto para dejar el saldo bajo:
+
 **Terminal 2 (Cafeteria):**
 ```
 Opcion: 1
 DNI del cliente: 12345678A
 Selecciona producto: 5 (Menu almuerzo — 50 pts)
-→ Error: saldo insuficiente: tiene 70 puntos, necesita 50
+→ Canjeado: Menu almuerzo (50 pts)
+→ Nuevo saldo: 20 puntos
 ```
 
-Espera... 70 >= 50, deberia funcionar. Si no, cambialo por un importe mayor para forzar el error:
+Ahora intentamos otro menu con saldo insuficiente:
 
-**Terminal 1 (Hotel) — intentar canjear como Hotel:**
-Si modificas la app para intentar llamar a Redeem desde el Hotel:
+**Terminal 2 (Cafeteria):**
+```
+Opcion: 1
+DNI del cliente: 12345678A
+Selecciona producto: 5 (Menu almuerzo — 50 pts)
+→ Error: saldo insuficiente: tiene 20 puntos, necesita 50
+```
+
+> **Explicar:** El chaincode rechaza la operacion porque el cliente no tiene saldo suficiente. Ni la cafeteria ni el hotel pueden saltarse esta regla — esta en el smart contract.
+
+Y si el hotel intenta canjear puntos (aunque tenga la app modificada):
+
 ```
 → Error: solo la cafeteria puede canjear puntos (caller: HotelMSP)
 ```
