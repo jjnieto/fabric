@@ -153,6 +153,23 @@ add_special_slide(prs, "TREASURE HUNT", "¿Quien fundo Alastria?", [
     "Tiempo: 10 minutos. Se puede buscar en internet.",
 ])
 
+# Respuestas del Treasure Hunt
+add_content_slide(prs, "Treasure Hunt: respuestas", [
+    "1. Alex Puig, CTO de Everis (ahora NTT Data) y primer presidente de Alastria.",
+    "   Impulso la creacion del consorcio junto con otros directivos del sector fintech y blockchain espanol.",
+    "",
+    "2. Se presento en el Mobile World Congress (MWC) de Barcelona en 2017.",
+    "",
+    "3. Alastria se fundo con 70 miembros fundadores en 2017.",
+    "   Actualmente cuenta con mas de 500 entidades miembro.",
+    "",
+    "4. Espana, a traves de Alastria y otros actores, es miembro de la",
+    "   European Blockchain Partnership (EBP) desde 2018. Alastria colabora",
+    "   con EBSI compartiendo estandares de identidad (DID/VC) y participando",
+    "   en los pilotos europeos. La Red B (Hyperledger Besu) esta alineada",
+    "   tecnologicamente con EBSI para facilitar la interoperabilidad.",
+])
+
 # ============================================================
 # SECCION 3: INTEGRACION EMPRESARIAL
 # ============================================================
@@ -333,5 +350,5 @@ add_review_slide(prs, "Repaso del modulo: Identidad Digital", [
     "¿Cuando usarias cada uno?",
 ])
 
-prs.save(f"{OUT_DIR}/identidad_digital_parte2.pptx")
+prs.save("/mnt/d/Dev/Fabric/docs/slides/Modulo 5/identidad_digital_parte2.pptx")
 print("identidad_digital_parte2.pptx generado OK")
