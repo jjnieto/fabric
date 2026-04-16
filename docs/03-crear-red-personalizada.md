@@ -253,7 +253,7 @@ crypto-config/
 
 ### Opción B: Usando Fabric CA (producción)
 
-Ver [04 - Fabric CA en detalle](04-fabric-ca.md) para el flujo completo con CAs.
+En producción se usa **Fabric CA**, una autoridad certificadora real que emite certificados bajo demanda, permite renovarlos y revocar identidades. El flujo es más complejo (register → enroll por cada identidad) pero es el adecuado para entornos reales.
 
 ---
 
@@ -851,4 +851,4 @@ graph LR
 ---
 
 **Anterior:** [02 - Test Network](02-test-network.md)
-**Siguiente:** [04 - Fabric CA: gestión de identidades](04-fabric-ca.md)
+**Siguiente:** [04 - Chaincode Lifecycle](04-chaincode-lifecycle.md)
