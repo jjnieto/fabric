@@ -523,4 +523,4 @@ Por defecto, se aplica la política `MAJORITY Endorsement` (mayoría de las orgs
 ---
 
 **Anterior:** [03 - Crear una red personalizada](03-crear-red-personalizada.md)
-**Siguiente:** Módulo 4 — Tokens y Smart Contracts (ver slides en `docs/slides/Modulo 4/`)
+**Siguiente:** [05 - Fabric CA](05-fabric-ca.md)
