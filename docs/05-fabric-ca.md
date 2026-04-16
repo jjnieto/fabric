@@ -35,6 +35,66 @@ graph TB
 
 ---
 
+## Pregunta frecuente: ¿puedo usar Fabric CA sobre una red creada con cryptogen?
+
+**No.** Son incompatibles sobre la misma red. La razon:
+
+- `cryptogen` genera su propia CA raiz (con su clave privada)
+- Fabric CA genera una CA raiz diferente (con otra clave privada)
+- Los peers solo confian en la CA raiz que tienen en su MSP
+- Los certificados emitidos por Fabric CA estarian firmados por una CA que los peers no reconocen
+
+```mermaid
+graph TB
+    subgraph "Red montada con cryptogen"
+        CA_CG["CA raiz A<br/>(generada por cryptogen)"]
+        CA_CG --> CERT_CG["Certs firmados por A"]
+        CERT_CG --> PEER["Peer confia en A"]
+    end
+
+    subgraph "Fabric CA (servidor nuevo)"
+        CA_FC["CA raiz B<br/>(generada por Fabric CA)"]
+        CA_FC --> CERT_FC["Certs firmados por B"]
+        CERT_FC -. "RECHAZADO:<br/>B no esta en el MSP" .-> PEER
+    end
+
+    style CA_CG fill:#0D9448,color:#fff
+    style CA_FC fill:#EC0000,color:#fff
+```
+
+Para usar Fabric CA hay que **montar la red desde cero** con Fabric CA desde el principio. Los ejemplos de este documento son exactamente eso: un tutorial completo para montar una red con Fabric CA.
+
+> **Nota para alumnos curiosos:** Tecnicamente podrias usar `openssl` para generar certificados sueltos firmados por la CA raiz de `cryptogen` (la clave privada esta en `crypto-config/.../ca/`). Funcionaria, pero tendrias que gestionar manualmente los atributos NodeOU, la estructura MSP, las extensiones X.509 y la revocacion. Fabric CA hace todo eso por ti.
+
+---
+
+## Fabric CA: emision vs validacion
+
+Es importante entender que Fabric CA **solo emite certificados**. No los valida en tiempo real.
+
+```mermaid
+sequenceDiagram
+    participant CA as Fabric CA
+    participant User as Usuario
+    participant Peer as Peer
+
+    Note over CA,User: EMISION (una vez)
+    User->>CA: enroll (dame mi cert)
+    CA-->>User: Certificado firmado por CA
+
+    Note over User,Peer: VALIDACION (cada transaccion)
+    User->>Peer: Transaccion + certificado
+    Peer->>Peer: ¿El cert esta firmado por<br/>una CA que esta en mi MSP?
+    Note over Peer: NO contacta a la CA
+    Peer-->>User: OK / Rechazado
+```
+
+La validacion la hacen los **peers localmente**, verificando la cadena de firmas contra el certificado raiz de la CA que tienen en su MSP. Es como un DNI: el registro civil lo emite, pero cuando lo ensenias en un hotel, el hotel no llama al registro civil — comprueba los sellos de seguridad.
+
+La **unica excepcion** es la revocacion: cuando se revoca un certificado, hay que generar una CRL y distribuirla a los MSPs de los peers. Si no se actualiza la CRL, un certificado revocado seguira siendo aceptado.
+
+---
+
 ## Arquitectura de Fabric CA
 
 En una red real, **cada organizacion tiene su propia Fabric CA**. La CA de Org1 solo emite certificados para miembros de Org1, y la CA de Org2 solo para los suyos.
@@ -113,53 +173,105 @@ Estos atributos quedan embebidos en el certificado X.509 y pueden usarse para co
 
 ---
 
-## Despliegue de Fabric CA con Docker
+## Tutorial: montar una red completa con Fabric CA
 
-### Docker Compose para una CA
+Los ejemplos de este documento son un tutorial completo y funcional. Vamos a montar una red con dos organizaciones (Org1 y Org2) donde todas las identidades se generan con Fabric CA.
+
+### Paso 0: Crear la estructura de directorios
+
+```bash
+mkdir -p $HOME/red-con-ca/{fabric-ca/org1,fabric-ca/org2,fabric-ca/orderer}
+mkdir -p $HOME/red-con-ca/{organizations,channel-artifacts,docker}
+cd $HOME/red-con-ca
+```
+
+### Paso 1: Levantar las CAs con Docker Compose
+
+Crea el archivo `docker/docker-compose-ca.yaml`:
 
 ```yaml
-# Ejemplo: CA para la organizacion Hotel
-ca.hotel.fidelitychain.com:
-  container_name: ca.hotel.fidelitychain.com
-  image: hyperledger/fabric-ca:1.5
-  environment:
-    - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
-    - FABRIC_CA_SERVER_CA_NAME=ca-hotel
-    - FABRIC_CA_SERVER_TLS_ENABLED=true
-    - FABRIC_CA_SERVER_PORT=7054
-    - FABRIC_CA_SERVER_OPERATIONS_LISTENADDRESS=0.0.0.0:17054
-  ports:
-    - 7054:7054
-    - 17054:17054
-  command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
-  volumes:
-    - ./fabric-ca/hotel:/etc/hyperledger/fabric-ca-server
+# docker/docker-compose-ca.yaml
+version: '3.7'
+
+networks:
+  fabric-ca-net:
+    name: fabric-ca-net
+
+services:
+  ca.org1.example.com:
+    container_name: ca.org1.example.com
+    image: hyperledger/fabric-ca:1.5
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca-org1
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_PORT=7054
+    ports:
+      - 7054:7054
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    volumes:
+      - ../fabric-ca/org1:/etc/hyperledger/fabric-ca-server
+    networks:
+      - fabric-ca-net
+
+  ca.org2.example.com:
+    container_name: ca.org2.example.com
+    image: hyperledger/fabric-ca:1.5
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca-org2
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_PORT=8054
+    ports:
+      - 8054:8054
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    volumes:
+      - ../fabric-ca/org2:/etc/hyperledger/fabric-ca-server
+    networks:
+      - fabric-ca-net
+
+  ca.orderer.example.com:
+    container_name: ca.orderer.example.com
+    image: hyperledger/fabric-ca:1.5
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca-orderer
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_PORT=9054
+    ports:
+      - 9054:9054
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    volumes:
+      - ../fabric-ca/orderer:/etc/hyperledger/fabric-ca-server
+    networks:
+      - fabric-ca-net
 ```
 
-El flag `-b admin:adminpw` crea el usuario bootstrap (el primer admin que puede registrar a los demas). En produccion se usaria una contrasena segura.
-
-### Verificar que la CA esta corriendo
+Levantar las CAs:
 
 ```bash
-# Debe responder con info de la CA
-curl -k https://localhost:7054/cainfo
+docker compose -f docker/docker-compose-ca.yaml up -d
 ```
 
----
-
-## Flujo completo: registrar identidades con Fabric CA
-
-### Paso 1: Enrollar al admin bootstrap
-
-El admin bootstrap es el primer usuario de la CA. Se creo al arrancar el server con `-b admin:adminpw`.
+Verificar que las tres CAs estan corriendo:
 
 ```bash
-export FABRIC_CA_CLIENT_HOME=$PWD/fabric-ca/hotel/admin
+curl -k https://localhost:7054/cainfo   # CA Org1
+curl -k https://localhost:8054/cainfo   # CA Org2
+curl -k https://localhost:9054/cainfo   # CA Orderer
+```
+
+### Paso 2: Enrollar al admin bootstrap de Org1
+
+El admin bootstrap es el primer usuario de cada CA. Se creo automaticamente al arrancar el server con `-b admin:adminpw`.
+
+```bash
+export FABRIC_CA_CLIENT_HOME=$PWD/fabric-ca/org1/admin
 
 fabric-ca-client enroll \
   -u https://admin:adminpw@localhost:7054 \
-  --caname ca-hotel \
-  --tls.certfiles $PWD/fabric-ca/hotel/tls-cert.pem
+  --caname ca-org1 \
+  --tls.certfiles $PWD/fabric-ca/org1/tls-cert.pem
 ```
 
 Esto genera:
@@ -173,84 +285,166 @@ fabric-ca/hotel/admin/
 └── fabric-ca-client-config.yaml
 ```
 
-### Paso 2: Registrar un peer
+### Paso 3: Registrar las identidades de Org1
+
+Con el admin bootstrap enrollado, ahora registramos el peer, un admin de la org y un usuario:
 
 ```bash
+# Registrar el peer de Org1
 fabric-ca-client register \
-  --caname ca-hotel \
+  --caname ca-org1 \
   --id.name peer0 \
   --id.secret peer0pw \
   --id.type peer \
-  --tls.certfiles $PWD/fabric-ca/hotel/tls-cert.pem
-```
+  --tls.certfiles $PWD/fabric-ca/org1/tls-cert.pem
 
-### Paso 3: Registrar un usuario
-
-```bash
+# Registrar el admin de Org1
 fabric-ca-client register \
-  --caname ca-hotel \
+  --caname ca-org1 \
+  --id.name org1admin \
+  --id.secret org1adminpw \
+  --id.type admin \
+  --tls.certfiles $PWD/fabric-ca/org1/tls-cert.pem
+
+# Registrar un usuario con atributos personalizados
+fabric-ca-client register \
+  --caname ca-org1 \
   --id.name user1 \
   --id.secret user1pw \
   --id.type client \
   --id.attrs '"role=operator,department=reception"' \
-  --tls.certfiles $PWD/fabric-ca/hotel/tls-cert.pem
+  --tls.certfiles $PWD/fabric-ca/org1/tls-cert.pem
 ```
 
 Los atributos `role=operator` y `department=reception` quedaran embebidos en el certificado de user1 y podran verificarse desde un chaincode con `GetAttributeValue("role")`.
 
-### Paso 4: Enrollar el peer
+### Paso 4: Enrollar las identidades de Org1
+
+Cada identidad registrada ahora tiene que enrollarse para obtener su certificado:
 
 ```bash
-export FABRIC_CA_CLIENT_HOME=$PWD/fabric-ca/hotel/peer0
-
+# Enrollar el peer
+export FABRIC_CA_CLIENT_HOME=$PWD/fabric-ca/org1/peer0
 fabric-ca-client enroll \
   -u https://peer0:peer0pw@localhost:7054 \
-  --caname ca-hotel \
-  --csr.hosts peer0.hotel.fidelitychain.com,localhost \
-  --tls.certfiles $PWD/fabric-ca/hotel/tls-cert.pem
-```
+  --caname ca-org1 \
+  --csr.hosts peer0.org1.example.com,localhost \
+  --tls.certfiles $PWD/fabric-ca/org1/tls-cert.pem
 
-El flag `--csr.hosts` anade SANs al certificado (equivalente a lo que haciamos con `SANS` en `crypto-config.yaml`).
+# Enrollar el admin
+export FABRIC_CA_CLIENT_HOME=$PWD/fabric-ca/org1/org1admin
+fabric-ca-client enroll \
+  -u https://org1admin:org1adminpw@localhost:7054 \
+  --caname ca-org1 \
+  --tls.certfiles $PWD/fabric-ca/org1/tls-cert.pem
 
-### Paso 5: Enrollar al usuario
-
-```bash
-export FABRIC_CA_CLIENT_HOME=$PWD/fabric-ca/hotel/user1
-
+# Enrollar el usuario (con sus atributos)
+export FABRIC_CA_CLIENT_HOME=$PWD/fabric-ca/org1/user1
 fabric-ca-client enroll \
   -u https://user1:user1pw@localhost:7054 \
-  --caname ca-hotel \
+  --caname ca-org1 \
   --enrollment.attrs "role,department" \
-  --tls.certfiles $PWD/fabric-ca/hotel/tls-cert.pem
+  --tls.certfiles $PWD/fabric-ca/org1/tls-cert.pem
 ```
 
-El flag `--enrollment.attrs` indica que atributos incluir en el certificado.
+El flag `--csr.hosts` anade SANs al certificado del peer (equivalente al `SANS` de `crypto-config.yaml`).
+El flag `--enrollment.attrs` indica que atributos incluir en el certificado del usuario.
+
+### Paso 5: Repetir para Org2 y OrdererOrg
+
+El proceso es identico pero apuntando a las CAs de Org2 (puerto 8054) y OrdererOrg (puerto 9054):
+
+```bash
+# Enrollar admin bootstrap de Org2
+export FABRIC_CA_CLIENT_HOME=$PWD/fabric-ca/org2/admin
+fabric-ca-client enroll \
+  -u https://admin:adminpw@localhost:8054 \
+  --caname ca-org2 \
+  --tls.certfiles $PWD/fabric-ca/org2/tls-cert.pem
+
+# Registrar peer de Org2
+fabric-ca-client register --caname ca-org2 \
+  --id.name peer0 --id.secret peer0pw --id.type peer \
+  --tls.certfiles $PWD/fabric-ca/org2/tls-cert.pem
+
+# Enrollar peer de Org2
+export FABRIC_CA_CLIENT_HOME=$PWD/fabric-ca/org2/peer0
+fabric-ca-client enroll \
+  -u https://peer0:peer0pw@localhost:8054 \
+  --caname ca-org2 \
+  --csr.hosts peer0.org2.example.com,localhost \
+  --tls.certfiles $PWD/fabric-ca/org2/tls-cert.pem
+
+# Enrollar admin bootstrap del Orderer
+export FABRIC_CA_CLIENT_HOME=$PWD/fabric-ca/orderer/admin
+fabric-ca-client enroll \
+  -u https://admin:adminpw@localhost:9054 \
+  --caname ca-orderer \
+  --tls.certfiles $PWD/fabric-ca/orderer/tls-cert.pem
+
+# Registrar y enrollar el nodo orderer
+fabric-ca-client register --caname ca-orderer \
+  --id.name orderer --id.secret ordererpw --id.type orderer \
+  --tls.certfiles $PWD/fabric-ca/orderer/tls-cert.pem
+
+export FABRIC_CA_CLIENT_HOME=$PWD/fabric-ca/orderer/orderer
+fabric-ca-client enroll \
+  -u https://orderer:ordererpw@localhost:9054 \
+  --caname ca-orderer \
+  --csr.hosts orderer.example.com,localhost \
+  --tls.certfiles $PWD/fabric-ca/orderer/tls-cert.pem
+```
+
+### Paso 6: Construir la estructura MSP de cada org
+
+Con todos los certificados generados, hay que organizar las carpetas MSP que Fabric espera. Esto implica copiar los certificados en la estructura correcta:
+
+```bash
+# Ejemplo para Org1: construir el MSP de la organizacion
+mkdir -p organizations/peerOrganizations/org1.example.com/msp/{cacerts,tlscacerts}
+cp fabric-ca/org1/tls-cert.pem \
+   organizations/peerOrganizations/org1.example.com/msp/cacerts/ca-cert.pem
+cp fabric-ca/org1/tls-cert.pem \
+   organizations/peerOrganizations/org1.example.com/msp/tlscacerts/tlsca-cert.pem
+
+# Copiar el config.yaml de NodeOUs (ver seccion mas adelante)
+# Copiar los certs de cada identidad a su carpeta...
+```
+
+> **Nota:** En la practica, este proceso de construir los MSPs se automatiza con un script.
+> El repositorio `fabric-samples/test-network` incluye un script `registerEnroll.sh`
+> que hace exactamente esto. Es una buena referencia para entender el proceso completo.
 
 ---
 
-## Diagrama del flujo completo
+## Diagrama del flujo completo (Org1)
 
 ```mermaid
 sequenceDiagram
-    participant CA as Fabric CA Server
+    participant CA as CA Org1<br/>:7054
     participant Admin as Admin bootstrap
-    participant Peer as peer0
+    participant Peer as peer0.org1
+    participant OrgAdmin as org1admin
     participant User as user1
 
     Admin->>CA: enroll (admin:adminpw)
-    CA-->>Admin: Cert admin
+    CA-->>Admin: Cert admin bootstrap
 
     Admin->>CA: register peer0 (type=peer)
-    CA-->>Admin: OK
-
+    Admin->>CA: register org1admin (type=admin)
     Admin->>CA: register user1 (type=client, role=operator)
-    CA-->>Admin: OK
+    CA-->>Admin: OK (x3)
 
-    Peer->>CA: enroll (peer0:peer0pw)
-    CA-->>Peer: Cert peer0
+    Peer->>CA: enroll (peer0:peer0pw, hosts=peer0.org1...,localhost)
+    CA-->>Peer: Cert peer0 + clave privada
 
-    User->>CA: enroll (user1:user1pw)
-    CA-->>User: Cert user1 (con role=operator)
+    OrgAdmin->>CA: enroll (org1admin:org1adminpw)
+    CA-->>OrgAdmin: Cert admin
+
+    User->>CA: enroll (user1:user1pw, attrs=role,department)
+    CA-->>User: Cert user1 (con role=operator, department=reception)
+
+    Note over Admin: Repetir para Org2 (:8054)<br/>y OrdererOrg (:9054)
 ```
 
 ---
@@ -260,12 +454,15 @@ sequenceDiagram
 Cuando un certificado se ve comprometido o un empleado deja la organizacion, hay que revocarlo.
 
 ```bash
+# Usar el admin bootstrap para revocar
+export FABRIC_CA_CLIENT_HOME=$PWD/fabric-ca/org1/admin
+
 # Revocar el certificado de user1
 fabric-ca-client revoke \
-  --caname ca-hotel \
+  --caname ca-org1 \
   -e user1 \
   -r "affiliationchange" \
-  --tls.certfiles $PWD/fabric-ca/hotel/tls-cert.pem
+  --tls.certfiles $PWD/fabric-ca/org1/tls-cert.pem
 ```
 
 Despues de revocar, hay que **generar una nueva CRL** (Certificate Revocation List) y distribuirla a los peers:
@@ -273,8 +470,8 @@ Despues de revocar, hay que **generar una nueva CRL** (Certificate Revocation Li
 ```bash
 # Generar CRL actualizada
 fabric-ca-client gencrl \
-  --caname ca-hotel \
-  --tls.certfiles $PWD/fabric-ca/hotel/tls-cert.pem
+  --caname ca-org1 \
+  --tls.certfiles $PWD/fabric-ca/org1/tls-cert.pem
 ```
 
 La CRL se coloca en el MSP de la organizacion (`msp/crls/`) y los peers la consultan para rechazar certificados revocados.
@@ -299,11 +496,11 @@ graph LR
 Los certificados tienen fecha de caducidad. Antes de que caduquen, el titular puede solicitar uno nuevo:
 
 ```bash
-export FABRIC_CA_CLIENT_HOME=$PWD/fabric-ca/hotel/user1
+export FABRIC_CA_CLIENT_HOME=$PWD/fabric-ca/org1/user1
 
 fabric-ca-client reenroll \
-  --caname ca-hotel \
-  --tls.certfiles $PWD/fabric-ca/hotel/tls-cert.pem
+  --caname ca-org1 \
+  --tls.certfiles $PWD/fabric-ca/org1/tls-cert.pem
 ```
 
 El reenroll genera un nuevo certificado con la misma identidad y atributos, pero con nueva fecha de validez y nueva clave privada.
