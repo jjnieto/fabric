@@ -6,16 +6,114 @@ En esta guía creamos una red Fabric **sin usar la test-network**, configurando 
 
 ## Arquitectura objetivo
 
+Vamos a construir una red Fabric mínima pero completa, con dos organizaciones que comparten un canal de negocio. Cada organización tiene su propio peer y su propia autoridad certificadora (generada con `cryptogen`). Un servicio de ordenación Raft (con un solo nodo, por simplicidad) se encarga de ordenar las transacciones y distribuir los bloques.
+
+```mermaid
+graph TB
+    subgraph "Red: mi-red"
+        subgraph OrdererOrg["OrdererOrg"]
+            orderer["orderer.example.com<br/>Puerto: 7050<br/>Admin: 7053<br/>Raft"]
+        end
+
+        subgraph Org1["Org1 — Org1MSP"]
+            peer1["peer0.org1.example.com<br/>Puerto: 7051"]
+            ca1["CA Org1<br/>Certificados X.509"]
+            admin1["Admin@org1"]
+            user1["User1@org1"]
+        end
+
+        subgraph Org2["Org2 — Org2MSP"]
+            peer2["peer0.org2.example.com<br/>Puerto: 9051"]
+            ca2["CA Org2<br/>Certificados X.509"]
+            admin2["Admin@org2"]
+            user2["User1@org2"]
+        end
+
+        canal["Canal: canal-negocio"]
+
+        orderer --- canal
+        peer1 --- canal
+        peer2 --- canal
+        ca1 -.-> peer1
+        ca1 -.-> admin1
+        ca1 -.-> user1
+        ca2 -.-> peer2
+        ca2 -.-> admin2
+        ca2 -.-> user2
+    end
+
+    style orderer fill:#22627E,color:#fff
+    style peer1 fill:#0D9448,color:#fff
+    style peer2 fill:#0D9448,color:#fff
+    style canal fill:#B45D09,color:#fff
+    style ca1 fill:#7C3AED,color:#fff
+    style ca2 fill:#7C3AED,color:#fff
 ```
-Red: mi-red
-├── OrdererOrg
-│   └── orderer.example.com (Raft, 1 nodo para simplificar)
-├── Org1
-│   └── peer0.org1.example.com
-├── Org2
-│   └── peer0.org2.example.com
-└── Canal: canal-negocio
+
+**Componentes de la red:**
+
+- **Orderer (orderer.example.com):** Servicio de ordenación basado en Raft. Recibe las transacciones endorsadas, las ordena en bloques y las distribuye a los peers. Usa TLS mutuo para todas las comunicaciones. El puerto 7050 es para el servicio normal y el 7053 para administración (`osnadmin`).
+
+- **Peer0 Org1 y Peer0 Org2:** Cada organización tiene un peer que mantiene una copia del ledger y ejecuta los chaincodes. Los peers de distintas organizaciones se descubren entre sí mediante los **anchor peers** (configurados en `configtx.yaml`). Cada peer tiene su propio certificado TLS y MSP.
+
+- **Canal (canal-negocio):** Un canal es una red lógica privada dentro de Fabric. Solo las organizaciones que pertenecen al canal pueden ver sus transacciones. Nuestra red tiene un único canal compartido entre Org1 y Org2.
+
+- **Identidades (CA → MSP):** Cada organización tiene su propia CA que emite certificados X.509. Estos certificados identifican a peers, admins y usuarios. El MSP (Membership Service Provider) de cada org agrupa estos certificados y define quién pertenece a la organización y con qué rol.
+
+### Flujo de una transacción en esta red
+
+```mermaid
+sequenceDiagram
+    participant App as Aplicación Cliente
+    participant P1 as peer0.org1<br/>(endorser)
+    participant P2 as peer0.org2<br/>(endorser)
+    participant O as orderer.example.com
+    participant L as Ledger
+
+    App->>P1: 1. Propuesta de transacción
+    App->>P2: 1. Propuesta de transacción
+    P1->>P1: 2. Ejecuta chaincode (simula)
+    P2->>P2: 2. Ejecuta chaincode (simula)
+    P1-->>App: 3. Respuesta endorsada (firma Org1)
+    P2-->>App: 3. Respuesta endorsada (firma Org2)
+    App->>O: 4. Envía TX con endorsements
+    O->>O: 5. Ordena en bloque
+    O->>P1: 6. Distribuye bloque
+    O->>P2: 6. Distribuye bloque
+    P1->>L: 7. Valida y escribe en ledger
+    P2->>L: 7. Valida y escribe en ledger
 ```
+
+1. La **aplicación cliente** envía una propuesta de transacción a los peers endorsadores de cada organización.
+2. Cada peer **ejecuta el chaincode** localmente (simulación) sin escribir en el ledger.
+3. Si la ejecución es correcta, cada peer **firma el resultado** y lo devuelve al cliente.
+4. El cliente recoge las respuestas endorsadas y las envía al **orderer**.
+5. El orderer **ordena** las transacciones y las empaqueta en un bloque.
+6. El bloque se **distribuye** a todos los peers del canal.
+7. Cada peer **valida** que los endorsements cumplen la política y **escribe** en el ledger.
+
+### Estructura de directorios que vamos a crear
+
+```mermaid
+graph LR
+    subgraph "$HOME/mi-red"
+        A["crypto-config.yaml"] --> B["crypto-config/<br/>Certificados"]
+        C["configtx.yaml"] --> D["channel-artifacts/<br/>Bloque génesis"]
+        E["docker/<br/>docker-compose.yaml"] --> F["Contenedores<br/>Docker"]
+    end
+
+    style A fill:#7C3AED,color:#fff
+    style C fill:#22627E,color:#fff
+    style E fill:#0D9448,color:#fff
+    style B fill:#7C3AED,color:#fff
+    style D fill:#22627E,color:#fff
+    style F fill:#0D9448,color:#fff
+```
+
+Cada archivo de configuración genera un artefacto distinto:
+- **crypto-config.yaml** → genera los certificados y claves de todas las organizaciones
+- **configtx.yaml** → genera el bloque génesis del canal con las políticas y la topología
+- **docker-compose.yaml** → levanta los contenedores (orderer, peers, CLI)
 
 ---
 
@@ -595,77 +693,32 @@ Resultado: `canal-negocio`
 
 ---
 
-## 9. Configurar anchor peers
+## 9. Anchor peers
 
 Los anchor peers permiten el descubrimiento entre organizaciones (gossip inter-org).
 
-### 9.1 Obtener la configuración actual del canal
+En nuestro caso, los anchor peers **ya están configurados** porque los definimos en `configtx.yaml`:
 
-```bash
-peer channel fetch config channel-artifacts/config_block.pb \
-  -o localhost:7050 \
-  --ordererTLSHostnameOverride orderer.example.com \
-  --tls \
-  --cafile $HOME/mi-red/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt \
-  -c canal-negocio
+```yaml
+  - &Org1
+    ...
+    AnchorPeers:
+      - Host: peer0.org1.example.com
+        Port: 7051
 
-# Decodificar
-configtxlator proto_decode --input channel-artifacts/config_block.pb \
-  --type common.Block --output channel-artifacts/config_block.json
-
-# Extraer la config
-jq '.data.data[0].payload.data.config' channel-artifacts/config_block.json > channel-artifacts/config.json
+  - &Org2
+    ...
+    AnchorPeers:
+      - Host: peer0.org2.example.com
+        Port: 9051
 ```
 
-### 9.2 Añadir anchor peer para Org1
+Al crear el canal con `configtxgen`, estos anchor peers quedaron incluidos en el bloque génesis. **No es necesario hacer nada más.**
 
-```bash
-# Copia de la config
-cp channel-artifacts/config.json channel-artifacts/config_modified.json
-
-# Añadir anchor peer (usando jq)
-jq '.channel_group.groups.Application.groups.Org1MSP.values += {
-  "AnchorPeers": {
-    "mod_policy": "Admins",
-    "value": {
-      "anchor_peers": [{"host": "peer0.org1.example.com", "port": 7051}]
-    },
-    "version": "0"
-  }
-}' channel-artifacts/config.json > channel-artifacts/config_modified.json
-
-# Codificar ambas configs
-configtxlator proto_encode --input channel-artifacts/config.json \
-  --type common.Config --output channel-artifacts/config.pb
-configtxlator proto_encode --input channel-artifacts/config_modified.json \
-  --type common.Config --output channel-artifacts/modified_config.pb
-
-# Calcular el delta
-configtxlator compute_update --channel_id canal-negocio \
-  --original channel-artifacts/config.pb \
-  --updated channel-artifacts/modified_config.pb \
-  --output channel-artifacts/config_update.pb
-
-# Envolver en envelope
-configtxlator proto_decode --input channel-artifacts/config_update.pb \
-  --type common.ConfigUpdate --output channel-artifacts/config_update.json
-
-echo '{"payload":{"header":{"channel_header":{"channel_id":"canal-negocio","type":2}},"data":{"config_update":'$(cat channel-artifacts/config_update.json)'}}}' | \
-  jq . > channel-artifacts/config_update_in_envelope.json
-
-configtxlator proto_encode --input channel-artifacts/config_update_in_envelope.json \
-  --type common.Envelope --output channel-artifacts/config_update_in_envelope.pb
-
-# Enviar la actualización
-peer channel update -f channel-artifacts/config_update_in_envelope.pb \
-  -c canal-negocio \
-  -o localhost:7050 \
-  --ordererTLSHostnameOverride orderer.example.com \
-  --tls \
-  --cafile $HOME/mi-red/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt
-```
-
-> Repetir el proceso análogo para Org2 (cambiando Org1MSP por Org2MSP y el puerto a 9051).
+> **Nota:** Si no hubiéramos definido `AnchorPeers` en `configtx.yaml`, habría que añadirlos
+> después de crear el canal mediante una actualización de configuración con `configtxlator`.
+> Este proceso es más complejo y se usa cuando se necesita modificar la configuración de un
+> canal que ya está en funcionamiento.
 
 ---
 
