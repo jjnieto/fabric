@@ -34,14 +34,19 @@ cd $HOME/mi-red
 
 #### 2.1 Crear `crypto-config.yaml`
 
-```bash
-cat > crypto-config.yaml << 'EOF'
+Crea el archivo `crypto-config.yaml` en el directorio `$HOME/mi-red` con el siguiente contenido:
+
+```yaml
+# crypto-config.yaml
 OrdererOrgs:
   - Name: Orderer
     Domain: example.com
     EnableNodeOUs: true
     Specs:
       - Hostname: orderer
+        SANS:
+          - localhost
+          - 127.0.0.1
 
 PeerOrgs:
   - Name: Org1
@@ -49,6 +54,9 @@ PeerOrgs:
     EnableNodeOUs: true
     Template:
       Count: 1
+      SANS:
+        - localhost
+        - 127.0.0.1
     Users:
       Count: 1
 
@@ -57,10 +65,16 @@ PeerOrgs:
     EnableNodeOUs: true
     Template:
       Count: 1
+      SANS:
+        - localhost
+        - 127.0.0.1
     Users:
       Count: 1
-EOF
 ```
+
+> **Nota:** Copia solo el contenido YAML (desde `OrdererOrgs:` hasta el final).
+> Puedes crear el archivo con `code crypto-config.yaml` desde la terminal de Ubuntu
+> para abrirlo directamente en VS Code.
 
 **Campos clave:**
 - `EnableNodeOUs: true` — Habilita clasificación de identidades por tipo (admin, peer, client, orderer)
@@ -120,8 +134,10 @@ Ver [04 - Fabric CA en detalle](04-fabric-ca.md) para el flujo completo con CAs.
 
 Este es el archivo más importante. Define organizaciones, políticas, orderer y perfiles de canales.
 
-```bash
-cat > configtx.yaml << 'CONFIGTX'
+Crea el archivo `configtx.yaml` en el directorio `$HOME/mi-red` con el siguiente contenido:
+
+```yaml
+# configtx.yaml
 ---
 Organizations:
   - &OrdererOrg
@@ -268,8 +284,10 @@ Profiles:
       Organizations:
         - *Org1
         - *Org2
-CONFIGTX
 ```
+
+> **Nota:** Copia solo el contenido YAML (desde `---` hasta el final).
+> Puedes crear el archivo con `code configtx.yaml` desde la terminal de Ubuntu.
 
 ### Conceptos clave del configtx.yaml
 
@@ -311,8 +329,10 @@ ls -la channel-artifacts/
 
 ### 5.1 Crear el archivo `docker/docker-compose.yaml`
 
-```bash
-cat > docker/docker-compose.yaml << 'COMPOSE'
+Crea el archivo `docker/docker-compose.yaml` con el siguiente contenido:
+
+```yaml
+# docker/docker-compose.yaml
 version: '3.7'
 
 volumes:
@@ -464,8 +484,10 @@ services:
       - orderer.example.com
       - peer0.org1.example.com
       - peer0.org2.example.com
-COMPOSE
 ```
+
+> **Nota:** Copia solo el contenido YAML (desde `version: '3.7'` hasta el final).
+> Puedes crear el archivo con `code docker/docker-compose.yaml` desde la terminal de Ubuntu.
 
 ---
 
