@@ -443,6 +443,45 @@ add_debate_slide(prs, "Decisiones de diseno", [
     "5. ¿Que pasa si el modelo de datos necesita cambiar despues del despliegue?",
 ])
 
+# 23b. Respuestas (parte 1)
+add_content_slide(prs, "Respuestas al debate (1/2)", [
+    "1. LevelDB o CouchDB?",
+    "2. Borrado fisico vs logico?",
+    "3. Composite keys vs rich queries?",
+],
+subbullets={
+    0: ["Registro de Propiedad: CouchDB. Necesitas filtrar por dueno, zona, tipo, valor.",
+        "Sistema de pagos: LevelDB. Solo lookup por ID de transaccion, maximo rendimiento.",
+        "Regla: si solo buscas por clave exacta, LevelDB. Si necesitas rich queries, CouchDB."],
+    1: ["Borrado fisico (DelState): cuando el dato ya no tiene valor ni legal ni historico.",
+        "Borrado logico (status=inactive): para regulacion, auditoria, trazabilidad.",
+        "En blockchain se recomienda logico: el historial queda intacto y es mas seguro.",
+        "DelState marca la key como borrada pero la historia sigue en GetHistoryForKey."],
+    2: ["No son excluyentes. Se usan juntas en muchos casos reales.",
+        "Composite keys: indexacion estructurada por prefijo (eficiente, determinista).",
+        "Rich queries: flexibilidad para filtrar por cualquier campo (requiere CouchDB).",
+        "Combinacion habitual: composite keys para lookups frecuentes + rich queries para reportes."],
+})
+
+# 23c. Respuestas (parte 2)
+add_content_slide(prs, "Respuestas al debate (2/2)", [
+    "4. Logica de negocio: chaincode vs aplicacion cliente?",
+    "5. ¿Que pasa si el modelo de datos cambia despues del despliegue?",
+],
+subbullets={
+    0: ["En el chaincode: reglas de negocio CRITICAS e INMUTABLES. Las que deben cumplirse siempre.",
+        "En la aplicacion cliente: UI, orquestacion, validaciones de formato, preferencias del usuario.",
+        "Regla: si se puede saltar desde otro cliente, NO es una regla de negocio real.",
+        "Ejemplo: validar saldo suficiente -> chaincode. Mostrar mensaje bonito de error -> app."],
+    1: ["Fabric permite actualizar chaincodes con nuevas versiones (secuencia incrementada).",
+        "El World State se preserva — los datos antiguos siguen ahi con el formato viejo.",
+        "Estrategias para cambiar el modelo:",
+        "  a) Campos nuevos opcionales: los datos viejos siguen funcionando (recomendado).",
+        "  b) Migracion perezosa: la primera vez que lees un registro, lo actualizas al formato nuevo.",
+        "  c) Migracion en bloque: funcion admin que recorre todos los datos y los actualiza.",
+        "Nunca: borrar campos en uso sin migrar antes. Nunca: cambiar el significado de un campo."],
+})
+
 # 24. Repaso
 add_review_slide(prs, "Repaso del dia", [
     "¿Que diferencia hay entre un chaincode y un Smart Contract de Ethereum?",
@@ -453,6 +492,54 @@ add_review_slide(prs, "Repaso del dia", [
     "¿Por que es importante incluir un campo docType en los datos?",
     "¿Que ventaja tiene el borrado logico sobre DelState?",
 ])
+
+# 25. Respuestas al repaso (parte 1)
+add_content_slide(prs, "Respuestas al repaso (1/2)", [
+    "1. Chaincode vs Smart Contract de Ethereum:",
+    "2. Que es la Stub API y que ofrece:",
+    "3. Para que sirven las Composite Keys:",
+],
+subbullets={
+    0: ["Lenguajes: Fabric usa Go, Node.js, Java; Ethereum usa Solidity o Vyper.",
+        "Fabric es permissioned (identidades conocidas); Ethereum es permissionless.",
+        "Fabric separa endorse-order-validate; Ethereum ejecuta todo en el bloque.",
+        "Fabric no tiene gas nativo; Ethereum requiere pagar ETH por cada transaccion."],
+    1: ["Stub API es la interfaz del chaincode con el ledger (ctx.GetStub()).",
+        "Operaciones clave: GetState, PutState, DelState (CRUD basico).",
+        "GetStateByRange, GetQueryResult, GetHistoryForKey (consultas avanzadas).",
+        "CreateCompositeKey, SplitCompositeKey (gestion de claves compuestas).",
+        "SetEvent (eventos), GetTxTimestamp, GetTxID (metadatos de la transaccion)."],
+    2: ["Son claves estructuradas que combinan un objectType con varios atributos.",
+        "Ejemplo: 'property~region~municipality~id' permite buscar por prefijo.",
+        "Sirven para crear indices secundarios en LevelDB (sin CouchDB).",
+        "Permiten lookups eficientes por 'primer atributo' sin escanear todo.",
+        "Alternativa a las rich queries cuando necesitas rendimiento."],
+})
+
+# 26. Respuestas al repaso (parte 2)
+add_content_slide(prs, "Respuestas al repaso (2/2)", [
+    "4. Diferencia entre LevelDB y CouchDB:",
+    "5. Que es una rich query y cuando usarla:",
+    "6. Por que incluir docType:",
+    "7. Ventaja del borrado logico sobre DelState:",
+],
+subbullets={
+    0: ["LevelDB: key-value simple, rapido, embebido en el peer.",
+        "CouchDB: base de datos documental JSON, soporta rich queries.",
+        "LevelDB: solo busqueda por clave o rango. CouchDB: por cualquier campo."],
+    1: ["Consulta JSON estilo MongoDB sobre el contenido de los documentos (Mango).",
+        "Ejemplo: {'selector':{'docType':'property','region':'Madrid'}}.",
+        "Usar cuando: necesitas filtrar por campos, ordenar, paginar reportes.",
+        "No usar en transacciones de escritura (causa phantom reads y conflictos MVCC)."],
+    2: ["Sin docType, no puedes distinguir tipos de documentos en rich queries.",
+        "Con docType puedes crear indices CouchDB eficientes.",
+        "Convencion universal en Hyperledger: todos los ejemplos oficiales lo usan.",
+        "Inutil con LevelDB, pero es buena practica por si migras a CouchDB."],
+    3: ["Mantiene el historial completo del activo (compliance, auditoria).",
+        "Permite 'reactivar' un registro si fue un error.",
+        "Mejor para regulacion (GDPR excepto 'derecho al olvido').",
+        "DelState es irreversible; con logico siempre puedes volver atras."],
+})
 
 prs.save(f"{OUT_DIR}/dia_2.pptx")
 print("dia_2.pptx generado OK")
