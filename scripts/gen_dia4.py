@@ -398,6 +398,47 @@ add_debate_slide(prs, "Trazabilidad en blockchain", [
     "5. ¿Tiene sentido usar tokens fungibles para representar kilos de producto? ¿O solo NFTs por lote?",
 ])
 
+# Respuestas al debate (parte 1)
+add_content_slide(prs, "Respuestas al debate (1/2)", [
+    "1. Datos falsos en el origen (garbage in, garbage out):",
+    "2. Integracion con IoT (sensores de temperatura):",
+    "3. Verificacion por el consumidor final sin peer:",
+],
+subbullets={
+    0: ["Blockchain garantiza INTEGRIDAD (no modificable una vez registrado), NO VERACIDAD del dato inicial.",
+        "Si el productor miente al registrar, la mentira queda inmutable pero sigue siendo mentira.",
+        "Mitigaciones: auditorias fisicas, peritajes, validacion cruzada entre actores.",
+        "Sensores IoT reducen el problema: datos automaticos, no manuales.",
+        "Responsabilidad legal: el certificado identifica a la persona/empresa que firmo el dato."],
+    1: ["Los sensores IoT NO se conectan directamente al chaincode (no tienen cert X.509).",
+        "Patron: gateway IoT intermedio con certificado, firma y envia al chaincode.",
+        "El gateway valida firmas de los sensores (HMAC, TPM) antes de enviar al ledger.",
+        "El chaincode solo ve: 'gateway-X certifica que sensor-Y reporto temp=6.5°C a las 10:30'.",
+        "Responsabilidad del gateway: garantizar que no manipula los datos antes de enviarlos."],
+    2: ["El consumidor NO necesita ser org ni tener certificado — es solo un lector.",
+        "Patron habitual: QR en el producto -> web publica del consorcio -> API REST -> chaincode query.",
+        "La web usa una identidad de 'lector publico' con permisos de solo consulta.",
+        "El consumidor ve el historial pero no puede modificar nada.",
+        "Ejemplo real: Carrefour, Walmart — QR en envase con historial completo."],
+})
+
+# Respuestas al debate (parte 2)
+add_content_slide(prs, "Respuestas al debate (2/2)", [
+    "4. Datos publicos vs Private Data en trazabilidad:",
+    "5. Tokens fungibles vs NFTs para productos alimentarios:",
+],
+subbullets={
+    0: ["Publicos (ledger del canal): ID del lote, origen, fechas, movimientos, status.",
+        "La trazabilidad NECESITA ser publica entre miembros del consorcio (es su razon de ser).",
+        "Privados (Private Data): precios entre actores, margenes, terminos comerciales.",
+        "Datos del consumidor final: OFF-CHAIN (solo hash si hace falta) — cumplimiento GDPR."],
+    1: ["Un lote alimentario es UNICO: cada batch tiene su propia historia, temperatura, origen.",
+        "NFT por lote es lo logico: composite key 'lot~productType~origin~id', metadata propia.",
+        "Tokens fungibles tendrian sentido solo si tratas todo el producto como identico (granel).",
+        "Mixto: NFT para el lote + tokens fungibles para representar kilos extraidos del lote.",
+        "Cuando el supermercado 'reparte' un lote en multiples envases, cada envase puede ser fungible."],
+})
+
 add_review_slide(prs, "Repaso del dia", [
     "¿Como se implementa un token fungible en Fabric (tipo ERC-20)?",
     "¿Que funciones basicas tiene: Mint, Transfer, BalanceOf...?",
@@ -407,6 +448,58 @@ add_review_slide(prs, "Repaso del dia", [
     "¿Quien puede hacer recall y por que?",
     "¿Como se registra el historial de movimientos de un lote?",
 ])
+
+# Respuestas al repaso (parte 1)
+add_content_slide(prs, "Respuestas al repaso (1/2)", [
+    "1. Implementar un token fungible en Fabric:",
+    "2. Funciones basicas del token fungible:",
+    "3. Token fungible vs no fungible en Fabric:",
+    "4. Composite keys en NFTs:",
+],
+subbullets={
+    0: ["Chaincode con un mapping balance por cliente (clientID -> cantidad).",
+        "PutState('balance~' + clientID, amount) para cada propietario.",
+        "Otra estructura para totalSupply global y metadata del token.",
+        "Tres opciones: custom desde cero, Fabric Token SDK, fabric-samples/token-erc-20."],
+    1: ["Mint(to, amount): crear tokens (solo el emisor autorizado).",
+        "Burn(from, amount): destruir tokens propios o del sistema.",
+        "Transfer(to, amount): enviar del caller al destinatario.",
+        "BalanceOf(account): consultar saldo.",
+        "Approve(spender, amount) + TransferFrom: delegacion.",
+        "TotalSupply(): supply total en circulacion."],
+    2: ["Fungible: cada token es identico e intercambiable (1 FP vale igual que cualquier otro 1 FP).",
+        "No fungible: cada token tiene identidad unica (tokenID, metadata propia).",
+        "Fungible: balance por cuenta. NFT: registro por tokenID con metadata.",
+        "NFT: composite key 'nft~owner~tokenID' permite buscar por dueno."],
+    3: ["Key = prefijo (tipo de objeto) + atributos (owner, categoria, id).",
+        "Permite GetStateByPartialCompositeKey — buscar por prefijo sin recorrer todo.",
+        "Ejemplo: 'nft~alice~*' devuelve todos los NFTs de Alice.",
+        "Eficiente sin CouchDB — solo con LevelDB ya funciona."],
+})
+
+# Respuestas al repaso (parte 2)
+add_content_slide(prs, "Respuestas al repaso (2/2)", [
+    "5. Flujo de trazabilidad de un lote alimentario:",
+    "6. Quien puede hacer recall y por que:",
+    "7. Registrar el historial de movimientos:",
+],
+subbullets={
+    0: ["Produccion: ProductorMSP crea el lote con ProduceLot (origen, peso, tipo).",
+        "Transito: TransferLot cambia el holder (con ubicacion y temperatura).",
+        "Cada movimiento se anade al array 'history' del lote.",
+        "Entrega: el ultimo holder marca UpdateStatus a 'delivered'.",
+        "En cualquier momento: GetLotHistory devuelve toda la cadena de custodia."],
+    1: ["Solo el regulador (role=regulador via ABAC en el certificado X.509).",
+        "Razon: el recall tiene implicaciones legales y sanitarias — no cualquiera decide retirar del mercado.",
+        "En produccion: AESAN (Espana), FDA (USA), EFSA (UE) tendrian este rol.",
+        "El recall cambia status a 'recalled' y emite evento para notificar a todos los actores.",
+        "Tras recall: el lote ya no se puede transferir, solo investigar y destruir."],
+    2: ["Array de HistEntry dentro del objeto FoodLot (serializado como JSON).",
+        "Cada entrada: org, action, timestamp (determinista), location.",
+        "Se va anadiendo en cada operacion (Produce, Transfer, Recall, Deliver).",
+        "Al ser parte del propio lote, se preserva al hacer updates.",
+        "Alternativa: usar GetHistoryForKey para el historial de cambios de la propia key."],
+})
 
 prs.save(f"{OUT_DIR}/dia_4.pptx")
 print("dia_4.pptx generado OK")
