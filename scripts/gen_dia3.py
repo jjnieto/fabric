@@ -309,6 +309,50 @@ add_debate_slide(prs, "Logica de negocio en chaincodes", [
     "5. ¿Como gestionariais los roles (registrador, autoridad) en un consorcio real?",
 ])
 
+# Respuestas al debate (parte 1)
+add_content_slide(prs, "Respuestas al debate (1/2)", [
+    "1. Logica en chaincode vs app cliente:",
+    "2. Cambiar la maquina de estados despues del despliegue:",
+    "3. Private Data y GDPR:",
+],
+subbullets={
+    0: ["En el chaincode: reglas de negocio inmutables (saldos, permisos, transiciones validas).",
+        "En el cliente: UI, orquestacion, validaciones de formato, UX.",
+        "Regla: si se puede saltar desde otro cliente, NO es regla de negocio real.",
+        "Si la regla afecta al ledger (consistencia entre todos los peers) -> chaincode."],
+    1: ["Se despliega una nueva version del chaincode con sequence incrementado.",
+        "El World State se preserva — los datos antiguos siguen ahi.",
+        "Estrategias: anadir estados nuevos sin romper los antiguos (retrocompatibilidad).",
+        "Si la transicion cambia radicalmente: migracion perezosa en cada lectura.",
+        "Cuidado: nunca cambies el significado de un estado existente, crea uno nuevo."],
+    2: ["Private Data ayuda pero NO cumple GDPR por si solo.",
+        "El hash queda on-chain para siempre (inmutable) — potencialmente trazable.",
+        "blockToLive permite caducar datos privados, pero el hash sigue.",
+        "Mejor practica: datos personales OFF-CHAIN, solo hash/referencia on-chain.",
+        "Cuando borras el dato off-chain, el hash on-chain queda huerfano (pseudonimizacion efectiva)."],
+})
+
+# Respuestas al debate (parte 2)
+add_content_slide(prs, "Respuestas al debate (2/2)", [
+    "4. Registrador malicioso confirma transferencias falsas:",
+    "5. Gestion de roles (registrador, autoridad) en un consorcio real:",
+],
+subbullets={
+    0: ["El chaincode por si solo no lo evita — solo valida que tiene el atributo 'role=registrador'.",
+        "Mitigaciones en capas:",
+        "  a) Multi-firma: transferencias criticas requieren N de M registradores (endorsement policy).",
+        "  b) Auditoria externa: un rol 'auditor' revisa transacciones periodicamente.",
+        "  c) Jurisdiccion legal: el certificado identifica a la persona, responsabilidad penal.",
+        "  d) Revocacion rapida del certificado si se detecta fraude + CRL actualizada.",
+        "Ningun sistema es 100% a prueba de insider malicioso; blockchain reduce pero no elimina."],
+    1: ["Registrar los roles como atributos del certificado X.509 via Fabric CA.",
+        "Separacion de funciones: quien otorga el rol NO puede usarlo.",
+        "Rotacion de roles: no dejar eternamente al mismo usuario con privilegios.",
+        "Gobernanza clara: documento del consorcio define quien puede asignar cada rol.",
+        "Logs de auditoria: cada emisin/revocacion de rol queda registrada en Fabric CA.",
+        "Reglas en el chaincode: un rol solo puede hacer ciertas operaciones (ABAC)."],
+})
+
 add_review_slide(prs, "Repaso del dia", [
     "¿Como se verifica la identidad del cliente en un chaincode?",
     "¿Que diferencia hay entre GetMSPID() y AssertAttributeValue()?",
@@ -318,6 +362,49 @@ add_review_slide(prs, "Repaso del dia", [
     "¿Como se emite un evento desde un chaincode?",
     "¿Cuantos eventos se pueden emitir por transaccion?",
 ])
+
+# Respuestas al repaso (parte 1)
+add_content_slide(prs, "Respuestas al repaso (1/2)", [
+    "1. Verificacion de identidad en un chaincode:",
+    "2. GetMSPID() vs AssertAttributeValue():",
+    "3. Maquina de estados en chaincodes:",
+],
+subbullets={
+    0: ["A traves de ctx.GetClientIdentity(), que devuelve datos del certificado X.509 del caller.",
+        "Metodos principales: GetID, GetMSPID, GetAttributeValue, AssertAttributeValue.",
+        "El peer YA ha validado el certificado antes de llamar al chaincode (no tienes que validarlo tu).",
+        "Tu trabajo es decidir si ese cert autenticado puede hacer lo que pide (autorizacion)."],
+    1: ["GetMSPID(): devuelve la organizacion del caller ('Org1MSP', 'HotelMSP'...).",
+        "AssertAttributeValue(attr, value): comprueba un atributo custom del cert (devuelve error si no coincide).",
+        "GetMSPID: para controlar QUE ORG llama (Hotel vs Cafeteria).",
+        "AssertAttributeValue: para controlar QUE ROL tiene (registrador, auditor, admin)."],
+    2: ["Conjunto de estados validos y transiciones permitidas entre ellos.",
+        "Ejemplo propiedad: active -> transferring -> active | blocked.",
+        "Util para: evitar estados imposibles, forzar orden correcto, claridad del dominio.",
+        "Implementacion: validar en cada funcion 'if currentStatus != X return error'."],
+})
+
+# Respuestas al repaso (parte 2)
+add_content_slide(prs, "Respuestas al repaso (2/2)", [
+    "4. Private Data Collections:",
+    "5. Donde se almacenan datos privados vs hash:",
+    "6. Emitir un evento desde chaincode:",
+    "7. Cuantos eventos por transaccion:",
+],
+subbullets={
+    0: ["Mecanismo para compartir datos solo entre un subconjunto de orgs del canal.",
+        "Se definen en collections_config.json: nombre, policy, blockToLive, miembros.",
+        "Ejemplo: priceAgreement visible solo entre comprador y vendedor, no otras orgs."],
+    1: ["Datos privados: base de datos privada de cada peer autorizado (LevelDB/CouchDB del peer).",
+        "Hash: en el ledger publico del canal, visible para TODAS las orgs.",
+        "El hash garantiza integridad sin revelar el contenido."],
+    2: ["ctx.GetStub().SetEvent(nombreEvento, payloadBytes).",
+        "Ejemplo: ctx.GetStub().SetEvent('PropertyTransferred', eventJSON).",
+        "Los clientes se suscriben con contract.addContractListener() o peer channel events."],
+    3: ["SOLO UNO por transaccion. Si llamas SetEvent dos veces, solo el ultimo prevalece.",
+        "Si necesitas notificar varias cosas, usa un JSON con multiples campos en el payload.",
+        "Alternativa: emitir un evento generico con 'type' dentro que indique que ha pasado."],
+})
 
 prs.save(f"{OUT_DIR}/dia_3.pptx")
 print("dia_3.pptx generado OK")
