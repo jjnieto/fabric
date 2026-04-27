@@ -271,6 +271,12 @@ peer channel join -b channel-artifacts/mychannel.block
 
 ## 1. Desplegar un chaincode
 
+> **¿Qué es?** Es el proceso por el que se publica un nuevo smart contract (chaincode) en un canal de Fabric. Sigue un lifecycle de 4 pasos: empaquetar el código, instalarlo en cada peer, aprobar la definición desde cada org y, finalmente, hacer commit en el canal.
+>
+> **¿Para qué sirve?** Para que la red empiece a procesar transacciones sobre una nueva lógica de negocio. Sin chaincode desplegado el canal está vacío — los peers no tienen reglas que aplicar.
+>
+> **¿Cuándo hacerlo?** Al lanzar la red (primer chaincode), al añadir nuevas funcionalidades a la red (chaincodes adicionales en el mismo canal) o al sustituir un chaincode antiguo por una versión incompatible (incrementando el sequence). Cada despliegue requiere consenso: la mayoría de orgs (según política `MAJORITY Endorsement`) deben aprobar antes del commit.
+
 Desplegamos el `asset-transfer-basic` de fabric-samples para tener algo con lo que trabajar.
 
 ```mermaid
@@ -393,6 +399,12 @@ Si ves una lista de activos en JSON, la red esta operativa y el chaincode funcio
 ---
 
 ## 2. Añadir una nueva organización al canal
+
+> **¿Qué es?** Es el procedimiento para incorporar una organización nueva a un canal que ya está en funcionamiento. Implica generar el material criptográfico de la nueva org, modificar la configuración del canal para añadir su MSP, conseguir la aprobación de las orgs existentes y, finalmente, que la nueva org una su peer al canal.
+>
+> **¿Para qué sirve?** Para que el consorcio pueda crecer sin tener que recrear la red desde cero. La nueva org puede leer datos del canal, contribuir a las transacciones y participar en el endorsement según las políticas establecidas.
+>
+> **¿Cuándo hacerlo?** Cuando un nuevo socio quiere unirse al consorcio (por ejemplo, una tercera empresa que se suma al programa de fidelización) o cuando se crea una organización nueva dentro de un mismo grupo empresarial (filial, división, joint venture). Es una operación que **requiere consenso** entre las orgs existentes — no se puede hacer unilateralmente. Suele coordinarse en una reunión de gobernanza del consorcio.
 
 Esta es una de las operaciones mas complejas en Fabric. Un nuevo socio se une al consorcio y necesita participar en un canal existente.
 
@@ -559,6 +571,19 @@ peer channel join -b channel-artifacts/mychannel.block
 
 ## 3. Actualizar la configuración del canal
 
+> **¿Qué es?** Es el procedimiento estándar para modificar parámetros del canal después de su creación: políticas, batch size del orderer, anchor peers, capabilities, ACLs, etc. Se hace mediante un `config update` que sigue el patrón **fetch → decode → modify → compute → submit**.
+>
+> **¿Para qué sirve?** Para adaptar la red a nuevas necesidades sin tener que recrearla. La configuración del canal define cómo se comporta toda la red, así que cambiarla de forma controlada y consensuada es esencial.
+>
+> **¿Cuándo hacerlo?**
+> - **Cambios de rendimiento**: bajar `BatchTimeout` para reducir latencia, subir `MaxMessageCount` para mayor throughput.
+> - **Endurecer seguridad**: cambiar políticas de `MAJORITY` a `ALL` cuando crece la criticidad de los datos.
+> - **Actualizar versión de Fabric**: subir `Capabilities` cuando todas las orgs migran a una nueva versión.
+> - **Anchor peers**: añadir o cambiar el anchor peer de una org si la infraestructura cambia.
+> - **Permisos (ACLs)**: ajustar quién puede invocar ciertos recursos del sistema.
+>
+> Como toda modificación del canal, requiere mayoría de admins firmando la propuesta.
+
 ### Que se puede cambiar
 
 | Parametro | Donde | Ejemplo |
@@ -645,6 +670,16 @@ peer channel update -f channel-artifacts/config_update_envelope.pb \
 
 ## 4. Monitorización y logs
 
+> **¿Qué es?** Es el conjunto de prácticas para observar el estado de la red en tiempo real: leer logs de los contenedores, consultar métricas operativas (Operations API en formato Prometheus) y configurar alertas cuando algo va mal.
+>
+> **¿Para qué sirve?**
+> - **Detectar problemas pronto**: tasa alta de transacciones inválidas, peers desincronizados, espacio en disco bajo, certificados próximos a caducar.
+> - **Diagnosticar incidencias**: cuando una transacción falla, los logs te dicen por qué (validación, endorsement, MVCC, etc).
+> - **Auditoría**: dejar evidencia de qué pasó y cuándo, para cumplir requisitos regulatorios o investigar anomalías.
+> - **Optimización**: identificar cuellos de botella (chaincode lento, orderer saturado).
+>
+> **¿Cuándo hacerlo?** Es una tarea **continua**, no puntual. En producción se configuran alertas automáticas (Prometheus + Grafana + Alertmanager) que notifican a los oncall cuando se cruzan umbrales críticos. En desarrollo se consultan logs solo cuando algo falla. Subir el nivel de log a `DEBUG` solo es aceptable de forma temporal y para diagnóstico — en producción genera demasiado ruido.
+
 ### Logs de los contenedores
 
 ```bash
@@ -721,6 +756,19 @@ graph LR
 
 ## 5. Backup y recuperacion
 
+> **¿Qué es?** Es la práctica de copiar periódicamente los datos críticos de la red (claves privadas, certificados, ledger, world state, base de datos de la CA, configuración) a un almacenamiento separado, junto con el procedimiento para restaurarlos cuando algo falla.
+>
+> **¿Para qué sirve?** Para sobrevivir a desastres: corrupción de disco, borrado accidental, ransomware, fallo de hardware. En blockchain hay un componente especial: si tu peer pierde sus datos pero los demás siguen vivos, puedes reconstruir descargando los bloques desde el orderer. **Pero** si pierdes las claves privadas o los certificados, pierdes la identidad de la org y no hay forma de recuperarla.
+>
+> **¿Cuándo hacerlo?**
+> - **Claves privadas y certificados raíz**: backup inmediato y guardado en bóveda fuera del sistema (idealmente HSM o vault). Se hace una sola vez (no cambian).
+> - **Ledger del peer**: backup periódico (diario en producción). Si pierdes los datos pero las claves están bien, puedes recuperarte sincronizando con otros peers o desde un snapshot.
+> - **CouchDB / world state**: junto con el ledger. Se puede reconstruir desde los bloques pero tarda mucho con millones de transacciones.
+> - **Base de datos de Fabric CA**: backup semanal. Contiene el registro de identidades emitidas, importante para auditoría.
+> - **Configuración**: en cada cambio de configuración (`docker-compose.yaml`, `configtx.yaml`). Tener todo en git es la práctica habitual.
+>
+> En multi-máquina, **cada org backupea sus propios datos**. No hay backup centralizado — cada participante es responsable de su infraestructura.
+
 ### Que hay que respaldar
 
 ```mermaid
@@ -781,6 +829,18 @@ graph TB
 ---
 
 ## 6. Rotación de certificados TLS
+
+> **¿Qué es?** Es el proceso de sustituir los certificados TLS de un nodo (peer u orderer) por unos nuevos antes de que los anteriores caduquen. Implica solicitar a Fabric CA un `reenroll`, copiar los nuevos archivos al nodo y reiniciarlo.
+>
+> **¿Para qué sirve?** Los certificados X.509 tienen fecha de caducidad. Si caducan sin haber sido renovados, el nodo deja de poder comunicarse — los demás peers/orderers rechazan su TLS y queda aislado de la red. La rotación periódica también limita el daño potencial si una clave privada se ve comprometida (cuanto más nuevo el cert, menos tiempo ha tenido el atacante para usarlo).
+>
+> **¿Cuándo hacerlo?**
+> - **Antes de caducar**: con margen de al menos 30 días. Lo habitual es rotar TLS de peers y orderers anualmente.
+> - **Tras un incidente de seguridad**: si se sospecha que una clave privada está comprometida, **rotar inmediatamente y revocar el cert antiguo** (publicar nueva CRL).
+> - **Al renovar la CA raíz**: cada 5-10 años. Es una operación pesada porque hay que renovar toda la cadena de confianza y reconstruir los MSPs.
+> - **Al cambiar de hostname o IP del nodo**: el cert TLS lleva los SANS — si cambian, hay que reemitir.
+>
+> **Nota importante**: la rotación de certificados de **enrollment** (no TLS) no requiere reiniciar el nodo, basta con que el cliente use el nuevo cert al firmar transacciones. Pero la rotación de **TLS** sí requiere reinicio del proceso del peer/orderer porque el TLS se carga al arrancar.
 
 Usando la Fabric CA del doc 05, renovar certificados es sencillo:
 
