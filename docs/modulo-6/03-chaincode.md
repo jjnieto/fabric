@@ -1,6 +1,6 @@
 # 03 - Chaincode: FidelityPoints
 
-## Vision general
+## Visión general
 
 El chaincode `fidelitypoints` es el corazon del sistema. Gestiona los puntos de fidelizacion: registrar clientes, emitir puntos, canjearlos y consultar saldos e historiales.
 
@@ -78,7 +78,7 @@ type TokenInfo struct {
 }
 ```
 
-### Diseno de claves en el World State
+### Diseño de claves en el World State
 
 ```mermaid
 graph LR
@@ -103,7 +103,7 @@ Las transacciones usan **composite keys** (`tx~clientID~txID`) para poder buscar
 
 ---
 
-## Codigo del chaincode (Go)
+## Código del chaincode (Go)
 
 ### Estructura principal
 

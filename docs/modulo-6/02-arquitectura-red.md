@@ -2,7 +2,7 @@
 
 ## Topologia de la red
 
-Nuestra red tiene la estructura minima para un consorcio real: dos organizaciones independientes que comparten un canal. Cada una mantiene su propio peer y valida las transacciones de la otra.
+Nuestra red tiene la estructura mínima para un consorcio real: dos organizaciones independientes que comparten un canal. Cada una mantiene su propio peer y valida las transacciones de la otra.
 
 ```mermaid
 graph TB
@@ -42,19 +42,19 @@ graph TB
     style ca2 fill:#7C3AED,color:#fff
 ```
 
-### Decisiones de diseno
+### Decisiones de diseño
 
-| Decision | Eleccion | Motivo |
+| Decisión | Eleccion | Motivo |
 |----------|----------|--------|
-| Organizaciones | 2 (Hotel + Cafeteria) | Minimo para demostrar consorcio |
+| Organizaciones | 2 (Hotel + Cafeteria) | Mínimo para demostrar consorcio |
 | Peers por org | 1 | Suficiente para desarrollo |
-| Orderer | Raft, 1 nodo | Simplicidad (produccion: 3-5 nodos) |
+| Orderer | Raft, 1 nodo | Simplicidad (producción: 3-5 nodos) |
 | Canal | 1 (fidelity-channel) | Ambas orgs comparten todos los datos |
 | Base de datos | CouchDB | Necesitamos rich queries para historial |
 | Chaincode | Go + Node.js | Ambas versiones para el curso |
-| Politica endorsement | AND(Hotel, Cafeteria) | Ambas orgs deben aprobar cada transaccion |
+| Política endorsement | AND(Hotel, Cafeteria) | Ambas orgs deben aprobar cada transacción |
 
-> **¿Por que AND y no MAJORITY?** Con solo 2 organizaciones, MAJORITY seria "al menos 1", lo que permitiria que una org modifique el ledger sin aprobacion de la otra. AND garantiza que ambas validen cada transaccion.
+> **¿Por que AND y no MAJORITY?** Con solo 2 organizaciones, MAJORITY seria "al menos 1", lo que permitiria que una org modifique el ledger sin aprobación de la otra. AND garantiza que ambas validen cada transacción.
 
 ---
 
@@ -84,7 +84,7 @@ graph LR
 
 | Contenedor | Imagen | Puerto | Proposito |
 |-----------|--------|--------|-----------|
-| orderer.fidelitychain.com | fabric-orderer:2.5 | 7050, 7053 | Servicio de ordenacion |
+| orderer.fidelitychain.com | fabric-orderer:2.5 | 7050, 7053 | Servicio de ordenación |
 | peer0.hotel.fidelitychain.com | fabric-peer:2.5 | 7051 | Peer del hotel |
 | peer0.cafeteria.fidelitychain.com | fabric-peer:2.5 | 9051 | Peer de la cafeteria |
 | couchdb.hotel | couchdb:3.3 | 5984 | World State del hotel |
@@ -161,7 +161,7 @@ proyecto-fidelitychain/
 
 ---
 
-## Archivos de configuracion
+## Archivos de configuración
 
 ### crypto-config.yaml
 
@@ -379,5 +379,5 @@ Cada uno de estos pasos se detalla en los documentos siguientes (04 y 05).
 
 ---
 
-**Anterior:** [01 - Diseno funcional](01-diseno-funcional.md)
+**Anterior:** [01 - Diseño funcional](01-diseño-funcional.md)
 **Siguiente:** [03 - Chaincode](03-chaincode.md)

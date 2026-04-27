@@ -4,9 +4,9 @@
 
 **B3i (Blockchain Insurance Industry Initiative)** fue un consorcio de **15+ aseguradoras europeas** (Allianz, Swiss Re, Zurich, Munich Re, AIG, Generali, Hannover Re, entre otras) que en 2016-2017 lanzaron una plataforma de reaseguros automatizados basada en R3 Corda.
 
-El objetivo era ambicioso: digitalizar y automatizar los contratos de reaseguro entre aseguradoras, eliminando el papeleo y reduciendo los tiempos de liquidacion de siniestros.
+El objetivo era ambicioso: digitalizar y automatizar los contratos de reaseguro entre aseguradoras, eliminando el papeleo y reduciendo los tiempos de liquidación de siniestros.
 
-**B3i cerro en 2022** tras cinco anos de desarrollo. La razon no fue tecnica — la tecnologia funcionaba. El problema fue de **modelo de negocio**: las aseguradoras querian participar pero no querian financiar indefinidamente una plataforma sin retorno claro.
+**B3i cerro en 2022** tras cinco años de desarrollo. La razón no fue técnica — la tecnología funcionaba. El problema fue de **modelo de negocio**: las aseguradoras querian participar pero no querian financiar indefinidamente una plataforma sin retorno claro.
 
 Este ejercicio analiza **un fracaso distinto a TradeLens**: no hubo problema de fundador dominante, pero nadie quiso ser sostenible financieramente.
 
@@ -42,7 +42,7 @@ sequenceDiagram
 - **Papeleo manual** entre multiples partes
 - Sin trazabilidad clara de quien cubre que porcentaje
 
-**Prometia B3i:** contratos inteligentes que se activan automaticamente cuando ocurre un siniestro, distribuyendo la reclamacion entre las reaseguradoras segun los porcentajes pactados.
+**Prometia B3i:** contratos inteligentes que se activan automáticamente cuando ocurre un siniestro, distribuyendo la reclamacion entre las reaseguradoras según los porcentajes pactados.
 
 ---
 
@@ -50,31 +50,31 @@ sequenceDiagram
 
 ### Problemas de modelo de negocio
 
-B3i fracaso por el modelo de financiacion, no por la tecnologia. En tu diseño, piensa:
+B3i fracaso por el modelo de financiación, no por la tecnología. En tu diseño, piensa:
 
 1. **¿Quien paga la infraestructura de la red?**
    - Cuota fija por miembro
-   - Pay-per-use (por transaccion)
-   - Escalado por tamano de la aseguradora
+   - Pay-per-use (por transacción)
+   - Escalado por tamaño de la aseguradora
 2. **¿Quien desarrolla y mantiene el chaincode?**
    - Empresa externa contratada
    - Equipo compartido entre miembros
    - Open source con contribuciones
-3. **¿Como se financia la primera version (MVP) antes de tener trafico real?**
+3. **¿Como se financia la primera versión (MVP) antes de tener tráfico real?**
 4. **¿Que pasa si una reaseguradora deja de pagar?** ¿Se le expulsa? ¿Pierde datos?
 
-### Estructura tecnica
+### Estructura técnica
 
-5. **¿Canal unico para todos los contratos o canales por linea de negocio?**
+5. **¿Canal único para todos los contratos o canales por linea de negocio?**
    (p.ej. reaseguro de vida vs. no-vida vs. catastrofico)
 6. **¿Los importes son privados entre las partes del contrato?** (Private Data Collections)
 7. **¿Que datos del cliente final van on-chain?** Cuidado con GDPR.
 8. **¿Como se verifica que un siniestro es real?**
    - Oraculos externos (meteo, noticias)
-   - Validacion cruzada entre partes
-   - Peritaje fisico registrado manualmente
+   - Validación cruzada entre partes
+   - Peritaje físico registrado manualmente
 
-### Politicas
+### Políticas
 
 9. **¿Un contrato de reaseguro entre Allianz y Munich Re puede ser modificado unilateralmente?** (Spoiler: NO)
 10. **¿Para liquidar un siniestro, quien endorsa?** ¿Todas las partes del contrato?
@@ -87,18 +87,18 @@ B3i fracaso por el modelo de financiacion, no por la tecnologia. En tu diseño, 
 
 **Claves aprendidas del fracaso de B3i:**
 
-| Problema de B3i | Nuestra solucion |
+| Problema de B3i | Nuestra solución |
 |-----------------|------------------|
-| Financiacion voluntaria | Comision fija por transaccion (revenue share) |
+| Financiación voluntaria | Comision fija por transacción (revenue share) |
 | Desarrollo centralizado | Chaincode open source, contribuciones por miembros |
 | Sin MVP claro | Empezar con 1 linea de negocio (p.ej. catastroficos) |
-| Complejidad regulatoria | Solo reaseguros entre companias reguladas (no al cliente final) |
-| Integracion con legacy | APIs estandar y no forzar migracion interna |
+| Complejidad regulatoria | Solo reaseguros entre compañías reguladas (no al cliente final) |
+| Integración con legacy | APIs estandar y no forzar migración interna |
 
-**Modelo economico propuesto:**
+**Modelo económico propuesto:**
 - Fee del **0.01% del valor del contrato** por cada contrato registrado
-- Fee del **0.05%** por cada liquidacion de siniestro
-- Los fees financian operacion + reinversion
+- Fee del **0.05%** por cada liquidación de siniestro
+- Los fees financian operación + reinversion
 - Sobrante reinvertido en nuevas funcionalidades
 
 ### Topología
@@ -280,9 +280,9 @@ func (s *SmartContract) ValidateClaim(ctx ...,
 }
 ```
 
-### Politicas de endorsement con state-based
+### Políticas de endorsement con state-based
 
-Cada contrato tiene su propia politica, que requiere endorsement de TODAS las partes:
+Cada contrato tiene su propia política, que requiere endorsement de TODAS las partes:
 
 ```go
 // Al crear el contrato
@@ -391,7 +391,7 @@ peer chaincode query ... \
 
 ## Preguntas para el debate
 
-1. B3i fracaso por modelo de negocio. ¿Nuestro modelo de fees por transaccion es sostenible?
+1. B3i fracaso por modelo de negocio. ¿Nuestro modelo de fees por transacción es sostenible?
 2. ¿Que pasa si una aseguradora quiere salir del consorcio? ¿Que hacemos con sus contratos activos?
 3. ¿Deberia el regulador (EIOPA) tener voto en decisiones de governance o solo acceso de lectura?
 4. ¿Es realista que las aseguradoras confien en un chaincode open source para mover millones de euros?
@@ -400,23 +400,23 @@ peer chaincode query ... \
 
 ---
 
-## Leccion del caso: sostenibilidad > tecnologia
+## Leccion del caso: sostenibilidad > tecnología
 
 **B3i tenia:**
-- Tecnologia probada (R3 Corda)
+- Tecnología probada (R3 Corda)
 - 15+ aseguradoras top del mundo
-- 5 anos de desarrollo
+- 5 años de desarrollo
 - Pilotos exitosos
 
 **B3i NO tenia:**
 - Modelo de negocio que se sostuviera solo
-- MVP claro que generara valor rapido
+- MVP claro que generara valor rápido
 - Incentivos para que los miembros pagaran indefinidamente
-- Integracion facil con sistemas legacy
+- Integración fácil con sistemas legacy
 
 **Resultado:** cerro en 2022.
 
-> Un proyecto blockchain enterprise necesita un **modelo de negocio sostenible desde el dia 1**. No es suficiente con que la tecnologia funcione. Si no hay un flujo de ingresos que financie la operacion, el proyecto muere cuando el capital inicial se agota.
+> Un proyecto blockchain enterprise necesita un **modelo de negocio sostenible desde el dia 1**. No es suficiente con que la tecnología funcione. Si no hay un flujo de ingresos que financie la operación, el proyecto muere cuando el capital inicial se agota.
 
 ---
 
@@ -428,9 +428,9 @@ Ambos fracasaron, pero por **motivos distintos**:
 |---------|-----------|-----|
 | Motivo principal | Gobernanza (fundador dominante) | Modelo de negocio (sin ingresos) |
 | Fundador | Maersk (competidor) | Consorcio de 15 (neutro) |
-| Financiacion | Comercial (IBM + Maersk) | Cuotas voluntarias |
-| Adopcion | Limitada (sin competidores) | Alta (todos los grandes) |
-| Tecnologia | Funcionaba | Funcionaba |
+| Financiación | Comercial (IBM + Maersk) | Cuotas voluntarias |
+| Adopción | Limitada (sin competidores) | Alta (todos los grandes) |
+| Tecnología | Funcionaba | Funcionaba |
 | Cierre | 2022 | 2022 |
 
 **Dos tipos de fracaso, dos lecciones distintas.** Si disenas un proyecto blockchain enterprise, evita **ambas trampas**.
@@ -439,7 +439,7 @@ Ambos fracasaron, pero por **motivos distintos**:
 
 ## Referencias
 
-- Caso B3i en las slides: [Modulo 3 dia 1](../../slides/Modulo 3/dia_1.pptx)
-- Presentacion adopcion: [Modulo 4 adopcion.pptx](../../slides/Modulo 4/adopcion.pptx)
-- Gobernanza: [Modulo 3 dia 3](../../slides/Modulo 3/dia_3.pptx)
+- Caso B3i en las slides: [Módulo 3 dia 1](../../slides/Módulo 3/dia_1.pptx)
+- Presentación adopción: [Módulo 4 adopción.pptx](../../slides/Módulo 4/adopción.pptx)
+- Gobernanza: [Módulo 3 dia 3](../../slides/Módulo 3/dia_3.pptx)
 - Ejercicio TradeLens (complementario): [ejercicio-tradelens.md](ejercicio-tradelens.md)

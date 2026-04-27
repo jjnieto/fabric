@@ -4,7 +4,7 @@
 
 Walmart, junto con IBM, lanzo en 2018 **IBM Food Trust**, una plataforma basada en Hyperledger Fabric para rastrear el origen de productos frescos. Antes del sistema, rastrear un mango desde la tienda hasta la granja tardaba 7 dias. Con Fabric, el mismo rastreo tarda 2.2 segundos.
 
-Tu mision: disenar y montar una red Fabric que soporte un caso similar (pero a escala de aula) para trazar **lotes de aguacates** desde el productor hasta el supermercado.
+Tu misión: diseñar y montar una red Fabric que soporte un caso similar (pero a escala de aula) para trazar **lotes de aguacates** desde el productor hasta el supermercado.
 
 ---
 
@@ -27,15 +27,15 @@ graph LR
 ```
 
 1. **¿Cuantas organizaciones hay en la red?** Enumera cada una con su MSPID.
-2. **¿Que rol tiene cada organizacion?** ¿Cuales emiten datos, cuales solo leen?
+2. **¿Que rol tiene cada organización?** ¿Cuales emiten datos, cuales solo leen?
 3. **¿Necesitamos un regulador con acceso de solo lectura?** ¿O es mejor que sea una org mas?
 
 ### Datos y canales
 
 4. **¿Cuantos canales necesitas?** ¿Uno compartido por todas las orgs? ¿Canales privados entre ciertas orgs?
-5. **¿Que datos son publicos para todo el consorcio?** Piensa en: ID del lote, producto, origen, estado.
+5. **¿Que datos son públicos para todo el consorcio?** Piensa en: ID del lote, producto, origen, estado.
 6. **¿Que datos son confidenciales?** Piensa en: precios, margenes, condiciones comerciales entre actores.
-7. **¿Donde guardarias los precios?** ¿En el ledger publico, en Private Data Collections, o off-chain?
+7. **¿Donde guardarias los precios?** ¿En el ledger público, en Private Data Collections, o off-chain?
 
 ### Flujo de datos
 
@@ -44,17 +44,17 @@ graph LR
 10. **¿Quien puede hacer un recall (retirar del mercado)?** ¿Solo el regulador o cualquier actor?
 11. **¿El consumidor final necesita acceso?** ¿Como verificaria un QR?
 
-### Politicas de endorsement
+### Políticas de endorsement
 
-12. **¿Que politica de endorsement usarias?** Justifica:
+12. **¿Que política de endorsement usarias?** Justifica:
     - `AND(Productor, Distribuidor, Supermercado)` — todos deben aprobar
     - `OR(Productor, Distribuidor, Supermercado)` — basta con uno
     - `MAJORITY` — mayoria
-    - Politica por state (state-based endorsement)
+    - Política por state (state-based endorsement)
 
 ---
 
-## Solucion propuesta
+## Solución propuesta
 
 > **Intenta responder tu las preguntas antes de leer esto.**
 
@@ -102,11 +102,11 @@ graph TB
 
 **Decisiones clave:**
 
-- **4 organizaciones + orderer**: Productor, Distribuidor, Supermercado y Regulador (este ultimo como actor con permisos especiales).
-- **1 canal compartido**: todos ven el mismo ledger. La trazabilidad tiene que ser publica dentro del consorcio.
+- **4 organizaciones + orderer**: Productor, Distribuidor, Supermercado y Regulador (este último como actor con permisos especiales).
+- **1 canal compartido**: todos ven el mismo ledger. La trazabilidad tiene que ser pública dentro del consorcio.
 - **Private Data Collection `priceAgreement`**: compartida solo entre Productor-Distribuidor para precios de compra.
 - **Private Data Collection `wholesalePrice`**: compartida solo entre Distribuidor-Supermercado.
-- **Politica de endorsement**: `AND(productor, distribuidor, supermercado)` solo para recall. Para movimientos normales: solo el holder actual endorsa.
+- **Política de endorsement**: `AND(productor, distribuidor, supermercado)` solo para recall. Para movimientos normales: solo el holder actual endorsa.
 
 ### Modelo de datos
 
@@ -291,7 +291,7 @@ Crea `collections_config.json`:
 
 ### Paso 6: Desplegar chaincode de trazabilidad
 
-Puedes reutilizar el chaincode `FoodLot` del proyecto FidelityChain (Modulo 6) o uno similar. El despliegue es el estandar:
+Puedes reutilizar el chaincode `FoodLot` del proyecto FidelityChain (Módulo 6) o uno similar. El despliegue es el estandar:
 
 ```bash
 # Empaquetar
@@ -365,14 +365,14 @@ peer chaincode query -C trazabilidad-channel -n foodtrace \
 
 1. ¿Que ventaja real tiene usar Fabric aqui frente a una base de datos compartida gestionada por el supermercado?
 2. ¿Que pasa si el productor miente sobre el origen? ¿Blockchain lo detecta?
-3. ¿Como integrariais sensores IoT (temperatura) para que registren datos automaticamente?
+3. ¿Como integrariais sensores IoT (temperatura) para que registren datos automáticamente?
 4. ¿Deberia el consumidor final tener acceso? ¿Como?
-5. Si un productor abandona el consorcio, ¿que pasa con sus lotes historicos?
+5. Si un productor abandona el consorcio, ¿que pasa con sus lotes históricos?
 
 ---
 
 ## Referencias
 
-- Chaincode FoodLot: [Modulo 6 Dia 4](../../modulo-6/03-chaincode.md) (adaptar el modelo para aguacates)
+- Chaincode FoodLot: [Módulo 6 Dia 4](../../módulo-6/03-chaincode.md) (adaptar el modelo para aguacates)
 - Tutorial de Private Data: [Doc 04 Chaincode Lifecycle](../../04-chaincode-lifecycle.md)
 - Administracion: [Doc 06 Operaciones](../../06-operaciones-administracion.md)

@@ -1,10 +1,10 @@
-# 05 - Fabric CA: Gestion de identidades en produccion
+# 05 - Fabric CA: Gestión de identidades en producción
 
 ## Por que Fabric CA
 
-En los documentos anteriores usamos `cryptogen` para generar todos los certificados de golpe. Esto funciona para desarrollo, pero tiene limitaciones serias en produccion:
+En los documentos anteriores usamos `cryptogen` para generar todos los certificados de golpe. Esto funciona para desarrollo, pero tiene limitaciones serias en producción:
 
-- **No puedes anadir nuevos usuarios** sin regenerar todo
+- **No puedes añadir nuevos usuarios** sin regenerar todo
 - **No puedes revocar** un certificado comprometido
 - **No puedes renovar** certificados que caducan
 - **No hay registro** de quien solicito que certificado y cuando
@@ -31,13 +31,13 @@ graph TB
     style CERT fill:#0D9448,color:#fff
 ```
 
-> **Analogia:** `cryptogen` es como imprimir todos los DNIs de un pais de golpe el dia de la fundacion. Fabric CA es el registro civil: emite DNIs bajo demanda, los renueva cuando caducan y los invalida si se pierden.
+> **Analogia:** `cryptogen` es como imprimir todos los DNIs de un país de golpe el dia de la fundación. Fabric CA es el registro civil: emite DNIs bajo demanda, los renueva cuando caducan y los invalida si se pierden.
 
 ---
 
 ## Pregunta frecuente: ¿puedo usar Fabric CA sobre una red creada con cryptogen?
 
-**No.** Son incompatibles sobre la misma red. La razon:
+**No.** Son incompatibles sobre la misma red. La razón:
 
 - `cryptogen` genera su propia CA raiz (con su clave privada)
 - Fabric CA genera una CA raiz diferente (con otra clave privada)
@@ -64,11 +64,11 @@ graph TB
 
 Para usar Fabric CA hay que **montar la red desde cero** con Fabric CA desde el principio. Los ejemplos de este documento son exactamente eso: un tutorial completo para montar una red con Fabric CA.
 
-> **Nota para alumnos curiosos:** Tecnicamente podrias usar `openssl` para generar certificados sueltos firmados por la CA raiz de `cryptogen` (la clave privada esta en `crypto-config/.../ca/`). Funcionaria, pero tendrias que gestionar manualmente los atributos NodeOU, la estructura MSP, las extensiones X.509 y la revocacion. Fabric CA hace todo eso por ti.
+> **Nota para alumnos curiosos:** Tecnicamente podrias usar `openssl` para generar certificados sueltos firmados por la CA raiz de `cryptogen` (la clave privada esta en `crypto-config/.../ca/`). Funcionaria, pero tendrias que gestionar manualmente los atributos NodeOU, la estructura MSP, las extensiones X.509 y la revocación. Fabric CA hace todo eso por ti.
 
 ---
 
-## Fabric CA: emision vs validacion
+## Fabric CA: emisión vs validación
 
 Es importante entender que Fabric CA **solo emite certificados**. No los valida en tiempo real.
 
@@ -89,15 +89,15 @@ sequenceDiagram
     Peer-->>User: OK / Rechazado
 ```
 
-La validacion la hacen los **peers localmente**, verificando la cadena de firmas contra el certificado raiz de la CA que tienen en su MSP. Es como un DNI: el registro civil lo emite, pero cuando lo ensenias en un hotel, el hotel no llama al registro civil — comprueba los sellos de seguridad.
+La validación la hacen los **peers localmente**, verificando la cadena de firmas contra el certificado raiz de la CA que tienen en su MSP. Es como un DNI: el registro civil lo emite, pero cuando lo ensenias en un hotel, el hotel no llama al registro civil — comprueba los sellos de seguridad.
 
-La **unica excepcion** es la revocacion: cuando se revoca un certificado, hay que generar una CRL y distribuirla a los MSPs de los peers. Si no se actualiza la CRL, un certificado revocado seguira siendo aceptado.
+La **única excepción** es la revocación: cuando se revoca un certificado, hay que generar una CRL y distribuirla a los MSPs de los peers. Si no se actualiza la CRL, un certificado revocado seguira siendo aceptado.
 
 ---
 
 ## Arquitectura de Fabric CA
 
-En una red real, **cada organizacion tiene su propia Fabric CA**. La CA de Org1 solo emite certificados para miembros de Org1, y la CA de Org2 solo para los suyos.
+En una red real, **cada organización tiene su propia Fabric CA**. La CA de Org1 solo emite certificados para miembros de Org1, y la CA de Org2 solo para los suyos.
 
 ```mermaid
 graph TB
@@ -155,7 +155,7 @@ sequenceDiagram
     CA-->>User: Certificado + clave privada
 ```
 
-| Operacion | Quien la ejecuta | Que hace | Resultado |
+| Operación | Quien la ejecuta | Que hace | Resultado |
 |-----------|-----------------|----------|-----------|
 | **register** | Admin de la org | Crea una identidad en la CA | La identidad existe pero aun no tiene certificado |
 | **enroll** | El propio usuario | Solicita su certificado a la CA | Obtiene cert X.509 + clave privada |
@@ -167,7 +167,7 @@ sequenceDiagram
 Al registrar una identidad se puede especificar:
 - **Tipo**: `client`, `peer`, `orderer`, `admin`
 - **Atributos personalizados**: `role=auditor`, `department=legal`, etc.
-- **Afiliacion**: la posicion en la jerarquia de la org (`org1.department1`)
+- **Afiliacion**: la posición en la jerarquia de la org (`org1.department1`)
 
 Estos atributos quedan embebidos en el certificado X.509 y pueden usarse para control de acceso en los chaincodes (ABAC).
 
@@ -263,7 +263,7 @@ curl -k https://localhost:9054/cainfo   # CA Orderer
 
 ### Paso 2: Enrollar al admin bootstrap de Org1
 
-El admin bootstrap es el primer usuario de cada CA. Se creo automaticamente al arrancar el server con `-b admin:adminpw`.
+El admin bootstrap es el primer usuario de cada CA. Se creo automáticamente al arrancar el server con `-b admin:adminpw`.
 
 ```bash
 export FABRIC_CA_CLIENT_HOME=$PWD/fabric-ca/org1/admin
@@ -347,7 +347,7 @@ fabric-ca-client enroll \
   --tls.certfiles $PWD/fabric-ca/org1/tls-cert.pem
 ```
 
-El flag `--csr.hosts` anade SANs al certificado del peer (equivalente al `SANS` de `crypto-config.yaml`).
+El flag `--csr.hosts` añade SANs al certificado del peer (equivalente al `SANS` de `crypto-config.yaml`).
 El flag `--enrollment.attrs` indica que atributos incluir en el certificado del usuario.
 
 ### Paso 5: Repetir para Org2 y OrdererOrg
@@ -411,7 +411,7 @@ cp fabric-ca/org1/tls-cert.pem \
 # Copiar los certs de cada identidad a su carpeta...
 ```
 
-> **Nota:** En la practica, este proceso de construir los MSPs se automatiza con un script.
+> **Nota:** En la práctica, este proceso de construir los MSPs se automatiza con un script.
 > El repositorio `fabric-samples/test-network` incluye un script `registerEnroll.sh`
 > que hace exactamente esto. Es una buena referencia para entender el proceso completo.
 
@@ -451,7 +451,7 @@ sequenceDiagram
 
 ## Revocar un certificado
 
-Cuando un certificado se ve comprometido o un empleado deja la organizacion, hay que revocarlo.
+Cuando un certificado se ve comprometido o un empleado deja la organización, hay que revocarlo.
 
 ```bash
 # Usar el admin bootstrap para revocar
@@ -465,7 +465,7 @@ fabric-ca-client revoke \
   --tls.certfiles $PWD/fabric-ca/org1/tls-cert.pem
 ```
 
-Despues de revocar, hay que **generar una nueva CRL** (Certificate Revocation List) y distribuirla a los peers:
+Después de revocar, hay que **generar una nueva CRL** (Certificate Revocation List) y distribuirla a los peers:
 
 ```bash
 # Generar CRL actualizada
@@ -474,7 +474,7 @@ fabric-ca-client gencrl \
   --tls.certfiles $PWD/fabric-ca/org1/tls-cert.pem
 ```
 
-La CRL se coloca en el MSP de la organizacion (`msp/crls/`) y los peers la consultan para rechazar certificados revocados.
+La CRL se coloca en el MSP de la organización (`msp/crls/`) y los peers la consultan para rechazar certificados revocados.
 
 ```mermaid
 graph LR
@@ -487,7 +487,7 @@ graph LR
     style PEERS fill:#0D9448,color:#fff
 ```
 
-> **Importante:** La revocacion no es instantanea. Los peers solo la aplican cuando se actualiza la CRL en su MSP. En produccion, automatizar este proceso es critico.
+> **Importante:** La revocación no es instantanea. Los peers solo la aplican cuando se actualiza la CRL en su MSP. En producción, automatizar este proceso es crítico.
 
 ---
 
@@ -551,22 +551,22 @@ NodeOUs:
 
 | Aspecto | cryptogen | Fabric CA |
 |---------|-----------|-----------|
-| Uso | Desarrollo y testing | Produccion |
-| Generacion | Todo de golpe | Bajo demanda |
-| Anadir usuarios | Regenerar todo | `register` + `enroll` |
+| Uso | Desarrollo y testing | Producción |
+| Generación | Todo de golpe | Bajo demanda |
+| Añadir usuarios | Regenerar todo | `register` + `enroll` |
 | Revocar | No es posible | `revoke` + `gencrl` |
 | Renovar | No es posible | `reenroll` |
 | Atributos custom | No | Si (`--id.attrs`) |
-| Complejidad | Minima | Mayor (server + client) |
-| Auditoria | No hay registro | Log completo de operaciones |
+| Complejidad | Mínima | Mayor (server + client) |
+| Auditoría | No hay registro | Log completo de operaciones |
 
-> **Regla practica:** Usa `cryptogen` para aprender y prototipar. Usa Fabric CA para cualquier cosa que se parezca a produccion.
+> **Regla práctica:** Usa `cryptogen` para aprender y prototipar. Usa Fabric CA para cualquier cosa que se parezca a producción.
 
 ---
 
 ## Troubleshooting
 
-| Error | Causa | Solucion |
+| Error | Causa | Solución |
 |-------|-------|----------|
 | `Authorization failure` | El admin no esta enrollado o el token expiro | Re-enrollar al admin |
 | `Identity already registered` | Ya existe un registro con ese nombre | Usar otro nombre o eliminar el existente |

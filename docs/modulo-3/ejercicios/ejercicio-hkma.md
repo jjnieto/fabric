@@ -4,15 +4,15 @@
 
 En 2018, la **Hong Kong Monetary Authority (HKMA)** — el banco central de Hong Kong — lanzo **eTradeConnect**, una plataforma de trade finance basada en Hyperledger Fabric. La diferencia clave con We.Trade: **el regulador esta en el consorcio desde el dia 1**.
 
-eTradeConnect conecta a los principales bancos de Hong Kong (HSBC, Standard Chartered, BOC HK, DBS, ICBC, ANZ, Hang Seng, BNP Paribas, etc.) para compartir informacion de operaciones comerciales. Es interoperable con We.Trade (Europa) para operaciones Asia-Europa.
+eTradeConnect conecta a los principales bancos de Hong Kong (HSBC, Standard Chartered, BOC HK, DBS, ICBC, ANZ, Hang Seng, BNP Paribas, etc.) para compartir información de operaciones comerciales. Es interoperable con We.Trade (Europa) para operaciones Asia-Europa.
 
-Caso de uso especial que resuelve: **el fraude de doble financiacion** — cuando un exportador pide credito a dos bancos por la misma mercancia. Sin un ledger compartido, cada banco solo ve sus propias operaciones y no puede detectar el solapamiento.
+Caso de uso especial que resuelve: **el fraude de doble financiación** — cuando un exportador pide credito a dos bancos por la misma mercancia. Sin un ledger compartido, cada banco solo ve sus propias operaciones y no puede detectar el solapamiento.
 
-Tu mision: disenar una red Fabric donde **el regulador tiene un rol especial** con visibilidad completa y capacidad de auditoria, pero sin poder modificar operaciones de los bancos.
+Tu misión: diseñar una red Fabric donde **el regulador tiene un rol especial** con visibilidad completa y capacidad de auditoría, pero sin poder modificar operaciones de los bancos.
 
 ---
 
-## El problema: fraude de doble financiacion
+## El problema: fraude de doble financiación
 
 ```mermaid
 sequenceDiagram
@@ -30,7 +30,7 @@ sequenceDiagram
     Note over BA,BB: Los bancos se enteran después, ya es tarde
 ```
 
-**Como lo soluciona blockchain**: cuando un banco registra una solicitud de financiacion sobre una operacion, el sistema detecta automaticamente si ya existe otra financiacion previa sobre esa misma operacion.
+**Como lo soluciona blockchain**: cuando un banco registra una solicitud de financiación sobre una operación, el sistema detecta automáticamente si ya existe otra financiación previa sobre esa misma operación.
 
 ---
 
@@ -38,31 +38,31 @@ sequenceDiagram
 
 ### Roles y permisos
 
-1. **¿Cuantos bancos minimo tiene sentido?** (el nuestro sera 3 bancos + regulador)
+1. **¿Cuantos bancos mínimo tiene sentido?** (el nuestro será 3 bancos + regulador)
 2. **¿Que puede hacer el regulador (HKMA)?** Piensa en:
    - ¿Leer todas las operaciones?
    - ¿Invocar funciones administrativas (bloquear operaciones sospechosas)?
    - ¿Participar en el endorsement?
-3. **¿El regulador debe endorsar cada transaccion o solo auditar?**
+3. **¿El regulador debe endorsar cada transacción o solo auditar?**
 
-### Deteccion de doble financiacion
+### Detección de doble financiación
 
-4. **¿Como detectas que dos bancos estan financiando la misma operacion?**
-   - ¿Un identificador comun (hash de factura, numero de BL)?
-   - ¿Una consulta antes de crear la financiacion?
-5. **¿Como garantizas que el identificador comun sea unico y verificable?**
-6. **¿Que pasa si se detecta doble financiacion?** ¿Se rechaza automaticamente? ¿Se alerta al regulador?
+4. **¿Como detectas que dos bancos estan financiando la misma operación?**
+   - ¿Un identificador común (hash de factura, número de BL)?
+   - ¿Una consulta antes de crear la financiación?
+5. **¿Como garantizas que el identificador común sea único y verificable?**
+6. **¿Que pasa si se detecta doble financiación?** ¿Se rechaza automáticamente? ¿Se alerta al regulador?
 
 ### Datos y privacidad
 
 7. **¿Todos los bancos ven los importes exactos?** ¿O solo el regulador?
-8. **¿Como conciliar privacidad bancaria con auditoria del regulador?**
+8. **¿Como conciliar privacidad bancaria con auditoría del regulador?**
 9. **¿Que datos PERSONALES del cliente pueden ir on-chain?** (pista: GDPR)
 
-### Politicas
+### Políticas
 
-10. **¿Politica de endorsement por operacion?** (solo el banco que crea)
-11. **¿Politica de canal?** ¿El regulador tiene voto en decisiones del canal?
+10. **¿Política de endorsement por operación?** (solo el banco que crea)
+11. **¿Política de canal?** ¿El regulador tiene voto en decisiones del canal?
 
 ---
 
@@ -113,9 +113,9 @@ graph TB
 **Decisiones clave:**
 
 - **HKMA es una org mas en el canal**, con peer propio. No es un "super-admin" — es un miembro con privilegios específicos codificados en el chaincode.
-- **El regulador tiene politica de lectura amplia** pero NO endorsa operaciones comerciales entre bancos.
-- **Identificador unico: hash de la factura**. Cuando un banco quiere financiar, debe registrar el hash de la factura. El chaincode verifica que no existe otra financiacion con ese hash.
-- **Datos personales off-chain**: en el ledger solo va el hash. Los datos reales (nombre del importador/exportador, numero de factura) estan en los sistemas de cada banco.
+- **El regulador tiene política de lectura amplia** pero NO endorsa operaciones comerciales entre bancos.
+- **Identificador único: hash de la factura**. Cuando un banco quiere financiar, debe registrar el hash de la factura. El chaincode verifica que no existe otra financiación con ese hash.
+- **Datos personales off-chain**: en el ledger solo va el hash. Los datos reales (nombre del importador/exportador, número de factura) estan en los sistemas de cada banco.
 
 ### Modelo de datos
 
@@ -136,7 +136,7 @@ graph TB
 }
 ```
 
-El `invoiceHash` es el **campo clave**: es lo que permite detectar doble financiacion.
+El `invoiceHash` es el **campo clave**: es lo que permite detectar doble financiación.
 
 ### Funciones con control de acceso
 
@@ -217,10 +217,10 @@ func (s *SmartContract) RegulatorAuditQuery(ctx ...,
 }
 ```
 
-### Politicas de endorsement
+### Políticas de endorsement
 
 - **Operaciones comerciales entre bancos**: endorsement solo del banco que crea (OR).
-- **Cambios de configuracion del canal**: MAJORITY de todas las orgs (incluido regulador).
+- **Cambios de configuración del canal**: MAJORITY de todas las orgs (incluido regulador).
 - **Funciones del regulador** (flag, bloquear): solo HKMA endorsa — evita que bancos flaggen operaciones entre si.
 
 ```bash
@@ -273,9 +273,9 @@ PeerOrgs:
 cryptogen generate --config=crypto-config.yaml --output=crypto-config
 ```
 
-### Indices CouchDB para detectar duplicados
+### Índices CouchDB para detectar duplicados
 
-Es crucial para el rendimiento. El chaincode hace una query por `invoiceHash` en cada operacion.
+Es crucial para el rendimiento. El chaincode hace una query por `invoiceHash` en cada operación.
 
 `META-INF/statedb/couchdb/indexes/indexInvoiceHash.json`:
 
@@ -319,7 +319,7 @@ peer chaincode query ... \
 # Devuelve todas las operaciones del mes
 ```
 
-### Flujo de deteccion de fraude
+### Flujo de detección de fraude
 
 ```bash
 # 3. Como Standard Chartered: INTENTAR financiar LA MISMA factura
@@ -333,7 +333,7 @@ peer chaincode invoke ... \
 # El regulador (HKMA) recibe la notificacion en tiempo real
 ```
 
-### Flujo de intervencion del regulador
+### Flujo de intervención del regulador
 
 ```bash
 # 5. Como HKMA: marcar operacion sospechosa para revision
@@ -356,10 +356,10 @@ peer chaincode invoke ... \
 ## Preguntas para el debate
 
 1. ¿Por que HKMA es una org y no un "super-usuario" del sistema? ¿Que ganamos?
-2. ¿El regulador deberia poder bloquear (no solo marcar) operaciones? ¿Por que?
-3. Si una operacion esta bajo revision, ¿el banco puede seguir operando? ¿O queda congelada?
+2. ¿El regulador debería poder bloquear (no solo marcar) operaciones? ¿Por que?
+3. Si una operación esta bajo revisión, ¿el banco puede seguir operando? ¿O queda congelada?
 4. ¿Como afecta GDPR a este modelo? Estamos guardando hashes, pero el hash de una factura + timestamp permite correlacionar.
-5. Hong Kong tiene al regulador en el consorcio. En Europa, ¿seria la BCE? ¿Cada pais su banco central?
+5. Hong Kong tiene al regulador en el consorcio. En Europa, ¿seria la BCE? ¿Cada país su banco central?
 6. ¿Que pasa si el regulador es comprometido (certificado robado)? ¿Que impacto tendria?
 
 ---
@@ -370,9 +370,9 @@ peer chaincode invoke ... \
 |---------|-------------------|------------------|
 | Regulador | No participa | Miembro del consorcio |
 | Fundador | Consorcio de bancos | Banco central |
-| Deteccion de fraude | No explicita | Core del sistema |
-| Adopcion | Voluntaria (y limitada) | Obligatoria para bancos de HK |
-| Financiacion | Los bancos (insuficiente) | HKMA subsidia |
+| Detección de fraude | No explicita | Core del sistema |
+| Adopción | Voluntaria (y limitada) | Obligatoria para bancos de HK |
+| Financiación | Los bancos (insuficiente) | HKMA subsidia |
 | Estado actual | Cerrado (2022) | Operativo |
 
 **Leccion:** el respaldo regulatorio no es solo una caracteristica — puede ser LA diferencia entre exito y fracaso.
@@ -381,6 +381,6 @@ peer chaincode invoke ... \
 
 ## Referencias
 
-- Control de acceso en chaincodes: [Modulo 4 dia 3](../../slides/Modulo 4/dia_3.pptx)
-- Rich queries con CouchDB: [doc ejercicio Registro de Propiedad](../../modulo-4/ejercicios/ejercicio-registro-propiedad.md)
+- Control de acceso en chaincodes: [Módulo 4 dia 3](../../slides/Módulo 4/dia_3.pptx)
+- Rich queries con CouchDB: [doc ejercicio Registro de Propiedad](../../módulo-4/ejercicios/ejercicio-registro-propiedad.md)
 - Políticas de endorsement: [doc 04 Chaincode Lifecycle](../../04-chaincode-lifecycle.md)

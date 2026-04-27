@@ -1,6 +1,6 @@
-# 05 - Aplicacion cliente: FidelityChain
+# 05 - Aplicación cliente: FidelityChain
 
-## Vision general
+## Visión general
 
 En este documento creamos dos aplicaciones Node.js que se conectan a la red Fabric usando el Gateway SDK:
 
@@ -39,7 +39,7 @@ graph TB
 
 ---
 
-## Estructura de la aplicacion
+## Estructura de la aplicación
 
 ```
 proyecto-fidelitychain/application/
@@ -52,9 +52,9 @@ proyecto-fidelitychain/application/
 
 ---
 
-## Helper de conexion (fabric-connection.js)
+## Helper de conexión (fabric-connection.js)
 
-Este modulo encapsula la logica de conexion al Gateway para no repetirla en cada app.
+Este módulo encapsula la lógica de conexión al Gateway para no repetirla en cada app.
 
 ```javascript
 // application/utils/fabric-connection.js

@@ -1,6 +1,6 @@
 # 04 - Despliegue de la red FidelityChain
 
-## Vision general
+## Visión general
 
 En este documento levantamos la red completa desde cero y desplegamos el chaincode. Al final tendremos un sistema operativo donde podemos emitir y canjear puntos desde la terminal.
 
@@ -389,15 +389,15 @@ peer chaincode query -C fidelity-channel -n fidelitypoints \
 
 ## Troubleshooting
 
-| Error | Causa | Solucion |
+| Error | Causa | Solución |
 |-------|-------|----------|
 | `tls: failed to verify certificate` | Certificado no incluye localhost en SANS | Regenerar certs con SANS en crypto-config.yaml |
 | `core config file not found` | Falta FABRIC_CFG_PATH | `export FABRIC_CFG_PATH=$HOME/fabric/fabric-samples/config` |
 | `access denied` en Mint | Estas como CafeteriaMSP intentando emitir | Cambia las variables al Hotel |
 | `chaincode not found` | No se ha hecho commit | Verificar con `querycommitted` |
-| `MVCC_READ_CONFLICT` | Dos transacciones concurrentes | Reintentar la transaccion |
+| `MVCC_READ_CONFLICT` | Dos transacciones concurrentes | Reintentar la transacción |
 
 ---
 
 **Anterior:** [03 - Chaincode](03-chaincode.md)
-**Siguiente:** [05 - Aplicacion cliente](05-aplicacion-cliente.md)
+**Siguiente:** [05 - Aplicación cliente](05-aplicación-cliente.md)

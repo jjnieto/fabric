@@ -1,8 +1,8 @@
 # 06 - Pruebas y demo: FidelityChain
 
-## Guion de demostracion
+## Guion de demostración
 
-Este es el flujo completo para demostrar el sistema FidelityChain. Puedes usarlo como guion de presentacion en clase.
+Este es el flujo completo para demostrar el sistema FidelityChain. Puedes usarlo como guion de presentación en clase.
 
 ### Preparacion
 
@@ -21,9 +21,9 @@ Nombre: Javier Garcia
 → Cliente 12345678A registrado.
 ```
 
-> **Explicar:** El huesped presenta su DNI en recepcion. El hotel registra su numero (12345678A) como identificador en el sistema. A partir de ahora, el cliente se identifica con su DNI en cualquier punto del consorcio. La cafeteria puede verlo inmediatamente porque comparten el mismo canal y ledger.
+> **Explicar:** El huesped presenta su DNI en recepción. El hotel registra su número (12345678A) como identificador en el sistema. A partir de ahora, el cliente se identifica con su DNI en cualquier punto del consorcio. La cafeteria puede verlo inmediatamente porque comparten el mismo canal y ledger.
 
-### Acto 2: Emision de puntos
+### Acto 2: Emisión de puntos
 
 **Terminal 1 (Hotel):**
 ```
@@ -34,9 +34,9 @@ Motivo: Estancia 2 noches suite premium
 → 100 puntos emitidos a 12345678A.
 ```
 
-> **Explicar:** La transaccion ha sido endorsada por ambos peers (Hotel y Cafeteria), ordenada por el orderer y escrita en el ledger. La cafeteria ya ve los 100 puntos.
+> **Explicar:** La transacción ha sido endorsada por ambos peers (Hotel y Cafeteria), ordenada por el orderer y escrita en el ledger. La cafeteria ya ve los 100 puntos.
 
-### Acto 3: Verificacion cruzada
+### Acto 3: Verificación cruzada
 
 **Terminal 2 (Cafeteria):**
 ```
@@ -67,7 +67,7 @@ Selecciona producto (1-5): 4
 → Nuevo saldo: 70 puntos
 ```
 
-> **Explicar:** El chaincode verifico que el caller es CafeteriaMSP (solo ella puede canjear), que el cliente tiene saldo suficiente y desconto los puntos. Todo en una sola transaccion atomica.
+> **Explicar:** El chaincode verifico que el caller es CafeteriaMSP (solo ella puede canjear), que el cliente tiene saldo suficiente y desconto los puntos. Todo en una sola transacción atomica.
 
 ### Acto 5: Historial completo
 
@@ -106,7 +106,7 @@ Selecciona producto: 5 (Menu almuerzo — 50 pts)
 → Error: saldo insuficiente: tiene 20 puntos, necesita 50
 ```
 
-> **Explicar:** El chaincode rechaza la operacion porque el cliente no tiene saldo suficiente. Ni la cafeteria ni el hotel pueden saltarse esta regla — esta en el smart contract.
+> **Explicar:** El chaincode rechaza la operación porque el cliente no tiene saldo suficiente. Ni la cafeteria ni el hotel pueden saltarse esta regla — esta en el smart contract.
 
 Y si el hotel intenta canjear puntos (aunque tenga la app modificada):
 
@@ -114,7 +114,7 @@ Y si el hotel intenta canjear puntos (aunque tenga la app modificada):
 → Error: solo la cafeteria puede canjear puntos (caller: HotelMSP)
 ```
 
-> **Explicar:** El chaincode rechaza la operacion porque el Hotel no tiene permiso de canje. Esto no es una regla de la aplicacion — esta en el smart contract, es inviolable.
+> **Explicar:** El chaincode rechaza la operación porque el Hotel no tiene permiso de canje. Esto no es una regla de la aplicación — esta en el smart contract, es inviolable.
 
 ### Acto 7: Estado global del token
 
@@ -128,7 +128,7 @@ Total canjeado: 30 pts
 En circulacion: 70 pts
 ```
 
-> **Explicar:** Estos totales se actualizan automaticamente con cada Mint y Redeem. Cualquier org puede auditar el estado del sistema en cualquier momento.
+> **Explicar:** Estos totales se actualizan automáticamente con cada Mint y Redeem. Cualquier org puede auditar el estado del sistema en cualquier momento.
 
 ---
 
@@ -214,9 +214,9 @@ func TestRedeem_SaldoInsuficiente(t *testing.T) {
 
 ---
 
-## Checklist de evaluacion del proyecto
+## Checklist de evaluación del proyecto
 
-Para los alumnos que presenten el proyecto, esta es la rubrica de evaluacion:
+Para los alumnos que presenten el proyecto, esta es la rubrica de evaluación:
 
 ### Obligatorio (para aprobar)
 
@@ -236,7 +236,7 @@ Para los alumnos que presenten el proyecto, esta es la rubrica de evaluacion:
 - [ ] Escucha de eventos en tiempo real
 - [ ] Tests unitarios del chaincode (al menos 3)
 - [ ] Manejo de errores correcto en la app (saldo insuficiente, cliente no existe)
-- [ ] Documentacion propia explicando decisiones de diseno
+- [ ] Documentación propia explicando decisiones de diseño
 
 ---
 
@@ -244,13 +244,13 @@ Para los alumnos que presenten el proyecto, esta es la rubrica de evaluacion:
 
 Si algun alumno quiere ir mas alla, estas son extensiones interesantes:
 
-1. **Anadir una tercera organizacion** (restaurante) que tambien pueda canjear puntos
-2. **Puntos con caducidad:** anadir un campo `expiresAt` y una funcion que invalide puntos caducados
-3. **Private Data:** que el precio de liquidacion entre hotel y cafeteria sea privado (solo lo ven ellos)
+1. **Añadir una tercera organización** (restaurante) que tambien pueda canjear puntos
+2. **Puntos con caducidad:** añadir un campo `expiresAt` y una funcion que invalide puntos caducados
+3. **Private Data:** que el precio de liquidación entre hotel y cafeteria sea privado (solo lo ven ellos)
 4. **Web UI:** crear un frontend React/Vue que se conecte a una API REST que a su vez use el Gateway SDK
 5. **Transferencia entre clientes:** permitir que un cliente regale puntos a otro
 6. **Niveles de fidelidad:** bronce (0-500), plata (500-2000), oro (2000+) con multiplicadores
 
 ---
 
-**Anterior:** [05 - Aplicacion cliente](05-aplicacion-cliente.md)
+**Anterior:** [05 - Aplicación cliente](05-aplicación-cliente.md)

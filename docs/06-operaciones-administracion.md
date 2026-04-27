@@ -1,6 +1,6 @@
 # 06 - Operaciones de administracion
 
-## Vision general
+## Visión general
 
 Este documento parte de la red montada con Fabric CA en el [doc 05](05-fabric-ca.md). Completamos la red con peers y orderer, desplegamos un chaincode y practicamos las operaciones de administracion mas comunes.
 
@@ -392,7 +392,7 @@ Si ves una lista de activos en JSON, la red esta operativa y el chaincode funcio
 
 ---
 
-## 2. Anadir una nueva organizacion al canal
+## 2. Añadir una nueva organización al canal
 
 Esta es una de las operaciones mas complejas en Fabric. Un nuevo socio se une al consorcio y necesita participar en un canal existente.
 
@@ -424,7 +424,7 @@ sequenceDiagram
 
 #### 2.1 Generar identidades de la nueva org con Fabric CA
 
-Levantar una CA para Org3 (anadir al docker-compose-ca.yaml o crear uno nuevo):
+Levantar una CA para Org3 (añadir al docker-compose-ca.yaml o crear uno nuevo):
 
 ```bash
 # Enrollar admin bootstrap de Org3
@@ -449,9 +449,9 @@ fabric-ca-client enroll \
 # Construir MSP de Org3 (misma estructura que Org1/Org2)
 ```
 
-#### 2.2 Generar la definicion JSON de Org3
+#### 2.2 Generar la definición JSON de Org3
 
-Anade Org3 al `configtx.yaml` y genera su definicion:
+Anade Org3 al `configtx.yaml` y genera su definición:
 
 ```bash
 export FABRIC_CFG_PATH=$PWD
@@ -480,7 +480,7 @@ jq '.data.data[0].payload.data.config' channel-artifacts/config_block.json \
   > channel-artifacts/config.json
 ```
 
-#### 2.4 Anadir Org3 a la configuracion
+#### 2.4 Añadir Org3 a la configuración
 
 ```bash
 jq -s '.[0] * {"channel_group":{"groups":{"Application":{"groups":{
@@ -553,11 +553,11 @@ peer channel fetch 0 channel-artifacts/mychannel.block \
 peer channel join -b channel-artifacts/mychannel.block
 ```
 
-> **Nota:** Este proceso es complejo a proposito. Fabric requiere gobernanza: no puedes anadir una org sin el consentimiento de las existentes. Es una caracteristica, no un defecto.
+> **Nota:** Este proceso es complejo a proposito. Fabric requiere gobernanza: no puedes añadir una org sin el consentimiento de las existentes. Es una caracteristica, no un defecto.
 
 ---
 
-## 3. Actualizar la configuracion del canal
+## 3. Actualizar la configuración del canal
 
 ### Que se puede cambiar
 
@@ -565,8 +565,8 @@ peer channel join -b channel-artifacts/mychannel.block
 |-----------|-------|---------|
 | Batch timeout | Orderer | Cambiar de 2s a 1s para mas velocidad |
 | Batch size | Orderer | Aumentar MaxMessageCount de 10 a 50 |
-| Politicas | Canal/Application/Orderer | Cambiar MAJORITY a ALL |
-| Anchor peers | Application.groups.OrgX | Anadir o cambiar anchor peers |
+| Políticas | Canal/Application/Orderer | Cambiar MAJORITY a ALL |
+| Anchor peers | Application.groups.OrgX | Añadir o cambiar anchor peers |
 | ACLs | Application | Cambiar permisos de acceso a recursos |
 | Capabilities | Canal/Orderer/Application | Habilitar nuevas features de Fabric |
 
@@ -643,7 +643,7 @@ peer channel update -f channel-artifacts/config_update_envelope.pb \
 
 ---
 
-## 4. Monitorizacion y logs
+## 4. Monitorización y logs
 
 ### Logs de los contenedores
 
@@ -675,14 +675,14 @@ docker exec peer0.org1.example.com \
 
 | Nivel | Cuando usarlo |
 |-------|--------------|
-| `ERROR` | Produccion (solo errores criticos) |
-| `WARNING` | Produccion (errores + advertencias) |
+| `ERROR` | Producción (solo errores críticos) |
+| `WARNING` | Producción (errores + advertencias) |
 | `INFO` | Normal (operaciones principales) |
 | `DEBUG` | Diagnostico (muy verboso, solo temporal) |
 
-### Metricas con Operations API
+### Métricas con Operations API
 
-Los peers y el orderer exponen metricas en sus puertos de operaciones (configurados en el docker-compose):
+Los peers y el orderer exponen métricas en sus puertos de operaciones (configurados en el docker-compose):
 
 ```bash
 # Health check del peer Org1 (puerto 9444)
@@ -695,14 +695,14 @@ curl -s http://localhost:9443/healthz
 curl -s http://localhost:9444/metrics | head -20
 ```
 
-Metricas utiles:
+Métricas útiles:
 
-| Metrica | Que indica |
+| Métrica | Que indica |
 |---------|-----------|
 | `endorser_proposal_duration` | Tiempo de endorsement |
 | `ledger_block_processing_time` | Tiempo de procesado de bloque |
-| `ledger_blockchain_height` | Numero de bloques en el ledger |
-| `gossip_state_height` | Altura del state segun gossip |
+| `ledger_blockchain_height` | Número de bloques en el ledger |
+| `gossip_state_height` | Altura del state según gossip |
 | `chaincode_launch_duration` | Tiempo de arranque del chaincode |
 
 ```mermaid
@@ -715,7 +715,7 @@ graph LR
     style GRAF fill:#0D9448,color:#fff
 ```
 
-> En produccion se configura Prometheus para recolectar metricas y Grafana para visualizarlas.
+> En producción se configura Prometheus para recolectar métricas y Grafana para visualizarlas.
 
 ---
 
@@ -746,7 +746,7 @@ graph TB
 | **Certificados** | `organizations/*/signcerts/` | Al renovar | Alta |
 | **Ledger** | Volumen Docker del peer | Periodica | Alta (se reconstruye desde otros peers) |
 | **World State** | Volumen Docker (CouchDB) | Periodica | Media (se reconstruye desde bloques) |
-| **Configuracion** | Archivos yaml | En cada cambio | Alta (tener en git) |
+| **Configuración** | Archivos yaml | En cada cambio | Alta (tener en git) |
 | **Fabric CA database** | `fabric-ca/*/fabric-ca-server.db` | Periodica | **CRITICA** (registro de identidades) |
 
 ### Backup del ledger
@@ -780,7 +780,7 @@ graph TB
 
 ---
 
-## 6. Rotacion de certificados TLS
+## 6. Rotación de certificados TLS
 
 Usando la Fabric CA del doc 05, renovar certificados es sencillo:
 
@@ -806,20 +806,20 @@ docker restart peer0.org1.example.com
 peer channel list
 ```
 
-### Calendario de rotacion
+### Calendario de rotación
 
 | Componente | Frecuencia | Impacto |
 |-----------|-----------|---------|
 | TLS de peers | Cada 12 meses | Reinicio del peer (segundos) |
 | TLS de orderers | Cada 12 meses | Coordinar con cluster Raft |
-| Enrollment certs | Segun politica | Sin reinicio |
-| CA root cert | Cada 5-10 anos | Renovacion completa |
+| Enrollment certs | Según política | Sin reinicio |
+| CA root cert | Cada 5-10 años | Renovación completa |
 
 ---
 
 ## Resumen de comandos de administracion
 
-| Operacion | Comando |
+| Operación | Comando |
 |-----------|---------|
 | Ver canales de un peer | `peer channel list` |
 | Info de un canal | `peer channel getinfo -c mychannel` |
@@ -829,7 +829,7 @@ peer channel list
 | Ver chaincodes activos | `peer lifecycle chaincode querycommitted` |
 | Cambiar log level en caliente | `docker exec <peer> peer node logsetlevel <modulo> <NIVEL>` |
 | Health check | `curl http://localhost:9444/healthz` |
-| Metricas Prometheus | `curl http://localhost:9444/metrics` |
+| Métricas Prometheus | `curl http://localhost:9444/metrics` |
 | Listar canales del orderer | `osnadmin channel list` |
 | Snapshot | `peer snapshot submitrequest` |
 | Revocar certificado | `fabric-ca-client revoke` |

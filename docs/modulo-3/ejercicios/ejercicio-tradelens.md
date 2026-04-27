@@ -4,7 +4,7 @@
 
 TradeLens fue un proyecto ambicioso de **Maersk + IBM** lanzado en 2018 para digitalizar y hacer trazable el comercio maritimo global. Basado en Hyperledger Fabric, llego a conectar a mas de 150 organizaciones (navieras, puertos, aduanas, terminales) y a procesar millones de eventos al dia.
 
-**Cerro en noviembre de 2022** tras casi 5 anos de operacion. La razon no fue tecnica — la plataforma funcionaba. El problema fue de **gobernanza**: las navieras competidoras de Maersk (MSC, CMA CGM, Hapag-Lloyd) no querian participar en una plataforma controlada por su mayor rival.
+**Cerro en noviembre de 2022** tras casi 5 años de operación. La razón no fue técnica — la plataforma funcionaba. El problema fue de **gobernanza**: las navieras competidoras de Maersk (MSC, CMA CGM, Hapag-Lloyd) no querian participar en una plataforma controlada por su mayor rival.
 
 Este ejercicio es **al reves** que los anteriores: analizaremos **que sali mal** y disenaremos una alternativa que SI podria funcionar, corrigiendo el problema del fundador dominante.
 
@@ -35,49 +35,49 @@ graph TB
 1. **Control concentrado**: Maersk decidia las reglas, el roadmap y los precios
 2. **Conflicto de intereses**: ¿por que MSC daria sus datos operacionales a su mayor competidor?
 3. **Licencia de pago**: IBM y Maersk cobraban por usar la plataforma
-4. **Sin masa critica**: sin los otros 3 grandes, el 40% del trafico mundial no estaba en TradeLens
+4. **Sin masa crítica**: sin los otros 3 grandes, el 40% del tráfico mundial no estaba en TradeLens
 5. **Red inutil sin todos**: trazar un contenedor que cambia de naviera a mitad de viaje es imposible si una de las navieras no esta
 
 ---
 
 ## Fase 1: Rediseñar sobre el papel
 
-Tu mision es disenar una **alternativa a TradeLens** que evite el problema del fundador dominante. Piensa en estas preguntas:
+Tu misión es diseñar una **alternativa a TradeLens** que evite el problema del fundador dominante. Piensa en estas preguntas:
 
 ### Gobernanza
 
-1. **¿Quien deberia ser el fundador?**
+1. **¿Quien debería ser el fundador?**
    - ¿Un consorcio multi-naviera?
    - ¿Una asociacion sectorial (BIMCO, ICS)?
    - ¿Un organismo internacional (IMO)?
-   - ¿Una fundacion sin animo de lucro?
-2. **¿Que modelo de decision usarias?**
+   - ¿Una fundación sin animo de lucro?
+2. **¿Que modelo de decisión usarias?**
    - MAJORITY entre navieras
-   - MAJORITY ponderada por tamano (peligroso — vuelve al problema de dominancia)
+   - MAJORITY ponderada por tamaño (peligroso — vuelve al problema de dominancia)
    - Comite rotativo entre miembros
 3. **¿Como se financia la plataforma?**
    - Cuota fija por miembro
    - Pay-per-use
-   - Sin coste (fondos publicos)
+   - Sin coste (fondos públicos)
 
-### Tecnologia
+### Tecnología
 
 4. **¿Un solo canal o canales por ruta / region?**
-5. **¿Que datos son publicos entre todos los miembros?** (estados de contenedor, ETAs)
+5. **¿Que datos son públicos entre todos los miembros?** (estados de contenedor, ETAs)
 6. **¿Que datos son privados?** (tarifas, clientes finales, margenes)
 7. **¿El regulador (aduanas) esta en el canal o accede por API externa?**
 
-### Adopcion
+### Adopción
 
 8. **¿Como atraes a las navieras competidoras desde el dia 1?**
-9. **¿Que pasa si un miembro quiere salir?** ¿Mantiene acceso a sus datos historicos?
+9. **¿Que pasa si un miembro quiere salir?** ¿Mantiene acceso a sus datos históricos?
 10. **¿Se puede garantizar que ningun miembro tenga ventaja competitiva?**
 
 ---
 
 ## Solución propuesta: MaritimeChain (neutral, multi-naviera)
 
-### Gobernanza: fundacion sin animo de lucro
+### Gobernanza: fundación sin animo de lucro
 
 ```mermaid
 graph TB
@@ -120,11 +120,11 @@ graph TB
 ```
 
 **Principios:**
-- **Fundacion sin animo de lucro** (modelo Alastria, Hyperledger): nadie es dueño
-- **Board rotativo**: miembros elegidos cada 1-2 anos por la asamblea
-- **1 miembro = 1 voto**: sin importar tamano
-- **Cuotas escalonadas**: por tamano de empresa (fairness sin dominancia)
-- **Codigo abierto**: chaincodes auditables por cualquier miembro
+- **Fundación sin animo de lucro** (modelo Alastria, Hyperledger): nadie es dueño
+- **Board rotativo**: miembros elegidos cada 1-2 años por la asamblea
+- **1 miembro = 1 voto**: sin importar tamaño
+- **Cuotas escalonadas**: por tamaño de empresa (fairness sin dominancia)
+- **Código abierto**: chaincodes auditables por cualquier miembro
 
 ### Topología
 
@@ -309,9 +309,9 @@ func (s *SmartContract) ClearCustoms(ctx ...,
 }
 ```
 
-### Politica de endorsement con state-based
+### Política de endorsement con state-based
 
-Al crear un contenedor, asignar una politica de endorsement dinamica para transbordos:
+Al crear un contenedor, asignar una política de endorsement dinámica para transbordos:
 
 ```go
 // Al crear el contenedor
@@ -376,37 +376,37 @@ peer chaincode query ... \
 
 ## Preguntas para el debate
 
-1. ¿Por que el modelo de fundacion funciona mejor que "Maersk lanza la plataforma"?
-2. Si todos los miembros tienen voto igual, ¿que pasa con empresas pequenas vs gigantes como Maersk?
+1. ¿Por que el modelo de fundación funciona mejor que "Maersk lanza la plataforma"?
+2. Si todos los miembros tienen voto igual, ¿que pasa con empresas pequeñas vs gigantes como Maersk?
 3. ¿Orderers distribuidos entre los miembros o en un tercero neutral (cloud)?
-4. El codigo de chaincode es publico y auditable. ¿Puede seguir habiendo "features" que favorezcan a una naviera?
-5. ¿Aduanas deberia poder BLOQUEAR un contenedor desde el chaincode (sanciones)? ¿O solo leer?
-6. Despues del fracaso de TradeLens, ¿quien deberia relanzar este tipo de proyecto?
+4. El código de chaincode es público y auditable. ¿Puede seguir habiendo "features" que favorezcan a una naviera?
+5. ¿Aduanas debería poder BLOQUEAR un contenedor desde el chaincode (sanciones)? ¿O solo leer?
+6. Después del fracaso de TradeLens, ¿quien debería relanzar este tipo de proyecto?
 
 ---
 
-## Leccion del caso: gobernanza > tecnologia
+## Leccion del caso: gobernanza > tecnología
 
 **TradeLens tenia:**
-- Tecnologia probada (Hyperledger Fabric funciona)
+- Tecnología probada (Hyperledger Fabric funciona)
 - Inversion masiva (cientos de millones de dolares)
 - Respaldo de IBM y Maersk (el lider mundial)
 - 150+ organizaciones conectadas
 
 **TradeLens NO tenia:**
-- Adopcion de los competidores directos de Maersk
+- Adopción de los competidores directos de Maersk
 - Modelo de gobernanza neutral
 - Confianza del resto del sector
 
 **Resultado:** fracaso.
 
-> La tecnologia blockchain es un requisito **necesario pero no suficiente** para que un proyecto multi-organizacion funcione. El exito depende de la **gobernanza**, los **incentivos** y la **confianza** entre los miembros.
+> La tecnología blockchain es un requisito **necesario pero no suficiente** para que un proyecto multi-organización funcione. El exito depende de la **gobernanza**, los **incentivos** y la **confianza** entre los miembros.
 
 ---
 
 ## Referencias
 
-- Caso TradeLens en las slides: [Modulo 3 dia 1](../../slides/Modulo 3/dia_1.pptx)
-- Presentacion adopcion: [Modulo 4 adopcion.pptx](../../slides/Modulo 4/adopcion.pptx)
-- State-based endorsement: [Modulo 4 dia 5](../../slides/Modulo 4/dia_5.pptx)
-- Gobernanza de consorcios: [Modulo 3 dia 3](../../slides/Modulo 3/dia_3.pptx)
+- Caso TradeLens en las slides: [Módulo 3 dia 1](../../slides/Módulo 3/dia_1.pptx)
+- Presentación adopción: [Módulo 4 adopción.pptx](../../slides/Módulo 4/adopción.pptx)
+- State-based endorsement: [Módulo 4 dia 5](../../slides/Módulo 4/dia_5.pptx)
+- Gobernanza de consorcios: [Módulo 3 dia 3](../../slides/Módulo 3/dia_3.pptx)

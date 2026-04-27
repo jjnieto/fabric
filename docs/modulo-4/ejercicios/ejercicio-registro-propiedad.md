@@ -2,20 +2,20 @@
 
 ## Enunciado
 
-Disenar el modelo de datos y las claves para un sistema de Registro de Propiedad inmobiliaria, implementar el chaincode CRUD completo y desplegarlo en la test-network.
+Diseñar el modelo de datos y las claves para un sistema de Registro de Propiedad inmobiliaria, implementar el chaincode CRUD completo y desplegarlo en la test-network.
 
 1. Definir la estructura de datos (Property) con todos los campos necesarios
-2. Disenar el key space: ¿que clave usareis? ¿composite keys?
+2. Diseñar el key space: ¿que clave usareis? ¿composite keys?
 3. Identificar las queries que necesitareis (por propietario, por zona, por tipo...)
 4. Decidir: ¿LevelDB o CouchDB? Justificar
 5. Crear el chaincode CRUD completo usando el prompt de IA como base
-6. Desplegar en la test-network y probar las operaciones basicas
+6. Desplegar en la test-network y probar las operaciones básicas
 
 ---
 
 ## 1. Estructura de datos (Property)
 
-Analisis: ¿que informacion necesitamos guardar de una propiedad inmobiliaria?
+Analisis: ¿que información necesitamos guardar de una propiedad inmobiliaria?
 
 ```go
 type Property struct {
@@ -36,10 +36,10 @@ type Property struct {
 ```
 
 **Decisiones de diseño:**
-- **ID = referencia catastral**: es un identificador unico y oficial en Espana, ya existe fuera de blockchain. No inventamos IDs nuevos.
-- **Owner = DNI** (no nombre): el nombre puede repetirse, el DNI es unico. Ver por que en el [caso del Módulo 6](../../modulo-6/01-diseno-funcional.md).
+- **ID = referencia catastral**: es un identificador único y oficial en España, ya existe fuera de blockchain. No inventamos IDs nuevos.
+- **Owner = DNI** (no nombre): el nombre puede repetirse, el DNI es único. Ver por que en el [caso del Módulo 6](../../módulo-6/01-diseño-funcional.md).
 - **Status como enum**: `active | transferring | blocked`. Permite máquina de estados clara.
-- **Region y Municipality separados**: para poder buscar por zona sin parsear la direccion.
+- **Region y Municipality separados**: para poder buscar por zona sin parsear la dirección.
 - **docType = "property"**: imprescindible si usamos CouchDB — permite filtrar por tipo de documento en rich queries.
 
 ---
@@ -71,11 +71,11 @@ Ventajas:
 Key: property_<referencia_catastral>
 ```
 
-Y dejar que CouchDB haga las queries por `region`, `owner`, `propertyType`, etc. gracias al campo `docType` y los indices.
+Y dejar que CouchDB haga las queries por `region`, `owner`, `propertyType`, etc. gracias al campo `docType` y los índices.
 
-**Nuestra eleccion: Opcion C** — mas simple de mantener, mas potente para queries complejas.
+**Nuestra elección: Opcion C** — mas simple de mantener, mas potente para queries complejas.
 
-### Indices de CouchDB
+### Índices de CouchDB
 
 Crear el archivo `META-INF/statedb/couchdb/indexes/indexPropertyType.json` en el paquete del chaincode:
 
@@ -90,8 +90,8 @@ Crear el archivo `META-INF/statedb/couchdb/indexes/indexPropertyType.json` en el
 }
 ```
 
-Otros indices recomendados:
-- `indexOwner`: por `docType` + `owner` (buscar propiedades de un dueno)
+Otros índices recomendados:
+- `indexOwner`: por `docType` + `owner` (buscar propiedades de un dueño)
 - `indexRegion`: por `docType` + `region` (propiedades de una comunidad)
 - `indexValue`: por `docType` + `appraisalValue` (ordenar por valor)
 
@@ -99,13 +99,13 @@ Otros indices recomendados:
 
 ## 3. Queries necesarias
 
-Antes de elegir tecnologia, listar TODO lo que queremos poder hacer:
+Antes de elegir tecnología, listar TODO lo que queremos poder hacer:
 
 | Query | Descripcion | Complejidad |
 |-------|------------|-------------|
 | `GetProperty(id)` | Leer una propiedad por referencia catastral | Baja (clave exacta) |
-| `GetPropertiesByOwner(dni)` | Todas las propiedades de un dueno | Media (filtrar por campo) |
-| `GetPropertiesByRegion(region)` | Todas las propiedades de Madrid/Cataluna/etc. | Media (filtrar por campo) |
+| `GetPropertiesByOwner(dni)` | Todas las propiedades de un dueño | Media (filtrar por campo) |
+| `GetPropertiesByRegion(region)` | Todas las propiedades de Madrid/Cataluña/etc. | Media (filtrar por campo) |
 | `GetPropertiesByType(type)` | Todos los pisos, todas las casas... | Media (filtrar por campo) |
 | `SearchProperties(minValue, maxValue)` | Propiedades en un rango de precio | Media (filtrar por rango) |
 | `GetAllProperties(pageSize, bookmark)` | Listado paginado de todas | Baja (rango de claves) |
@@ -116,18 +116,18 @@ Antes de elegir tecnologia, listar TODO lo que queremos poder hacer:
 ## 4. ¿LevelDB o CouchDB?
 
 ### LevelDB
-- **Pro**: rapido, ligero, sin contenedor adicional
+- **Pro**: rápido, ligero, sin contenedor adicional
 - **Con**: solo busqueda por clave exacta o rango de claves
 - **Cuando usar**: si solo necesitas lookups directos (como un key-value store simple)
 
 ### CouchDB
-- **Pro**: rich queries con sintaxis Mango (JSON), indices, ordenacion, paginacion
+- **Pro**: rich queries con sintaxis Mango (JSON), índices, ordenación, paginación
 - **Con**: contenedor adicional, algo mas lento, mas memoria
 - **Cuando usar**: si necesitas buscar por campos del JSON (no solo por clave)
 
-**Nuestra eleccion: CouchDB**.
+**Nuestra elección: CouchDB**.
 
-Razon: la mayoria de queries de nuestra tabla anterior necesitan filtrar por campos (`owner`, `region`, `propertyType`, `appraisalValue`). Con LevelDB tendriamos que recorrer TODAS las propiedades en cada query, lo que no escala. Con CouchDB e indices, las queries son eficientes incluso con millones de propiedades.
+Razón: la mayoria de queries de nuestra tabla anterior necesitan filtrar por campos (`owner`, `region`, `propertyType`, `appraisalValue`). Con LevelDB tendriamos que recorrer TODAS las propiedades en cada query, lo que no escala. Con CouchDB e índices, las queries son eficientes incluso con millones de propiedades.
 
 El coste de un contenedor CouchDB extra es despreciable comparado con el beneficio.
 
@@ -271,7 +271,7 @@ func (s *SmartContract) UpdateAppraisalValue(ctx contractapi.TransactionContextI
 }
 ```
 
-### DELETE (borrado logico)
+### DELETE (borrado lógico)
 
 ```go
 func (s *SmartContract) DeactivateProperty(ctx contractapi.TransactionContextInterface,
@@ -371,7 +371,7 @@ func (s *SmartContract) executeQuery(
 }
 ```
 
-### GetAll con paginacion
+### GetAll con paginación
 
 ```go
 type PaginatedResult struct {
@@ -532,12 +532,12 @@ peer chaincode query -C mychannel -n registro \
 
 ---
 
-## Preguntas para la puesta en comun
+## Preguntas para la puesta en común
 
 1. ¿Que campos incluyes en `Property` que no estaban en el enunciado? ¿Por que?
 2. ¿Que decisiones de key space habeis tomado? ¿Composite keys o no?
 3. ¿Habeis elegido LevelDB o CouchDB? ¿Por que?
-4. ¿Que queries son las mas utiles para un Registro de Propiedad real?
+4. ¿Que queries son las mas útiles para un Registro de Propiedad real?
 5. ¿Que pasa si dos personas intentan modificar la misma propiedad a la vez?
 6. ¿Como gestionariais una transferencia de propiedad entre personas?
    (Este seria el tema del dia 3)
@@ -549,4 +549,4 @@ peer chaincode query -C mychannel -n registro \
 - Slides del dia 2: `docs/slides/Modulo 4/dia_2.pptx`
 - Doc Chaincode Lifecycle: `docs/04-chaincode-lifecycle.md`
 - Tutorial test-network: `docs/02-test-network.md`
-- Ejemplo completo en produccion (FidelityChain): `docs/modulo-6/03-chaincode.md`
+- Ejemplo completo en producción (FidelityChain): `docs/modulo-6/03-chaincode.md`

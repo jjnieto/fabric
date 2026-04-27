@@ -2,11 +2,11 @@
 
 ## Contexto
 
-We.Trade fue una plataforma de financiacion de comercio internacional entre PYMEs, basada en Hyperledger Fabric. Fundada en 2018 por un consorcio de 12 bancos europeos (Deutsche Bank, HSBC, Santander, KBC, Nordea, Rabobank, Societe Generale, UBS, Unicredit, CaixaBank, Erste Group, UBS), ofrecia una solucion para reducir el papeleo y el riesgo de fraude en operaciones cross-border.
+We.Trade fue una plataforma de financiación de comercio internacional entre PYMEs, basada en Hyperledger Fabric. Fundada en 2018 por un consorcio de 12 bancos europeos (Deutsche Bank, HSBC, Santander, KBC, Nordea, Rabobank, Societe Generale, UBS, Unicredit, CaixaBank, Erste Group, UBS), ofrecia una solución para reducir el papeleo y el riesgo de fraude en operaciones cross-border.
 
-La plataforma cerro en 2022 por problemas de modelo de negocio — no de tecnologia. Pero su arquitectura es un caso de estudio excelente para entender como Fabric puede resolver problemas reales en el sector financiero.
+La plataforma cerro en 2022 por problemas de modelo de negocio — no de tecnología. Pero su arquitectura es un caso de estudio excelente para entender como Fabric puede resolver problemas reales en el sector financiero.
 
-Tu mision: disenar y montar una red Fabric que soporte un caso similar (a escala de aula) donde **3 bancos europeos** gestionen operaciones de comercio entre sus clientes PYMEs.
+Tu misión: diseñar y montar una red Fabric que soporte un caso similar (a escala de aula) donde **3 bancos europeos** gestionen operaciones de comercio entre sus clientes PYMEs.
 
 ---
 
@@ -29,7 +29,7 @@ sequenceDiagram
     BV->>PV: Entrega el resto del dinero (5.000€)
 ```
 
-**Problema que resuelve:** sin esto, una PYME no se fia de exportar a un cliente en otro pais. Y el banco del comprador no se fia de prestar. Fabric da un ledger compartido donde todos ven el estado de la operacion en tiempo real.
+**Problema que resuelve:** sin esto, una PYME no se fia de exportar a un cliente en otro país. Y el banco del comprador no se fia de prestar. Fabric da un ledger compartido donde todos ven el estado de la operación en tiempo real.
 
 ---
 
@@ -38,7 +38,7 @@ sequenceDiagram
 ### Actores y organizaciones
 
 1. **¿Cuantas organizaciones hay?** ¿Los bancos son orgs y las PYMEs son usuarios?
-2. **¿O las PYMEs deberian ser orgs tambien?** Justifica tu decision.
+2. **¿O las PYMEs deberían ser orgs tambien?** Justifica tu decisión.
 3. **¿Necesitas un regulador (BCE, CNMV) en la red?** ¿Que rol tendria?
 
 ### Datos y privacidad
@@ -48,12 +48,12 @@ sequenceDiagram
 6. **¿Como gestionarias la privacidad?** Piensa en:
    - Canales separados por par de bancos
    - Private Data Collections
-   - Un canal unico con acceso restringido en el chaincode
+   - Un canal único con acceso restringido en el chaincode
 7. **¿Donde guardar los documentos comerciales** (facturas, albaranes, BL)?
 
-### Máquina de estados de una operacion
+### Máquina de estados de una operación
 
-Una operacion comercial tiene un ciclo de vida claro. Diseñalo:
+Una operación comercial tiene un ciclo de vida claro. Diseñalo:
 
 ```
 propuesta → aprobada → en_transito → entregada → pagada
@@ -62,11 +62,11 @@ propuesta → aprobada → en_transito → entregada → pagada
 ```
 
 8. **¿Quien puede cambiar cada estado?** ¿Quien puede iniciar una disputa?
-9. **¿Que pasa si el comprador no confirma la recepcion?** ¿Hay un timeout?
+9. **¿Que pasa si el comprador no confirma la recepción?** ¿Hay un timeout?
 
-### Politicas de endorsement
+### Políticas de endorsement
 
-10. **¿Que politica usarias para crear una operacion?**
+10. **¿Que política usarias para crear una operación?**
     - `AND(BancoVendedor, BancoComprador)` — ambos bancos aprueban
     - `OR(BancoVendedor, BancoComprador)` — con uno basta
 11. **¿Y para liberar el pago?** ¿Debe ser distinta que para crear?
@@ -115,8 +115,8 @@ graph TB
 
 - **3 bancos como organizaciones + orderer**. Las PYMEs NO son orgs — son usuarios registrados por cada banco con un certificado X.509 y un atributo `role=client`.
 - **1 canal compartido entre los 3 bancos**. Cada banco ve todas las operaciones para detectar patrones de fraude.
-- **Private Data Collections**: los importes exactos y documentos sensibles solo los ven los 2 bancos involucrados en la operacion.
-- **Politica de endorsement**: `AND(BancoVendedor, BancoComprador)` para crear y liberar pagos. Los bancos no implicados en la operacion NO endorsan (aunque ven el hash en el ledger).
+- **Private Data Collections**: los importes exactos y documentos sensibles solo los ven los 2 bancos involucrados en la operación.
+- **Política de endorsement**: `AND(BancoVendedor, BancoComprador)` para crear y liberar pagos. Los bancos no implicados en la operación NO endorsan (aunque ven el hash en el ledger).
 
 ### Modelo de datos
 
@@ -287,7 +287,7 @@ func (s *SmartContract) ReleasePayment(ctx ..., operationID string) error {
 }
 ```
 
-### Despliegue con politica de endorsement AND
+### Despliegue con política de endorsement AND
 
 Al hacer `approveformyorg` y `commit`, especificar:
 
@@ -298,7 +298,7 @@ peer lifecycle chaincode approveformyorg \
   --collections-config ./collections_config.json
 ```
 
-Esta es una politica muy restrictiva (los 3 bancos endorsan todo). En produccion se usaria **state-based endorsement** para que cada operacion requiera solo el endorsement de los 2 bancos involucrados. Es un tema avanzado que se ve en Modulo 4 dia 5.
+Esta es una política muy restrictiva (los 3 bancos endorsan todo). En producción se usaria **state-based endorsement** para que cada operación requiera solo el endorsement de los 2 bancos involucrados. Es un tema avanzado que se ve en Módulo 4 dia 5.
 
 ---
 
@@ -369,6 +369,6 @@ peer chaincode query -C trade-channel -n tradefinance \
 
 ## Referencias
 
-- Private Data Collections: [Módulo 4 día 3](../../slides/Modulo 4/dia_3.pptx)
+- Private Data Collections: [Módulo 4 día 3](../../slides/Módulo 4/dia_3.pptx)
 - Políticas de endorsement: [doc 04 Chaincode Lifecycle](../../04-chaincode-lifecycle.md)
-- State-based endorsement: [Módulo 4 día 5](../../slides/Modulo 4/dia_5.pptx)
+- State-based endorsement: [Módulo 4 día 5](../../slides/Módulo 4/dia_5.pptx)

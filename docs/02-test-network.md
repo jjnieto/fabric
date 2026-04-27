@@ -423,5 +423,5 @@ newgrp docker
 
 ---
 
-**Anterior:** [01 - Requisitos e instalación](01-requisitos-e-instalacion.md)
+**Anterior:** [01 - Requisitos e instalación](01-requisitos-e-instalación.md)
 **Siguiente:** [03 - Crear una red personalizada desde cero](03-crear-red-personalizada.md)

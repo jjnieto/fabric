@@ -4,7 +4,7 @@
 
 FidelityChain es un sistema de puntos de fidelizacion compartido entre dos empresas: un **hotel** y una **cafeteria**. El hotel emite puntos a sus clientes como recompensa por cada estancia. Los clientes pueden gastar esos puntos en la cafeteria para pagar desayunos, cafes y otros productos.
 
-Ambas empresas comparten un ledger comun en Hyperledger Fabric que registra de forma inmutable todas las emisiones, canjes y transferencias de puntos. Ninguna de las dos puede modificar los datos de la otra, y ambas tienen visibilidad completa de los movimientos.
+Ambas empresas comparten un ledger común en Hyperledger Fabric que registra de forma inmutable todas las emisiones, canjes y transferencias de puntos. Ninguna de las dos puede modificar los datos de la otra, y ambas tienen visibilidad completa de los movimientos.
 
 ---
 
@@ -44,19 +44,19 @@ graph TB
     style C1 fill:#B45D09,color:#fff
 ```
 
-| Actor | Organizacion | Rol | Que puede hacer |
+| Actor | Organización | Rol | Que puede hacer |
 |-------|-------------|-----|-----------------|
 | **Admin Hotel** | Org1 (Hotel) | Emisor | Emitir puntos a clientes, consultar saldos |
 | **Admin Cafeteria** | Org2 (Cafeteria) | Canjeador | Canjear puntos de clientes por productos, consultar saldos |
 | **Cliente** | Identificado por DNI | Beneficiario | Consultar su saldo e historial |
 
-> **Identificacion de clientes:** Los clientes se identifican por su **numero de DNI/pasaporte** (por ejemplo `12345678A`). No tienen certificado X.509 propio en la red Fabric — son registros en el World State gestionados por los admins. Cuando un cliente quiere canjear puntos en la cafeteria, muestra su DNI y el admin de la cafeteria ejecuta la transaccion en su nombre.
+> **Identificación de clientes:** Los clientes se identifican por su **número de DNI/pasaporte** (por ejemplo `12345678A`). No tienen certificado X.509 propio en la red Fabric — son registros en el World State gestionados por los admins. Cuando un cliente quiere canjear puntos en la cafeteria, muestra su DNI y el admin de la cafeteria ejecuta la transacción en su nombre.
 
 ---
 
 ## Flujos funcionales
 
-### Flujo 1: Emision de puntos
+### Flujo 1: Emisión de puntos
 
 ```mermaid
 sequenceDiagram
@@ -133,7 +133,7 @@ sequenceDiagram
 | Desayuno completo | 30 |
 | Menu almuerzo | 50 |
 
-> El catalogo se gestiona en la aplicacion cliente, no en el chaincode. El chaincode solo ve el canje de puntos con una descripcion del producto.
+> El catalogo se gestiona en la aplicación cliente, no en el chaincode. El chaincode solo ve el canje de puntos con una descripcion del producto.
 
 ---
 
@@ -142,11 +142,11 @@ sequenceDiagram
 1. **Solo el hotel (Org1) puede emitir puntos** — La cafeteria no puede crear puntos de la nada
 2. **Solo la cafeteria (Org2) puede canjear puntos** — El hotel no canjea en nombre del cliente
 3. **Ambas organizaciones pueden consultar saldos e historiales** — Transparencia total
-4. **No se puede gastar mas de lo que se tiene** — El chaincode valida saldo >= amount
-5. **Los puntos no caducan** — Simplificacion para el proyecto (en produccion se andiria TTL)
+4. **No se puede gastar mas de lo que se tiene** — el chaincode valida saldo >= amount
+5. **Los puntos no caducan** — Simplificacion para el proyecto (en producción se añadiría TTL)
 6. **No hay transferencia entre clientes** — Solo mint y redeem (simplificacion)
 7. **El amount debe ser positivo** — No se permiten operaciones con 0 o negativos
-8. **El historial es inmutable** — Cada operacion queda registrada para siempre
+8. **El historial es inmutable** — Cada operación queda registrada para siempre
 
 ---
 
@@ -188,7 +188,7 @@ erDiagram
 | Key | Valor | Proposito |
 |-----|-------|-----------|
 | `client~12345678A` | JSON del cliente (name, balance...) | Datos del cliente |
-| `tx~12345678A~00001` | JSON de la transaccion | Historial (composite key) |
+| `tx~12345678A~00001` | JSON de la transacción | Historial (composite key) |
 | `tokenInfo` | JSON con totales | Metadata del token |
 
 ---
